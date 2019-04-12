@@ -17,6 +17,27 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: ''
+    }
+  }
+
+  componentWillMount() {
+    fetch('https://cc92b254.ngrok.io/genre', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json'
+      },
+    })
+    .then(json => console.log(json))
+    //.then(json => this.setState({
+      //  name: json.name
+      //}))
+      .catch(error => console.error(error))
+  }
+
   render() {
     return (
       <View style={styles.container}>
