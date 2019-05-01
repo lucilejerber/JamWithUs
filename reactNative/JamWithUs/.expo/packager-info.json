@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 15088,
-  "expoServerNgrokUrl": "https://fj-z4h.anonymous.jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.fj-z4h.anonymous.jamwithus.exp.direct",
-  "ngrokPid": 9864,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
