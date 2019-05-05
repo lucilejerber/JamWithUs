@@ -11,7 +11,7 @@ class Jam {
     String description
 
     int nombreDeParticipants
-    int nombreMaxPariticipants
+    int nombreMaxParticipants
     Boolean complet
     static hasParticipants = [participants: User]
     static hasDemandeurs = [demandeurs: User]
