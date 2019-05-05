@@ -18,23 +18,33 @@ import { MonoText } from '../components/StyledText';
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 
-// import t from 'tcomb-form-native'; // 0.6.9
-// const Form = t.form.Form;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    height: '100%',
+  },
+  title: {
+    color: '#4F2214',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  contentContainer: {
+    paddingTop: 30,
+    margin: 10
+  },
+  textInput: {
+    borderColor: '#CCCCCC',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 50,
+    fontSize: 25,
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+});
 
-// var Gender = t.enums({
-//   M: 'Male',
-//   F: 'Female'
-// });
-
-// const User = t.struct({
-//   nom: t.String,
-//   // date: t.Date,
-//   nombreDeParticipants:  t.Number, 
-//   // lieu: t.Lieu,
-//   terms: t.Boolean,
-//   gender: Gender // enum
-// });
- 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -45,13 +55,17 @@ export default class HomeScreen extends React.Component {
     this.showDateTimePicker = this.showDateTimePicker.bind(this)
     this.hideDateTimePicker = this.hideDateTimePicker.bind(this)
     this.handleDatePicked = this.handleDatePicked.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
     this.state = {
       name: '',
       isDateTimePickerVisible: false,
       day: new Date().getDate().toLocaleString(), //Current Date
       month: (new Date().getMonth() + 1).toLocaleString(), //Current Month
-      year: new Date().getFullYear().toLocaleString() //Current Year
+      year: new Date().getFullYear().toLocaleString(), //Current Year,
+      lieu: '',
+      description: '',
+      nbMaxParticipants: ''
     }
   }
 
@@ -82,21 +96,27 @@ export default class HomeScreen extends React.Component {
     })
     .then(json => console.log(json))
     //.then(json => this.setState({
-      //  name: json.name
-      //}))
-      .catch(error => console.error(error))
+    //  name: json.name
+    //}))
+    .catch(error => console.error(error))
   }
 
   // TO-DO : Rajouter bouton "ajouter lieu"
+  handleSubmit() {
+    console.log(this.state.nbMaxParticipants)
+    console.log(this.state.lieu)
+    console.log(this.state.description)
+  } 
 
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.jamContainer}>
-              <Text style={styles.title}>Création d'une Jam</Text>
+            <Text style={styles.title}>Création d'une Jam</Text>
+              
               <Text>Nom de la Jam</Text>
-              <TextInput editable = {true} maxLength = {40}/>
+              <TextInput style={styles.textInput} editable = {true} maxLength = {40}/>
 
               <Text>Date : {this.state.day} {this.state.month} {this.state.year}</Text> 
               <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
@@ -107,7 +127,7 @@ export default class HomeScreen extends React.Component {
               />
               
               <Text>Lieu</Text>
-              <TextInput editable = {true} maxLength = {40}/>
+              <TextInput style={styles.textInput} editable = {true} maxLength = {40} onChangeText={(text) => this.setState({lieu: text})}/>
 
               <Text>Instruments</Text>
               <Picker selectedValque={this.state.language} style={{height: 50, width: 100}} onValueChange={(itemValue, itemIndex) =>  this.setState({language: itemValue}) }>
@@ -122,65 +142,16 @@ export default class HomeScreen extends React.Component {
               </Picker>
 
               <Text>Description</Text>
-              <TextInput editable = {true} maxLength = {40}/>
+              <TextInput style={styles.textInput} editable = {true} maxLength = {40} onChangeText={(text) => this.setState({description: text})}/>
 
               <Text>int nombreMaxPariticipants</Text>
-              <TextInput editable = {true} maxLength = {40}/>
-   
+              <TextInput style={styles.textInput} editable = {true} maxLength = {40} onChangeText={(text) => this.setState({nbMaxParticipants: text})}/>
+              
+              <Button title="Créer Jam" onPress={this.handleSubmit} />
+              
           </View>
         </ScrollView>
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    height: '100%',
-  },
-  title: {
-    color: '#4F2214',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10
-  },
-  contentContainer: {
-    paddingTop: 30,
-    margin: 10
-  },
-});
