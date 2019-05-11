@@ -6,17 +6,18 @@ class Jam {
     
     Lieu lieu
     
-    static hasInstruments = [instruments: Instrument]
-    static hasGenre = [genres: Genre]
+    // static hasInstruments = [instruments: Instrument]
+    // static hasGenre = [genres: Genre]
     String description
 
     int nombreDeParticipants
     int nombreMaxParticipants
     Boolean complet
-    static hasParticipants = [participants: User]
-    static hasDemandeurs = [demandeurs: User]
-    static hasSpectateurs = [spectateurs: User]
+    // static hasParticipants = [participants: User]
+    // static hasDemandeurs = [demandeurs: User]
+    // static hasSpectateurs = [spectateurs: User]
 
+    static hasMany = [participants: User, demandeurs: User, spectateurs: User, instruments: Instrument, genres: Genre]
     User administrateur
 
     static constraints = {
