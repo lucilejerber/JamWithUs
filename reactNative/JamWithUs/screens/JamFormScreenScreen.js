@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components/StyledText'; 
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 import MultiSelect from 'react-native-multiple-select';
