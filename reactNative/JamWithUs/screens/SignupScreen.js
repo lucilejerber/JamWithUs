@@ -6,9 +6,9 @@ import {
   StatusBar } from 'react-native';
 
 import Logo from '../components/Logo';
-import Form2 from '../components/Form2';
+import Form2 from '../components/Form';
 
-export default class Signup extends Component <{}> {
+export default class SignUp extends Component <{}> {
   render() {
      return (
       <View style= {styles.container}>

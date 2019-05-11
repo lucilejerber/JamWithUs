@@ -7,10 +7,9 @@ import {
 } from "react-navigation";
 
 import { FontAwesome } from "react-native-vector-icons";
-import SignUp from "./screens/SignUp";
-import SignIn from "./screens/SignIn";
-import Home from "./screens/Home";
-import Profile from "./screens/Profile";
+import SignUp from "../screens/SignUpScreen";
+import Login from "../screens/LoginScreen";
+import Profile from "../screens/Profile";
 
 const headerStyle = {
   marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -25,7 +24,7 @@ export const SignedOut = createStackNavigator({
     }
   },
   SignIn: {
-    screen: SignIn,
+    screen: Login,
     navigationOptions: {
       title: "Sign In",
       headerStyle
