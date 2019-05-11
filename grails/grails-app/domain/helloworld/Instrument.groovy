@@ -1,10 +1,10 @@
 package helloworld
 
 class Instrument {
-  String nom;
+  String name;
   Image logo;
 
  static constraints = {
-        nom blank: false
+        name blank: false
     }
 }
