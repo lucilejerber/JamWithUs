@@ -25,6 +25,7 @@ class User {
         surnom size: 3..15, blank: false, unique: true
         mail unique: true, blank: false, email: true
         motDePasse size: 5..15, blank: false
+        anniversaire blank: true
     }
 }
 

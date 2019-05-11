@@ -5,8 +5,8 @@ import {
   TabNavigator,
   SwitchNavigator
 } from "react-navigation";
-import { FontAwesome } from "react-native-vector-icons";
 
+import { FontAwesome } from "react-native-vector-icons";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
