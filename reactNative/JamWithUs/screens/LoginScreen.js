@@ -6,7 +6,7 @@ import {
   StatusBar } from 'react-native';
 
 import Logo from '../components/Logo';
-import Form from '../components/Form';
+import Form from '../components/ConnectionForm';
 
 export default class Login extends Component <{}> {
   render() {
