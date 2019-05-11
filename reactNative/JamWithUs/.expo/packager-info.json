@@ -1,9 +1,10 @@
 {
-  "devToolsPort": 19005,
-  "expoServerPort": 19006,
-  "packagerPort": 19007,
-  "packagerPid": 22245,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 22927,
   "expoServerNgrokUrl": "https://8f-nmv.anonymous.jamwithus.exp.direct",
   "packagerNgrokUrl": "https://packager.8f-nmv.anonymous.jamwithus.exp.direct",
-  "ngrokPid": 22268
+  "ngrokPid": 22947,
+  "webpackServerPort": null
 }

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },  
 }); 
  
-export default class HomeScreen extends React.Component {
+export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
