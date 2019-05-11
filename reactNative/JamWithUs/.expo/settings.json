@@ -1,7 +1,7 @@
 {
   "hostType": "tunnel",
   "lanType": "ip",
-  "dev": true,
-  "minify": false,
-  "urlRandomness": "w8-ezj"
+  "dev": false,
+  "minify": true,
+  "urlRandomness": "j6-dqn"
 }
