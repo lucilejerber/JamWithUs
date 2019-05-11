@@ -1,80 +1,60 @@
-import React from "react";
-import { Platform, StatusBar } from "react-native";
-import {
-  StackNavigator,
-  TabNavigator,
-  SwitchNavigator
-} from "react-navigation";
-import { FontAwesome } from "react-native-vector-icons";
+import React from 'react';
+import { Platform } from 'react-native';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
-import SignUp from "./screens/SignUp";
-import SignIn from "./screens/SignIn";
-import Home from "./screens/Home";
-import Profile from "./screens/Profile";
+import TabBarIcon from '../components/TabBarIcon';
+import HomeScreen from '../screens/HomeScreen';
+import LinksScreen from '../screens/LinksScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
-const headerStyle = {
-  marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-};
-
-export const SignedOut = createStackNavigator({
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      title: "Sign Up",
-      headerStyle
-    }
-  },
-  SignIn: {
-    screen: SignIn,
-    navigationOptions: {
-      title: "Sign In",
-      headerStyle
-    }
-  }
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
 });
 
-export const SignedIn = createBottomTabNavigator(
-  {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        tabBarLabel: "Home",
-        tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="home" size={30} color={tintColor} />
-        )
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
       }
-    },
-    Profile: {
-      screen: Profile,
-      navigationOptions: {
-        tabBarLabel: "Profile", 
-        tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="user" size={30} color={tintColor} />
-        )
-      }
-    }
-  },
-  {
-    tabBarOptions: {
-      style: {
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-      }
-    }
-  }
-);
-
-export const createRootNavigator = (signedIn = false) => {
-  return createSwitchNavigator(
-    {
-      SignedIn: {
-        screen: SignedIn
-      },
-      SignedOut: {
-        screen: SignedOut
-      }
-    },
-    {
-      initialRouteName: signedIn ? "SignedIn" : "SignedOut"
-    }
-  );
+    />
+  ),
 };
+
+const LinksStack = createStackNavigator({
+  Links: LinksScreen,
+});
+
+LinksStack.navigationOptions = {
+  tabBarLabel: 'Links',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
+
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
+});
+
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+    />
+  ),
+};
+
+export default createBottomTabNavigator({
+  HomeStack,
+  LinksStack,
+  SettingsStack,
+});
