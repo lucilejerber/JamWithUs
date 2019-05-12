@@ -1,30 +1,25 @@
 package helloworld
 
 class Jam {
-    String nom
-    Date date
+    String name;
+    String description;
     
-    Lieu lieu
+    Location location;
+    User admin;
+    Date date;
     
-    // static hasInstruments = [instruments: Instrument]
-    // static hasGenre = [genres: Genre]
-    String description
+    int numberParticipants;
+    int maxNumberParticipants;
 
-    int nombreDeParticipants
-    int nombreMaxParticipants
-    Boolean complet
-    // static hasParticipants = [participants: User]
-    // static hasDemandeurs = [demandeurs: User]
-    // static hasSpectateurs = [spectateurs: User]
+    Boolean full;
 
-    static hasMany = [participants: User, demandeurs: User, spectateurs: User, instruments: Instrument, genres: Genre]
-    User administrateur
+    static hasMany = [participants: User, askers: User, spectators: User, instruments: Instrument, genres: Genre];
 
     static constraints = {
-        nom blank: false
+        name blank: false
         date blank: false
-        lieu blank: false
-        administrateur blank: false
-        nombreMaxParticipants blank: false
+        location blank: false
+        admin blank: false
+        maxNumberParticipants blank: false
     }
 }

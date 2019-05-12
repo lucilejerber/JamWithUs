@@ -18,6 +18,8 @@ import { MonoText } from '../components/StyledText';
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 import MultiSelect from 'react-native-multiple-select';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   },  
 }); 
  
-export default class HomeScreen extends React.Component {
+export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
@@ -99,9 +101,9 @@ export default class HomeScreen extends React.Component {
   };
 
   hideDateTimePicker() {
-    this.setState(); 
+    this.setState();    
   }; 
-
+   
   handleDatePicked(date) {
     console.log("A date has been picked: ", date.getDate());
     console.log("A date has been picked: ", date.getMonth());
@@ -109,7 +111,7 @@ export default class HomeScreen extends React.Component {
     this.setState({ day: date.getDate().toLocaleString() }); 
     this.setState({ month: (date.getMonth() + 1).toLocaleString() }); 
     this.setState({ year: date.getFullYear().toLocaleString() }); 
-    this.setState({ date: date }); 
+    this.setState({ date: date.toJSON()}); 
     this.hideDateTimePicker(); 
   };
 
@@ -117,7 +119,7 @@ export default class HomeScreen extends React.Component {
     this.getGenres();
     this.getInstruments();
   }
-
+ 
   // TO-DO : Rajouter bouton "ajouter lieu"
   handleSubmit() {
     var date;
@@ -134,30 +136,30 @@ export default class HomeScreen extends React.Component {
     console.log("genres = " +  this.state.selectedGenres)
     console.log(this.state.genres)
 
-    fetch('https://ce68f9e0.ngrok.io/Jam/save', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        ContentType: 'application/json'
-      }, 
-      body: JSON.stringify({
-        "nom": this.state.name,
-        "date": this.state.date,
-        "lieu": this.state.lieu, 
-        "administrateur": "admin", 
-        "nombreMaxParticipants": this.state.nbMaxParticipants,
-        "complet": false, 
-        "nombreDeParticipants": 1,
-        "description": this.state.description,
-      }),
-    })
-    .then(json => console.log(json))
-    .catch(error => console.error(error))
+    // fetch('https://1caf9c08.ngrok.io/Jam/save', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     ContentType: 'application/json'
+    //   }, 
+    //   body: JSON.stringify({
+    //     "nom": this.state.name,
+    //     "date": this.state.date,
+    //     "lieu": this.state.lieu, 
+    //     "administrateur": "admin", 
+    //     "nombreMaxParticipants": this.state.nbMaxParticipants,
+    //     "complet": false, 
+    //     "nombreDeParticipants": 1,
+    //     "description": this.state.description,
+    //   }),
+    // })
+    // .then(json => console.log(json))
+    // .catch(error => console.error(error))
   }   
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('https://ce68f9e0.ngrok.io/Instrument', {
+    fetch('https://1caf9c08.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -177,7 +179,7 @@ export default class HomeScreen extends React.Component {
   
   // Request to the data base to get genre
   getGenres() {
-    fetch('https://ce68f9e0.ngrok.io/Genre', {
+    fetch('https://1caf9c08.ngrok.io/Genre', {
       method: 'POST',
       headers: {
         Accept: 'application/json', 

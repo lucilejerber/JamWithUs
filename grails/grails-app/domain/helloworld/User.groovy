@@ -2,30 +2,38 @@ package helloworld
 
 class User {
 
-    String  surnom
-    String  nom
-    String  prenom
-    Date    anniversaire 
-
+    String pseudo
     String mail
-    String motDePasse
-    String numeroDeTelephone
+    String password
 
-    String pays
-    String ville
+    String firstName
+    String lastName
+    String phoneNumber
+    Date birthday 
 
-    String description
-    static hasManyInstrument = [instruments: Instrument]
-    static hasManyGenre = [genres: Genre]
-    static hasManyJam = [jams:  Jam]
+    String city
+    String country
 
     Image avatar
+    String description
 
+    static hasMany = [instruments: Instrument, genres: Genre, jams: Jam]
+    
     static constraints = {
-		surnom size: 3..15, blank: false, unique: true
+        pseudo size: 3..15, blank: false, unique: true
         mail unique: true, blank: false, email: true
-        motDePasse size: 5..15, blank: false
-        anniversaire blank: true
+        password size: 5..15, blank: false
+        firstName nullable: true
+        lastName nullable: true
+        phoneNumber nullable: true
+        birthday nullable: true
+        city nullable: true
+        country nullable: true
+        avatar nullable: true
+        description nullable: true
+        instruments nullable: true
+        genres nullable: true
+        jams nullable: true
     }
 }
 
