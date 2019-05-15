@@ -24,42 +24,46 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f4f4f4', 
     height: '100%',
   },
   title: {
-    color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
-    backgroundColor: '#4F2214',
     marginBottom: 10,
-    // marginTop: 40,
-    paddingBottom: 20, 
-    paddingTop: 50, 
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingBottom: 10, 
+    paddingTop: 40, 
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    backgroundColor: '#ffffff', 
+    textAlign: 'center',
   },
   contentContainer: {
   },
   textInput: {
-    height: 40,
-    fontSize: 15,
+    height: 50,
     paddingLeft: 20,
     paddingRight: 20,
     marginBottom: 10,
-    backgroundColor: '#ededed', 
+    marginTop: 5,
+    backgroundColor: '#ffffff', 
+    borderRadius: 20
   },
   inputLabel: {
-    color: 'black',
-    fontWeight: 'bold',
+    marginLeft: 5,
+    fontWeight: 'bold'
   },
   inputContainer: {
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 5,
+    marginRight: 5,
   },
   multiSelect: {
-    marginTop: 5,   
+    borderRadius: 20,
+    padding: 5,   
   },  
+  dateContainer: {
+    width: 50
+  },
 }); 
  
 export default class JamForm extends React.Component {
@@ -101,7 +105,7 @@ export default class JamForm extends React.Component {
   };
 
   hideDateTimePicker() {
-    this.setState();    
+    this.setState({ isDateTimePickerVisible: false });    
   }; 
    
   handleDatePicked(date) {
@@ -213,7 +217,7 @@ export default class JamForm extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.jamContainer}>
-            <Text style={styles.title}>CREATION D'UNE JAM</Text>
+            <Text style={styles.title}>Création d'une Jam</Text>
               
               <View style={styles.inputContainer}>
  
@@ -224,15 +228,27 @@ export default class JamForm extends React.Component {
                   maxLength = {40} 
                   onChangeText={(text) => this.setState({name: text})}
                 />
- 
-                <Text style={styles.inputLabel}>Date : {this.state.day} {this.state.month} {this.state.year}</Text> 
-                <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
-                <DateTimePicker
-                  isVisible={this.state.isDateTimePickerVisible}
-                  onConfirm={this.handleDatePicked}
-                  onCancel={this.hideDateTimePicker}
-                />  
-                 
+
+                <View style={{flex: 2, flexDirection: 'row'}}>
+                  <View style={{flex: 1}}>
+                    <Text style={styles.inputLabel}>Date</Text> 
+                    <Text>{this.state.day} / {this.state.month} / {this.state.year}</Text> 
+                  </View>
+                  <View style={{flex: 2, paddingRight: 10}}>
+                    <Button 
+                      style={styles.dateContainer}
+                      title="Show DatePicker" 
+                      onPress={this.showDateTimePicker} 
+                      color="gray" 
+                    />
+                    <DateTimePicker
+                      isVisible={this.state.isDateTimePickerVisible}
+                      onConfirm={this.handleDatePicked}
+                      onCancel={this.hideDateTimePicker}
+                    />  
+                  </View>
+                </View>
+
                 <Text style={styles.inputLabel}>Lieu</Text>
                 <TextInput 
                   style={styles.textInput} 
