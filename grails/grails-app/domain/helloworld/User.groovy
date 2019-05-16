@@ -2,20 +2,20 @@ package helloworld
 
 class User {
 
-    String pseudo
-    String mail
-    String password
+    String pseudo;
+    String mail;
+    String password;
 
-    String firstName
-    String lastName
-    String phoneNumber
-    Date birthday 
+    String firstName;
+    String lastName;
+    String phoneNumber;
+    Date birthday;
 
-    String city
-    String country
+    String city;
+    String country;
 
-    Image avatar
-    String description
+    Image avatar;
+    String description;
 
     static hasMany = [instruments: Instrument, genres: Genre, jams: Jam]
     
