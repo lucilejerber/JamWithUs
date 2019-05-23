@@ -2,11 +2,13 @@ package jamwithus
 
 class Location {
 	String name
-	int capacity
+	String address
+	String locality
 	String country 
-	String city
-	String adress
-	int postalCode  
+	String administrative_area_level_2 
+	String administrative_area_level_1 
+	int postalCode
+	int capacity  
 	Boolean availability
 
     static constraints = {
