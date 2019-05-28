@@ -7,57 +7,38 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-  export default class Logo extends Component <{}> {
+  export default class Form extends Component <{}> {
 
 
   render() {
      return (
-     	<View style ={styles.container}>
-        <TextInput style={styles.inputBox} 
-        underlineColorAndroid='rgba(0,0,0,0)' 
+     	<View style ={FormStyles.container}>
+        <TextInput style={FormStyles.inputBox} 
         placeholder='Adresse mail'
-        placeholderTextColor = "#ffffff"/>
-        <TextInput style={styles.inputBox} 
-        underlineColorAndroid='rgba(0,0,0,0)' 
+        placeholderTextColor='ffffff'/>
+        <TextInput style={FormStyles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
-        placeholderTextColor = "#ffffff"/>
-
-        <TouchableOpacity style= {styles.button}>
-          <Text style ={styles.buttonText}>{this.props.type} </Text>
-        </TouchableOpacity>
+        placeholderTextColor='ffffff'/>
      	</View> 
     	)
   	}
 }
 
-const styles = StyleSheet.create({
-  container : {
-    flexGrow : 1,
-    justifyContent:'center',
-    alignItems: 'center'
+const FormStyles = StyleSheet.create({
+ container : {
+    padding: 20
   },
  inputBox :{
-  width:300,
-  backgroundColor: "rgba(255,255,255,0.3)",
-  borderRadius:25,
-  paddingHorizontal:16,
-  paddingVertical: 16,
-  fontSize:16,
-  color: '#ffffff',
-  marginVertical: 10,
-  },
-  button :{
-    width: 300,
-    backgroundColor: "#1c313a",
-    borderRadius: 25,
-    marginVertical: 10,
-    paddingVertical: 16
+    height: 40,
+    backgroundColor: 'rgba(225,225,225,0.7)',
+    marginBottom: 10,
+    padding: 10,
+    color: '#000000'
   },
   buttonText :{
     fontSize: 16,
     fontWeight: '500',
-    color : '#ffffff',
     textAlign:'center'
   }
 
