@@ -2,7 +2,7 @@ package jamwithus
 
 class Instrument {
 
-	String nom
+	String name
 	Image logo
 
     static constraints = {

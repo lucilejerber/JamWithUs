@@ -10,7 +10,7 @@ class Jam {
 
     int numberParticipants
     int maxParticipants
-    Boolean full
+    Boolean full  
 
     static hasMany = [participants: User, askers: User, watchers: User, instruments: Instrument, genres: Genre]
 

@@ -2,6 +2,7 @@ package jamwithus
 
 class User {
 
+    String surname
     String name
     String lastname
     Date birthday 
@@ -15,8 +16,10 @@ class User {
 
     String description
 
-    // static hasMany = [instruments: Instrument, genres: Genre, jams:  Jam]
-
+    static hasMany = [genres: Genre, instruments: Instrument, jams: Jam]
+    // static hasManyI = [instruments: Instrument]
+    // static hasMany = [jams: Jam]
+// 
     static constraints = {
     	 
     	name nullable: false
