@@ -272,43 +272,9 @@ export default class JamForm extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           
           <View style={styles.jamContainer}>
-            <Text style={styles.title}>Création d'une Jam</Text>
-              <GooglePlacesAutocomplete
-                placeholder='Enter Location'
-                minLength={2}
-                autoFocus={false}
-                returnKeyType={'default'}
-                fetchDetails={true}
-                styles={{
-                  textInputContainer: {
-                    backgroundColor: 'rgba(0,0,0,0)',
-                    borderTopWidth: 0,
-                    borderBottomWidth:0
-                  },
-                  textInput: {
-                    marginLeft: 0,
-                    marginRight: 0,
-                    height: 38,
-                    color: '#5d5d5d',
-                    fontSize: 16
-                  },
-                  predefinedPlacesDescription: {
-                    color: '#1faadb'
-                  },
-                }}
-                currentLocation={false}
-                query={{
-                  // available options: https://developers.google.com/places/web-service/autocomplete
-                  key: 'AIzaSyACQlodCoybhH4bhs6WoVscVcyIuYnAoDQ',
-                  language: 'fr', // language of the results
-                }}
-                      onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        console.log(details);
-      }}
-              />
-  
+            <Text style={styles.title}>Création d'une Jam</Text>  
               <View style={styles.inputContainer}>
- 
+
                 <Text style={styles.inputLabel}>Nom de la jam</Text>
                 <TextInput 
                   style={styles.textInput}   
@@ -338,12 +304,47 @@ export default class JamForm extends React.Component {
                 </View>
 
                 <Text style={styles.inputLabel}>Lieu</Text>
-                <TextInput 
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({lieu: text})}
-                /> 
+                <MultiSelect
+                  items={this.state.instruments}
+                  uniqueKey="id"
+                  displayKey="nom"
+                  onSelectedItemsChange={this.onSelectedInstrumentsChange}
+                  styleMainWrapper={styles.multiSelect}
+                  selectedItems={selectedInstruments}
+                />
+                <GooglePlacesAutocomplete
+                  placeholder='Enter Location'
+                  minLength={2}
+                  autoFocus={false}
+                  returnKeyType={'default'}
+                  fetchDetails={true}
+                  styles={{
+                    textInputContainer: {
+                      backgroundColor: 'rgba(0,0,0,0)',
+                      borderTopWidth: 0,
+                      borderBottomWidth:0
+                    },
+                    textInput: {
+                      marginLeft: 0,
+                      marginRight: 0,
+                      height: 38,
+                      color: '#5d5d5d',
+                      fontSize: 16
+                    },
+                    predefinedPlacesDescription: {
+                      color: '#1faadb'
+                    },
+                  }}
+                  currentLocation={false}
+                  query={{
+                    // available options: https://developers.google.com/places/web-service/autocomplete
+                    key: 'AIzaSyACQlodCoybhH4bhs6WoVscVcyIuYnAoDQ',
+                    language: 'fr', // language of the results
+                  }}
+                  onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                    console.log(details);
+                  }}
+                />
 
                 <Text style={styles.inputLabel}>Instruments</Text>
                 <MultiSelect
@@ -354,7 +355,7 @@ export default class JamForm extends React.Component {
                   styleMainWrapper={styles.multiSelect}
                   selectedItems={selectedInstruments}
                 />
-                
+                 
                 <Text style={styles.inputLabel}>Genres</Text>
                 <MultiSelect
                   styleMainWrapper={styles.multiSelect}
