@@ -1,4 +1,6 @@
-// Components/Search.js
+/* 
+Laura Formulaire Profil
+*/
 import React from 'react'
 import { StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView,Image, Picker, Modal, TouchableOpacity} from 'react-native'
 
@@ -13,7 +15,21 @@ class Search extends React.Component {
 
 		};
 	}
-		
+
+
+  componentWillMount(){ // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
+    fetch('http://733c5024.ngrok.io', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json'
+      },
+    })
+    .then(json => console.log(json))
+    //.then(json => this.setState({
+      //  name: json.name
+      //}))
+    .catch(error => console.error(error))
+	}
 
 	render (){
 		return (
