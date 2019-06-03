@@ -23,7 +23,6 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4', 
     height: '100%',
   },
   title: {
@@ -31,11 +30,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     paddingBottom: 10, 
-    paddingTop: 40, 
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1,
-    backgroundColor: '#ffffff', 
-    textAlign: 'center',
+    paddingTop: 50, 
+    height: 105,
   },
   contentContainer: {
   },
@@ -43,22 +39,31 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 10,
+    marginLeft: 40,
+    marginRight: 40,
+    marginBottom: 40,
     marginTop: 5,
-    backgroundColor: '#ffffff', 
+    backgroundColor: '#f3f3f3', 
     borderRadius: 20
   },
+  round: {
+    borderRadius: 20,
+    paddingLeft: 20,
+    backgroundColor: '#f3f3f3', 
+    paddingRight: 20, 
+  },
   inputLabel: {
-    marginLeft: 5,
-    fontWeight: 'bold'
+    marginLeft: 40,
+    fontWeight: 'bold',
   },
   inputContainer: {
     marginLeft: 5,
     marginRight: 5,
   },
   multiSelect: {
-    borderRadius: 20,
     padding: 5,   
+    marginLeft: 40,
+    marginRight: 40,
   },  
   dateContainer: {
     width: 50
@@ -217,7 +222,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://602f632e.ngrok.io/Instrument', {
+    fetch('https://57eb4b9a.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -237,7 +242,7 @@ export default class JamForm extends React.Component {
   
   // Request to the data base to get genre
   getGenres() {
-    fetch('http://602f632e.ngrok.io/Genre', {
+    fetch('https://57eb4b9a.ngrok.io/Genre', {
       method: 'POST',
       headers: {
         Accept: 'application/json', 
@@ -272,7 +277,47 @@ export default class JamForm extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           
           <View style={styles.jamContainer}>
-            <Text style={styles.title}>Création d'une Jam</Text>
+            <Text style={styles.title}>CREATION JAM</Text>  
+            <View style={styles.inputContainer}>
+
+              <Text style={styles.inputLabel}>Nom de la jam</Text>
+              <TextInput 
+                style={styles.textInput}   
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({name: text})}
+              /> 
+
+              <Text style={styles.inputLabel}>Date</Text> 
+              <View style={{flex: 2, flexDirection: 'row', marginLeft: 40, marginRight: 40}}>
+                <View style={{flex: 1}}>
+                  <Text>{this.state.day} / {this.state.month} / {this.state.year}</Text> 
+                </View>
+                <View style={{flex: 2, paddingRight: 10}}>
+                  <Button 
+                    style={styles.dateContainer}
+                    title="Show DatePicker" 
+                    onPress={this.showDateTimePicker} 
+                    color="gray" 
+                  />
+                  <DateTimePicker
+                    isVisible={this.state.isDateTimePickerVisible}
+                    onConfirm={this.handleDatePicked}
+                    onCancel={this.hideDateTimePicker}
+                  />  
+                </View>
+              </View>
+
+              <Text style={styles.inputLabel}>Lieu</Text>
+              <MultiSelect
+                items={this.state.instruments}
+                uniqueKey="id"
+                displayKey="nom"
+                onSelectedItemsChange={this.onSelectedInstrumentsChange}
+                styleMainWrapper={styles.multiSelect}
+                styleDropdownMenuSubsection={styles.round}
+                selectedItems={selectedInstruments}
+              /> 
               <GooglePlacesAutocomplete
                 placeholder='Enter Location'
                 minLength={2}
@@ -302,85 +347,49 @@ export default class JamForm extends React.Component {
                   key: 'AIzaSyACQlodCoybhH4bhs6WoVscVcyIuYnAoDQ',
                   language: 'fr', // language of the results
                 }}
-                      onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        console.log(details);
-      }}
+                onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                  console.log(details);
+                }}
               />
-  
-              <View style={styles.inputContainer}>
- 
-                <Text style={styles.inputLabel}>Nom de la jam</Text>
-                <TextInput 
-                  style={styles.textInput}   
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({name: text})}
-                />
 
-                <View style={{flex: 2, flexDirection: 'row'}}>
-                  <View style={{flex: 1}}>
-                    <Text style={styles.inputLabel}>Date</Text> 
-                    <Text>{this.state.day} / {this.state.month} / {this.state.year}</Text> 
-                  </View>
-                  <View style={{flex: 2, paddingRight: 10}}>
-                    <Button 
-                      style={styles.dateContainer}
-                      title="Show DatePicker" 
-                      onPress={this.showDateTimePicker} 
-                      color="gray" 
-                    />
-                    <DateTimePicker
-                      isVisible={this.state.isDateTimePickerVisible}
-                      onConfirm={this.handleDatePicked}
-                      onCancel={this.hideDateTimePicker}
-                    />  
-                  </View>
-                </View>
+              <Text style={styles.inputLabel}>Instruments</Text>
+              <MultiSelect
+                items={this.state.instruments}
+                uniqueKey="id"
+                displayKey="nom"
+                onSelectedItemsChange={this.onSelectedInstrumentsChange}
+                styleMainWrapper={styles.multiSelect}
+                styleDropdownMenuSubsection={styles.round}
+                selectedItems={selectedInstruments}
+              />
+                 
+              <Text style={styles.inputLabel}>Genres</Text>
+              <MultiSelect
+                styleMainWrapper={styles.multiSelect}
+                items={this.state.genres}
+                uniqueKey="id"
+                displayKey="nom"
+                onSelectedItemsChange={this.onSelectedGenresChange}
+                styleDropdownMenuSubsection={styles.round}
+                selectedItems={selectedGenres}                
+              />              
+           
+              <Text style={styles.inputLabel}>Description</Text>
+              <TextInput 
+                styleInputGroup={styles.multiSelect}
+                style={styles.textInput} 
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({description: text})}
+              />
 
-                <Text style={styles.inputLabel}>Lieu</Text>
-                <TextInput 
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({lieu: text})}
-                /> 
-
-                <Text style={styles.inputLabel}>Instruments</Text>
-                <MultiSelect
-                  items={this.state.instruments}
-                  uniqueKey="id"
-                  displayKey="nom"
-                  onSelectedItemsChange={this.onSelectedInstrumentsChange}
-                  styleMainWrapper={styles.multiSelect}
-                  selectedItems={selectedInstruments}
-                />
-                
-                <Text style={styles.inputLabel}>Genres</Text>
-                <MultiSelect
-                  styleMainWrapper={styles.multiSelect}
-                  items={this.state.genres}
-                  uniqueKey="id"
-                  displayKey="nom"
-                  onSelectedItemsChange={this.onSelectedGenresChange}
-                  selectedItems={selectedGenres}                
-                />              
-             
-                <Text style={styles.inputLabel}>Description</Text>
-                <TextInput 
-                  styleInputGroup={styles.multiSelect}
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({description: text})}
-                />
-
-                <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
-                <TextInput 
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({nbMaxParticipants: text})}
-                />
+              <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
+              <TextInput 
+                style={styles.textInput} 
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({nbMaxParticipants: text})}
+              />
               
               <Button color='#EC5314' title="Créer Jam" onPress={this.handleSubmit} />
             </View>
