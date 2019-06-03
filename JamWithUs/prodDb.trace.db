@@ -1,0 +1,3 @@
+2019-06-03 09:19:35 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOCATION" not found; SQL statement:
+select this_.id as id1_7_0_, this_.version as version2_7_0_, this_.address as address3_7_0_, this_.administrative_area_level_1 as administ4_7_0_, this_.postal_code as postal_c5_7_0_, this_.availability as availabi6_7_0_, this_.name as name7_7_0_, this_.capacity as capacity8_7_0_, this_.locality as locality9_7_0_, this_.administrative_area_level_2 as adminis10_7_0_, this_.country as country11_7_0_ from location this_ [42102-197]

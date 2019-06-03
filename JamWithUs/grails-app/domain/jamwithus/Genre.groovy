@@ -1,8 +1,8 @@
 package jamwithus
 
 class Genre {
-
-	String nom
+	
+	String name
 	Image logo
 
     static constraints = {

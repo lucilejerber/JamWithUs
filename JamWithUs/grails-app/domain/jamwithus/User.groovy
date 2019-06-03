@@ -1,7 +1,6 @@
 package jamwithus
 
 class User {
-
     String name
     String lastname
     Date birthday 
