@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  Platform,
+  Dimensions,
   AsyncStorage,
   Button,
   Text,
@@ -8,10 +10,20 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-
-import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
-
+import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Login from '../screens/LoginScreen';
+import Profil_Display from '../components/Profil_Display';
+import HomeScreen from '../screens/HomeScreen';
+import ProfilForm from '../components/ProfilForm';
+import ProfilScreen from '../screens/ProfilScreen';
+import JamForm from '../screens/JamFormScreen';
+
+
+const WIDTH = Dimensions.get('window').width;
+
+const DrawerConfig = {
+  drawerwidth: WIDTH*0.43,
+}
 
 class SignInScreen extends React.Component {
   static navigationOptions = {
@@ -33,43 +45,20 @@ class SignInScreen extends React.Component {
   };
 }
 
-class HomeScreen extends React.Component {
+
+class Signout extends React.Component {
   static navigationOptions = {
-    title: 'Welcome to the app!',
+    title: 'Deconnexion',
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Show me more of the app" onPress={this._showMoreApp} />
-        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+        <Button title="Deconnexion" onPress={this._signOutAsync} />
       </View>
     );
   }
 
-  _showMoreApp = () => {
-    this.props.navigation.navigate('Other');
-  };
-
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-}
-
-class OtherScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Lots of features here',
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="I'm done, sign me out" onPress={this._signOutAsync} />
-        <StatusBar barStyle="default" />
-      </View>
-    );
-  }
 
   _signOutAsync = async () => {
     await AsyncStorage.clear();
@@ -103,15 +92,8 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
+const AppStack = createDrawerNavigator({HomeScreen: HomeScreen, JamForm: JamForm,ProfilDisplay: Profil_Display,ProfilForm: ProfilForm, Signout: Signout}, DrawerConfig,);
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
 export default createAppContainer(createSwitchNavigator(
@@ -124,3 +106,11 @@ export default createAppContainer(createSwitchNavigator(
     initialRouteName: 'AuthLoading',
   }
 ));
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

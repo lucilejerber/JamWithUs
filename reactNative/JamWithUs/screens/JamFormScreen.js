@@ -64,6 +64,8 @@ export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
+
+  /*
   constructor(props) {
     super(props)
 
@@ -134,7 +136,7 @@ export default class JamForm extends React.Component {
     console.log("genres = " +  this.state.selectedGenres)
     console.log(this.state.genres)
 
-    fetch('https://ce68f9e0.ngrok.io/Jam/save', {
+   fetch('https://ce68f9e0.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -203,16 +205,17 @@ export default class JamForm extends React.Component {
     this.setState({ selectedGenres: selectedGenres });
     console.log(selectedGenres )
   }; 
-  
+
+
   render() { 
-    const { selectedInstruments } = this.state;
+  const { selectedInstruments } = this.state;
     const { selectedGenres } = this.state;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.jamContainer}>
             <Text style={styles.title}>CREATION D'UNE JAM</Text>
-              
+
               <View style={styles.inputContainer}>
  
                 <Text style={styles.inputLabel}>Nom de la jam</Text>
@@ -280,7 +283,14 @@ export default class JamForm extends React.Component {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </View> 
     );
   }
-}  
+} */
+
+render() {
+      return (
+          <ScrollView/>
+      )
+    }
+}

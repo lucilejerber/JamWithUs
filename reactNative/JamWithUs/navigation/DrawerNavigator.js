@@ -27,7 +27,6 @@ const DrawerNavigator = createDrawerNavigator(
 		//Accueil: Accueil,
 		
 		JamForm: JamForm,
-
 		ProfilDisplay: Profil_Display,
 		ProfilForm: ProfilForm,
 		
