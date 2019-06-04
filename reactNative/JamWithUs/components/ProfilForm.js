@@ -34,7 +34,7 @@ class ProfilForm extends React.Component {
 
   // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
   componentWillMount(){ 
-    fetch('https://7b926458.ngrok.io', {
+    /*fetch('https://7b926458.ngrok.io', {
       method: 'POST',
       headers: {
         Accept: 'application/json'
@@ -44,7 +44,7 @@ class ProfilForm extends React.Component {
     //.then(json => this.setState({
       //  name: json.name
       //}))
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))*/
 	}
 
   // A REVOIR - recup les données formulaires soumises par l'utilisateur
@@ -53,7 +53,7 @@ class ProfilForm extends React.Component {
     console.log("prenom = " + this.state.prenom)
     console.log("nom = " + this.state.nom)
 
-    fetch('https://7b926458.ngrok.io/User/save', {
+    fetch('http://e9938903.ngrok.io/user/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -138,7 +138,7 @@ export default class HomeScreen extends React.Component {
     console.log("genres = " +  this.state.selectedGenres)
     console.log(this.state.genres)
 
-    fetch('https://ce68f9e0.ngrok.io/Jam/save', {
+    fetch('http://e9938903.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -161,7 +161,7 @@ export default class HomeScreen extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('https://ce68f9e0.ngrok.io/Instrument', {
+    fetch('http://e9938903.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -181,7 +181,7 @@ export default class HomeScreen extends React.Component {
   
   // Request to the data base to get genre
   getGenres() {
-    fetch('https://ce68f9e0.ngrok.io/Genre', {
+    fetch('http://e9938903.ngrok.io/Genre', {
       method: 'POST',
       headers: {
         Accept: 'application/json', 
