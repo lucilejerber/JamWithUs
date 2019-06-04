@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://eb-hdk.anonymous.jamwithus.exp.direct",
+  "packagerNgrokUrl": "https://packager.eb-hdk.anonymous.jamwithus.exp.direct",
+  "ngrokPid": 5972,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19004,
+  "packagerPid": 5952
 }
