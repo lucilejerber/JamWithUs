@@ -64,24 +64,33 @@ class FormLocation extends Component {
       }
     }
 
-    fetch('http://bcdb9b5b.ngrok.io/Location/save', {
+    var body = { 
+      "name": this.state.name,
+      "street_number": this.state.street_number, 
+      "route": this.state.route, 
+      "locality": this.state.locality,
+      "administrative_area_level_2": this.state.administrative_area_level_2,
+      "administrative_area_level_1": this.state.administrative_area_level_1,
+      "country": this.state.country,
+      "postal_code": this.state.postal_code,
+      "capacity": this.state.capacity,
+      "availability": this.state.availability
+    }
+
+    console.log("body.street_number")
+    console.log(body.street_number)
+    console.log("body.route")
+    console.log(body.route)
+    console.log("body.postal_code")
+    console.log(body.postal_code)
+ 
+    fetch('http://55ed49af.ngrok.io/Location/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        ContentType: 'application/json'
-      }, 
-      body: JSON.stringify({
-        name: this.state.name,
-        street_number: this.state.street_number,
-        route: this.state.route,
-        locality: this.state.locality,
-        administrative_area_level_2 : this.state.administrative_area_level_2,
-        administrative_area_level_1 : this.state.administrative_area_level_1,
-        country : this.state.country,
-        postal_code: this.state.postal_code,
-        capacity : this.state.capacity,
-        availability: this.state.availability,
-      }),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))

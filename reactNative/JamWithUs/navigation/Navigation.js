@@ -2,7 +2,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 import Film_Search from '../components/Film_Search'
 import FilmDetail from '../components/FilmDetail'
-import Search from '../components/Search'
+import ProfilForm from '../components/ProfilForm'
 import Profil_Display from '../components/Profil_Display'
 
 const SearchStackNavigator = createStackNavigator({
@@ -19,8 +19,8 @@ const SearchStackNavigator = createStackNavigator({
 		}
   	},*/	
 
-  	Search: {
-		screen: Search,
+  	ProfilForm: {
+		screen: ProfilForm,
 		navigationOptions: {
 			title: 'Compléter le profil'
 		}
