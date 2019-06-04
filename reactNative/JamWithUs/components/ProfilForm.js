@@ -60,9 +60,9 @@ class ProfilForm extends React.Component {
         ContentType: 'application/json'
       }, 
       body: JSON.stringify({
-        "nom": this.state.surnom,
-        "date": this.state.prenom,
-        "lieu": this.state.nom, 
+        "surnom": this.state.surnom,
+        "prenom": this.state.prenom,
+        "nom": this.state.nom, 
       }),
     })
     .then(json => console.log(json))
