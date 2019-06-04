@@ -1,9 +1,12 @@
-// Components/Profil_Display.js
-
-import React from 'react'
+/* 
+Laura 
+*/
+import React, {Component} from 'react'
 import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
 import users from '../Helpers/usersData'
 import UserItem from './UserItem'
+
+import MenuButton from '../components/MenuButton'
 
 class Profil_Display extends React.Component {
 	render (){
@@ -11,7 +14,8 @@ class Profil_Display extends React.Component {
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
-				{/*<View style={styles.top_container}>
+				<MenuButton navigation={this.props.navigation} />
+        {/*<View style={styles.top_container}>
 					<Text style={styles.header_text}>Mon Profil</Text>
 
 				</View>*/}
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
   image_container: {
   	backgroundColor: '#fff',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 50,
     marginBottom: 20,
   },
     button_opacity: {
@@ -98,4 +102,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Profil_Display
+export default Profil_Display;

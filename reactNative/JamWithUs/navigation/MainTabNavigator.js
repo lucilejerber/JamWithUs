@@ -4,11 +4,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import JamScreen from '../screens/JamScreen';
+import LinksScreen from '../screens/LinksScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import JamFormScreen from '../screens/JamFormScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+  Home: LoginScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -25,12 +27,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const ProfileStack = createStackNavigator({
-  Profil: ProfileScreen,
+const LinksStack = createStackNavigator({
+  Links: JamFormScreen,
 });
 
-ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profil',
+LinksStack.navigationOptions = {
+  tabBarLabel: 'Jam',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -52,9 +54,11 @@ JamStack.navigationOptions = {
     />
   ),
 };
-
+   
 export default createBottomTabNavigator({
   ProfileStack,
   HomeStack,
-  JamStack,
-});
+  LinksStack,
+  SettingsStack,
+}); 
+

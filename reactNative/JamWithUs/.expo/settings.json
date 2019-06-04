@@ -1,7 +1,7 @@
 {
   "hostType": "tunnel",
   "lanType": "ip",
-  "dev": false,
-  "minify": true,
-  "urlRandomness": "8f-nmv"
+  "dev": true,
+  "minify": false,
+  "urlRandomness": "eb-hdk"
 }
