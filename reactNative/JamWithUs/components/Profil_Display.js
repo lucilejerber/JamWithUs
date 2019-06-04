@@ -14,7 +14,7 @@ class Profil_Display extends React.Component {
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
-				<MenuButton/>
+				<MenuButton navigation={this.props.navigation} />
         {/*<View style={styles.top_container}>
 					<Text style={styles.header_text}>Mon Profil</Text>
 

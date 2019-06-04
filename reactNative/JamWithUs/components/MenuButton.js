@@ -15,7 +15,7 @@ class MenuButton extends React.Component {
         size={32}
         color='#000000'
         style={styles.menuIcon}
-        onPress={() => console.log('hello')} 
+        onPress={() => this.props.navigation.toggleDrawer()} 
         //onPress={() => {}}
       />
     )

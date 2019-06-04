@@ -2,11 +2,27 @@
 Laura Formulaire Profil
 */
 import React from 'react'
-import { StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView,Image, Picker, Modal, TouchableOpacity} from 'react-native'
+import { 
+  StyleSheet, 
+  View, 
+  TextInput, 
+  Button, 
+  FlatList, 
+  Text, 
+  ScrollView,
+  Image, 
+  Picker, 
+  Modal, 
+  TouchableOpacity,
+} from 'react-native';
 
-class Search extends React.Component {
+import MenuButton from '../components/MenuButton';
+
+class ProfilForm extends React.Component {
+
 	constructor(props){
 		super (props);
+    this.handleSubmit = this.handleSubmit.bind(this)
 		this.state = {
 			pickerSelection: 'Default',
 			surnom: '',
@@ -16,9 +32,9 @@ class Search extends React.Component {
 		};
 	}
 
-
-  componentWillMount(){ // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
-    fetch('http://733c5024.ngrok.io', {
+  // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
+  componentWillMount(){ 
+    fetch('https://7b926458.ngrok.io', {
       method: 'POST',
       headers: {
         Accept: 'application/json'
@@ -31,12 +47,34 @@ class Search extends React.Component {
     .catch(error => console.error(error))
 	}
 
+  // A REVOIR - recup les données formulaires soumises par l'utilisateur
+  handleSubmit() {
+    console.log("surnom = " + this.state.surnom)
+    console.log("prenom = " + this.state.prenom)
+    console.log("nom = " + this.state.nom)
+
+    fetch('https://7b926458.ngrok.io/User/save', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        ContentType: 'application/json'
+      }, 
+      body: JSON.stringify({
+        "nom": this.state.surnom,
+        "date": this.state.prenom,
+        "lieu": this.state.nom, 
+      }),
+    })
+    .then(json => console.log(json))
+    .catch(error => console.error(error))
+  }
+
 	render (){
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
 				
-
+        <MenuButton navigation={this.props.navigation} />
 				<View style={styles.middle_container}>
 					<View style = {styles.image_container}>
 						<Image
@@ -52,20 +90,23 @@ class Search extends React.Component {
 	            		
 	            		<Text style={styles.inputtitle}>Surnom</Text>
 						<TextInput style={styles.textinput} 
-	        				placeholderTextColor = "#AFAFAF" 
-	        				placeholder='Chacha'
-	        			/>
+              placeholderTextColor = "#AFAFAF" 
+	        		placeholder='Chacha'
+              onChangeText={(text) => this.setState({surnom: text})}
+	        	/>
 
 	        			<Text style={styles.inputtitle}>Prénom</Text>
 						<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Charles'
+              onChangeText={(text) => this.setState({prenom: text})}
 						/>
 
 						<Text style={styles.inputtitle}>Nom</Text>
 						<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Dupont'
+              onChangeText={(text) => this.setState({nom: text})}
 						/>
 				{/*		<TextInput style={styles.textinput} placeholder='JJ/MM/AAAA'/>
 						<TextInput style={styles.textinput} placeholder='charles.dupont@exemple.com'/>
@@ -95,10 +136,15 @@ class Search extends React.Component {
 						{/*<Button Style={styles.button} title='Sauvegarder' onPress={()=>{}}/>*/}
 
 						<TouchableOpacity 
-              style={styles.button_opacity}>
-							<Text style = {{marginLeft: 5, marginRight: 5}} >Enregistrer</Text>
+              style={styles.button_opacity}
+              onPress={this.handleSubmit}>
+  						  <Text 
+                style = {{marginLeft: 5, marginRight: 5}}>
+                  Enregistrer
+                </Text>   
 						</TouchableOpacity>
-					</View>
+					
+          </View>
 					</ScrollView>
 
 
@@ -206,5 +252,5 @@ const styles = StyleSheet.create({
 
 })
 
-export default Search
+export default ProfilForm;
 //exporte les éléments pour pouvoir les utiliser ailleurs

@@ -21,6 +21,7 @@ import { MonoText } from '../components/StyledText';
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 import MultiSelect from 'react-native-multiple-select';
+import MenuButton from '../components/MenuButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -212,6 +213,7 @@ export default class HomeScreen extends React.Component {
     const { selectedGenres } = this.state;
     return (
       <View style={styles.container}>
+        <MenuButton navigation={this.props.navigation} />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.jamContainer}>
             <Text style={styles.title}>CREATION D'UNE JAM</Text>
