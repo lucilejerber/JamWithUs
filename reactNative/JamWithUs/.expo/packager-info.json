@@ -1,10 +1,1 @@
-{
-  "packagerPort": 19003,
-  "packagerPid": 5186,
-  "expoServerNgrokUrl": "https://zb-5ne.anonymous.jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.zb-5ne.anonymous.jamwithus.exp.direct",
-  "ngrokPid": 5206,
-  "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "webpackServerPort": null
-}
+{}
