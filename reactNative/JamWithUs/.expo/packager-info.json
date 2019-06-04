@@ -1,10 +1,10 @@
 {
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "webpackServerPort": null,
-  "expoServerNgrokUrl": "https://cf-d9g.anonymous.jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.cf-d9g.anonymous.jamwithus.exp.direct",
-  "ngrokPid": 16788,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 15128
+  "packagerPort": null,
+  "packagerPid": null
 }
