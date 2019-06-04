@@ -16,9 +16,9 @@ class User {
     String description
 
     static hasMany = [genres: Genre, instruments: Instrument, jams: Jam]
-    // static hasManyI = [instruments: Instrument]
-    // static hasMany = [jams: Jam]
-// 
+
+    Boolean availability
+    
     static constraints = {
     	 
     	name nullable: false
@@ -31,9 +31,8 @@ class User {
     	country nullable: true
     	city nullable: true
     	description nullable: true
-    	// instruments nullable: true
-    	// genres nullable: true
-    	// jams nullable: true
-
+    	instruments nullable: true
+    	genres nullable: true
+    	jams nullable: true
     }
 }
