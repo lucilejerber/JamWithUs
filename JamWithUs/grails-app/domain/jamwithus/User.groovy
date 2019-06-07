@@ -1,13 +1,11 @@
 package jamwithus
 
 class User {
-    String surname
-    String name
-    String lastname
-    Date birthday 
-
+    String username
     String mail
     String password
+
+    Date birthday 
     String phoneNumber
 
     String country
@@ -17,16 +15,12 @@ class User {
 
     static hasMany = [genres: Genre, instruments: Instrument, jams: Jam]
 
-    Boolean availability
-    
-    static constraints = {
-    	 
-    	name nullable: false
-    	lastname nullable: false
-    	mail nullable: false
+    static constraints = {    	 
+    	username nullable: false
+    	mail nullable: false, email: true
+        password nullable: false
 
     	birthday nullable: true
-    	password nullable: true
     	phoneNumber nullable: true
     	country nullable: true
     	city nullable: true
