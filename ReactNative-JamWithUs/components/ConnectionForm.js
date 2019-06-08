@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-  export default class Form extends Component <{}> {
+  export default class ConnectionForm extends Component <{}> {
 
 
   render() {
@@ -15,11 +15,11 @@ import {
      	<View style ={FormStyles.container}>
         <TextInput style={FormStyles.inputBox} 
         placeholder='Adresse mail'
-        placeholderTextColor='ffffff'/>
+        placeholderTextColor='#ffffff'/>
         <TextInput style={FormStyles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
-        placeholderTextColor='ffffff'/>
+        placeholderTextColor='#ffffff'/>
      	</View> 
     	)
   	}

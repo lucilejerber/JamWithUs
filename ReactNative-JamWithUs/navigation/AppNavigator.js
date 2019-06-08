@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ActivityIndicator,
   Platform,
+  ScrollView,
   Dimensions,
   AsyncStorage,
   Button,
@@ -9,23 +10,27 @@ import {
   StatusBar,
   StyleSheet,
   View,
+  TouchableOpacity
 } from 'react-native';
-import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  createSwitchNavigator,
+  createAppContainer } from 'react-navigation';
+
 import Login from '../screens/LoginScreen';
-import Profil_Display from '../components/Profil_Display';
 import HomeScreen from '../screens/HomeScreen';
+import Profil_Display from '../components/Profil_Display';
 import ProfilForm from '../components/ProfilForm';
 import ProfilScreen from '../screens/ProfilScreen';
 import JamForm from '../screens/JamFormScreen';
+import SignupScreen from '../screens/SignupScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 
-const WIDTH = Dimensions.get('window').width;
-
-const DrawerConfig = {
-  drawerwidth: WIDTH*0.43,
-}
-
-class SignInScreen extends React.Component {
+// Page de connexion
+class SignIn extends React.Component {
   static navigationOptions = {
     title: 'Connexion',
   };
@@ -33,8 +38,12 @@ class SignInScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Login/>
+        <Login/>
         <Button title="Connexion" onPress={this._signInAsync} />
+        <Text style={styles.signupText}> Pas encore de compte ? </Text>
+        <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
+        <Text style={styles.signupText}> Mot de passe oublié ? </Text>
+        <Button title="Cliquez ici" onPress={() => this.props.navigation.navigate('ForgotPassword')}/>
       </View>
     );
   }
@@ -45,7 +54,62 @@ class SignInScreen extends React.Component {
   };
 }
 
+//Page de création de compte
+class Signup extends React.Component {
+  static navigationOptions = {
+    title: 'Inscription',
+  };
 
+  render() {
+    return (
+      <View style={styles.container}>
+        <SignupScreen/>
+        <Button
+          title="Créer un compte"
+          onPress={this._signInAsync}
+        />
+      </View>
+    );
+  }
+
+  _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+  };
+
+}
+
+//page mdp oublié
+class ForgotPassword extends React.Component {
+  static navigationOptions = {
+    title: 'Mot de passe oublié',
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <ForgotPasswordScreen/>
+        <Button title="Envoyer" onPress={() => this.props.navigation.navigate('PostForgotPassword')}/>
+      </View>
+    );
+  }
+}
+
+//page post mdp oublié
+class PostForgotPassword extends React.Component {
+  static navigationOptions = {
+    title: 'Mot de passe oublié',
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Votre mot de passe a été réinitialisé. Un mail contenant votre mot de passe temporaire vous a été envoyé :)</Text>
+        <Button title="Revenir à l'accueil" onPress={() => this.props.navigation.navigate('SignIn')}/>
+      </View>
+    );
+  }
+}
+
+//Page de déconnexion
 class Signout extends React.Component {
   static navigationOptions = {
     title: 'Deconnexion',
@@ -66,6 +130,8 @@ class Signout extends React.Component {
   };
 }
 
+
+// Page de loading
 class AuthLoadingScreen extends React.Component {
   constructor() {
     super();
@@ -92,9 +158,13 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-
 const AppStack = createDrawerNavigator({HomeScreen: HomeScreen, JamForm: JamForm,ProfilDisplay: Profil_Display,ProfilForm: ProfilForm, Signout: Signout}, DrawerConfig,);
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+const AuthStack = createStackNavigator({ SignIn: SignIn, Signup:Signup, ForgotPassword:ForgotPassword, PostForgotPassword:PostForgotPassword });
+
+const WIDTH = Dimensions.get('window').width;
+const DrawerConfig = {
+  drawerwidth: WIDTH*0.43,
+}
 
 export default createAppContainer(createSwitchNavigator(
   {
@@ -113,4 +183,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+    signupText : {
+    color : '#000',
+    fontSize : 12
+  },  
+  logoText : {
+    marginVertical: 15,
+    fontSize: 18,
+    color: 'rgba(255, 255, 255, 0.7)'
+  },
+  signupButton : {
+    color : '#000',
+    fontSize : 12,
+    fontWeight : '600'
+  }
 });
+
