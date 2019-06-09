@@ -17,16 +17,16 @@ class User {
 
     static hasMany = [genres: Genre, instruments: Instrument, jams: Jam]
 
-    Boolean availability
+    
     
     static constraints = {
     	 
-    	name nullable: false
-    	lastname nullable: false
+    	name nullable: true
+    	lastname nullable: true
     	mail nullable: false
-
-    	birthday nullable: true
-    	password nullable: true
+		password nullable: true
+    	
+		birthday nullable: true
     	phoneNumber nullable: true
     	country nullable: true
     	city nullable: true

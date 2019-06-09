@@ -4,7 +4,7 @@ class Jam {
     String name
     Date date
     
-    Location location
+    String location
     
     String description
 
