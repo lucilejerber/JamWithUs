@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
+import {TOMCATSAVE,TOMCATUPDATE,TOMCATCREATE} from '../constants/index';
 //import * as Lonstants from '../constants'
 
 class ProfilForm extends React.Component {
@@ -34,6 +35,7 @@ class ProfilForm extends React.Component {
 
   // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
   componentWillMount(){ 
+    const URL = TOMCATSAVE + '/user/save'
     /*fetch('https://7b926458.ngrok.io', {
       method: 'POST',
       headers: {
@@ -52,6 +54,7 @@ class ProfilForm extends React.Component {
     console.log("name = " + this.state.name)
     console.log("lastname = " + this.state.lastname)
     console.log("mail = " + this.state.mail)
+    console.log("TOMCATSAVE =" + TOMCATSAVE)
     console.log("URL =" + URL)
 
     fetch(URL + 'user/save', {
