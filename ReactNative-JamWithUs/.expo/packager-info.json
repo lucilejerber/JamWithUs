@@ -3,8 +3,12 @@
   "expoServerNgrokUrl": "https://4b-3xm.anonymous.reactnative.exp.direct",
   "packagerNgrokUrl": "https://packager.4b-3xm.anonymous.reactnative.exp.direct",
   "ngrokPid": 9508,
+  "expoServerNgrokUrl": "https://4b-3xm.anonymous.reactnative-jamwithus.exp.direct",
+  "packagerNgrokUrl": "https://packager.4b-3xm.anonymous.reactnative-jamwithus.exp.direct",
+  "ngrokPid": 376,
   "packagerPort": 19001,
   "packagerPid": 10028,
+  "packagerPid": 10384,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
