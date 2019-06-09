@@ -4,7 +4,8 @@ class Jam {
     String name
     Date date
     
-    String location
+    String locationName
+    String locationAdress
     String latitude
     String longitude
     
@@ -14,6 +15,7 @@ class Jam {
     int maxParticipants
 
     static hasMany = [
+        admins: User,
         participants: User, 
         askers: User, 
         watchers: User, 
@@ -25,9 +27,6 @@ class Jam {
         description nullable: true
         numberParticipants nullable: true
         instruments nullable: true
-        participants nullable: true
-        askers nullable: true
-        watchers nullable: true
         genres nullable: true
     }
 }

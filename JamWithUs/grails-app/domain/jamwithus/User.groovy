@@ -13,7 +13,11 @@ class User {
 
     String description
 
-    static hasMany = [genres: Genre, instruments: Instrument, jams: Jam]
+    static hasMany = [
+        genres: Genre
+        , instruments: Instrument
+        , jams: Jam
+    ]
 
     static constraints = {    	 
     	username nullable: false
@@ -27,6 +31,6 @@ class User {
     	description nullable: true
     	instruments nullable: true
     	genres nullable: true
-    	jams nullable: true
+    	jams nullable: true, blank: true
     }
 }

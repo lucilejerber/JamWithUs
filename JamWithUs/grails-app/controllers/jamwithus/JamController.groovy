@@ -1,5 +1,6 @@
 package jamwithus
 
-class JamController {
+class JamController {	
+
 	static scaffold = Jam
 }

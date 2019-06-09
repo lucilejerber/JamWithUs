@@ -103,23 +103,26 @@ class FormLocation extends Component {
         autoFocus={false}
         returnKeyType={'default'}
         fetchDetails={true}
-        styles={{
-          textInputContainer: {
-          backgroundColor: 'rgba(0,0,0,0)',
+      styles={{
+        textInputContainer: {
+          height: 50,
+          marginLeft: 40,
+          marginRight: 40,
+          marginBottom: 10,
+          backgroundColor: '#f3f3f3', 
+          borderRadius: 20,
           borderTopWidth: 0,
           borderBottomWidth:0
         },
-          textInput: {
-            marginLeft: 0,
-            marginRight: 0,
-            height: 38,
-            color: '#5d5d5d',
-            fontSize: 16
-          },
-          predefinedPlacesDescription: {
-            color: '#1faadb'
-          },
-        }}
+        textInput: {
+          backgroundColor: '#f3f3f3', 
+        },
+        description: {
+          fontWeight: 'bold',
+          marginLeft: 40,
+          marginRight: 40,
+        },
+      }}
         currentLocation={false}
         query={{
           // available options: https://developers.google.com/places/web-service/autocomplete
@@ -128,7 +131,7 @@ class FormLocation extends Component {
         }}
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
           // console.log(details);
-          this.handleSubmit(details);
+          this.props.handler(details);
         }}
       />
     );
