@@ -10,9 +10,7 @@ import Profil_Display from '../components/Profil_Display';
 import ProfilForm from '../components/ProfilForm';
 
 import ProfilScreen from '../screens/ProfilScreen';
-import LinksScreen from '../screens/LinksScreen';
 //import Accueil from '../screens/AccueilScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import JamForm from '../screens/JamFormScreen';
 import JamDescription from '../screens/JamDescriptionScreen';
 
@@ -30,13 +28,12 @@ const DrawerNavigator = createDrawerNavigator(
 		//Accueil: Accueil,
 		
 		JamForm: JamForm,
-
 		ProfilDisplay: Profil_Display,
 		ProfilForm: ProfilForm,
 		Links: LinksScreen,
 		Settings: SettingsScreen,
 		JamDescription: JamDescription,
-		
+	
 },
 DrawerConfig,
 );

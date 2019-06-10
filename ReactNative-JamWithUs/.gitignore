@@ -1,3 +1,2 @@
-node_modules
-.expo/packager-info.json
-.expo/settings.json
+reactNative/JamWithUs/node_modules
+./reactNative/JamWithUs/node_modules

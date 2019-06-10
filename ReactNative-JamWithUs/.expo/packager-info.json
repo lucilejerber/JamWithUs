@@ -1,10 +1,9 @@
 {
-  "expoServerPort": 19000,
-  "webpackServerPort": null,
-  "expoServerNgrokUrl": "https://2s-mfu.anonymous.reactnative-jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.2s-mfu.anonymous.reactnative-jamwithus.exp.direct",
-  "ngrokPid": 21148,
   "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 9992
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

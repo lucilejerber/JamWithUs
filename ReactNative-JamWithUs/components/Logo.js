@@ -10,8 +10,8 @@ import {
   render() {
      return (
      	<View style ={styles.container}>
-     		<Image style = {{width:200, height:200}}
-     			source={require('../images/logo.jpg')}/>
+     		<Image style = {{width:250, height:200}}
+     			source={require('../images/jamwithus.jpeg')}/>
      	</View> 
     	)
   	}

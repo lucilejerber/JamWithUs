@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   header_text: {
-	color: '#ffffff',
+	color: '#fff',
     marginTop: 14,
     marginLeft: 5,
     marginRight: 5,
