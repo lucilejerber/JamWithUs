@@ -32,7 +32,6 @@ class Instruments extends React.Component {
   getInstrument(id) {
     console.log("Call getInstrument")
     var url = 'http://729119a4.ngrok.io/Instrument/show/' + id;
-
     fetch(url, {
       method: 'POST',
       headers: {

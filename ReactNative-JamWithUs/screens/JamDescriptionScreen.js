@@ -15,7 +15,11 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
+<<<<<<< HEAD
 import FormLocation from '../components/Common/FormLocation'; 
+=======
+import FormLocation from '../components/FormLocation'; 
+>>>>>>> fb82320bb805a708abd0cb98893cdf7cd3ee41fb
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
@@ -86,9 +90,8 @@ export default class JamDescription extends React.Component {
   constructor(props) {
     super(props)
     
-    this.state = { 
-      userId: 3
-    } 
+    this.state = {
+      userId: 1
   }
 
   render() { 

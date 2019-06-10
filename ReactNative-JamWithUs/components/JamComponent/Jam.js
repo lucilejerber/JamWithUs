@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   bold: { 
     fontWeight: 'bold',
   },
-  italic: { 
+  italic: {
     fontStyle: 'italic'
   },
 }); 
@@ -72,7 +72,6 @@ export default class Jam extends React.Component {
     })
     .then((response) => response.json())
     .then(json => {
-      // console.log(json.instruments)
         this.setState({ name: json.name}); 
         this.setState({ date: new Date(json.date)}); 
         // this.setState({ admin: json.admin}); 

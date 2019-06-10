@@ -56,6 +56,23 @@ export default class JamList extends React.Component {
     console.log("JamList userId = " + userId)
 
     var url = 'http://729119a4.ngrok.io/User/show/' + userId;
+    } 
+  }
+
+  // This function is called everytime a component is updated
+  componentDidUpdate() {
+    /* -- Get All Genres -- */
+    // Because we want to sure make sure we only get the genre once, we add a variable that change after the first call to the DB
+    if (this.state.getJams == 0) { 
+      if(this.props.data.length > 0) this.getAllJams(); // If there is items to be displayed
+    }
+  }
+
+  getJam() {
+    var userId = {this.props.userId};
+    console.log(userId)
+    var url = 'http://bd5dc599.ngrok.io/User/show/' + userId;
+
     fetch(url, {
       method: 'POST',
       headers: {
