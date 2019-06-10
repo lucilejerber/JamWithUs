@@ -15,7 +15,7 @@ class Jam {
     int maxParticipants
 
     static hasMany = [
-        // admins: User,
+        gens: JamRole,
         // participants: User, 
         // askers: User, 
         // watchers: User, 

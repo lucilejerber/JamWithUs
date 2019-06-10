@@ -60,9 +60,8 @@ export default class Jam extends React.Component {
 
   componentDidMount() {
     console.log("Alllleeeeeeerrrrtttttt")
-  }
+    console.log(this.props.data)
 
-  componentWillMount() {
     fetch('http://729119a4.ngrok.io/Jam/show/1', {
       method: 'POST',
       headers: {
@@ -90,32 +89,27 @@ export default class Jam extends React.Component {
 
   render() { 
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-         
-          <View style={styles.jamContainer}>
-            <View style={{flex: 1}}>
-              <Text style={styles.title}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
-              <Text>{this.state.date.toLocaleTimeString()}</Text> 
-            </View>
-            <View style={{flex: 3}}>
+      <View style={styles.jamContainer}>
+        <View style={{flex: 1}}>
+          <Text style={styles.title}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
+          <Text>{this.state.date.toLocaleTimeString()}</Text> 
+        </View>
+        <View style={{flex: 3}}>
 
-              <Text style={styles.title}>{this.state.name}</Text>  
+          <Text style={styles.title}>{this.state.name}</Text>  
               
-              <Text>{this.state.locationName} {this.state.locationAdress}</Text>
+          <Text>{this.state.locationName} {this.state.locationAdress}</Text>
               
-              <Text style={styles.italic}>{this.state.description}</Text>
+          <Text style={styles.italic}>{this.state.description}</Text>
 
-              <Text style={styles.italic}>{this.state.numberParticipants} participants sur {this.state.maxParticipants}</Text>
+          <Text style={styles.italic}>{this.state.numberParticipants} participants sur {this.state.maxParticipants}</Text>
             
-              <Text style={styles.inputLabel}>Instruments</Text>
-              <Instruments data={this.state.instruments}/>
+          <Text style={styles.inputLabel}>Instruments</Text>
+          <Instruments data={this.state.instruments}/>
                    
-              <Text style={styles.inputLabel}>Genres</Text>
-              <Genres data={this.state.genres}/>
-            </View>    
-          </View>
-        </ScrollView>
+          <Text style={styles.inputLabel}>Genres</Text>
+          <Genres data={this.state.genres}/>
+        </View>    
       </View>
     );
   }

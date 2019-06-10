@@ -15,11 +15,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
-<<<<<<< HEAD
-import FormLocation from '../components/Common/FormLocation'; 
-=======
-import FormLocation from '../components/FormLocation'; 
->>>>>>> fb82320bb805a708abd0cb98893cdf7cd3ee41fb
+import FormLocation from '../components/Common/FormLocation';
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
@@ -33,53 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    marginTop: 50
-  },
-  header: {
-    marginBottom: 10,
-    paddingBottom: 10, 
-    backgroundColor:'#EC5314',
-    paddingTop: 40, 
-  },
-  title: { 
-    fontWeight: 'bold',
-  },
-  jamContainer: {
-    paddingLeft: 20,
-    paddingRight: 20, 
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
-    marginTop: 5,
-    backgroundColor: '#f3f3f3', 
-    flex: 1,
-    flexDirection: 'row',
-    borderRadius: 20,
-  },
-  round: {
-    borderRadius: 20,
-    paddingLeft: 20,
-    backgroundColor: '#f3f3f3', 
-    paddingRight: 20, 
-  },
-  inputLabel: {
-    marginLeft: 40,
-    fontWeight: 'bold',
-  },
-  inputsContainer: {
-    marginLeft: 5,
-    marginRight: 5,
-  },
-  multiSelect: {
-    padding: 5,   
-    marginLeft: 40,
-    marginRight: 40,
-  },  
-  dateContainer: {
-    width: 50
-  },
-  italic: {
-    fontStyle: 'italic'
+    marginTop: 50 
   },
 }); 
 
@@ -89,12 +39,13 @@ export default class JamDescription extends React.Component {
   }; 
   constructor(props) {
     super(props)
-    
+     
     this.state = {
       userId: 1
-  }
-
-  render() { 
+    }
+  } 
+   
+  render() {
     return (
       <View style={styles.container}>
         <JamList userId={this.state.userId}/>
