@@ -15,7 +15,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
-import FormLocation from '../components/FormLocation'; 
+import FormLocation from '../components/Common/FormLocation'; 
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
@@ -111,17 +111,6 @@ export default class JamForm extends React.Component {
     } 
   }
 
-  handleDatePicked(date) {
-    console.log("A date has been picked: ", date.getDate());
-    console.log("A date has been picked: ", date.getMonth());
-    console.log("A date has been picked: ", date.getFullYear());
-    this.setState({ day: date.getDate().toLocaleString() }); 
-    this.setState({ month: (date.getMonth() + 1).toLocaleString() }); 
-    this.setState({ year: date.getFullYear().toLocaleString() }); 
-    this.setState({ date: date.toJSON()}); 
-    this.hideDateTimePicker(); 
-  };
-
   componentWillMount() {
     this.getGenres();
     this.getInstruments();
@@ -139,11 +128,11 @@ export default class JamForm extends React.Component {
     console.log("Instruments = ")
     console.log(this.state.selectedInstruments)
     console.log("Genres = ")
-    console.log(this.state.genres)
+    console.log(this.state.selectedGenres)
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
 
-    fetch('http://7884b2ac.ngrok.io/Jam/save', {
+    fetch('http://bd5dc599.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -159,8 +148,8 @@ export default class JamForm extends React.Component {
         "longitude": this.state.longitude, 
         "description": this.state.description, 
         "maxParticipants": this.state.maxParticipants,
-        "instruments": this.state.instruments,
-        "genres": this.state.genres,
+        "instruments": this.state.selectedInstruments,
+        "genres": this.state.selectedGenres,
       }),
     })
     .then(json => console.log(json))
@@ -169,7 +158,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://7884b2ac.ngrok.io/Instrument', {
+    fetch('http://bd5dc599.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -177,7 +166,7 @@ export default class JamForm extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson)
+      // console.log(responseJson)
         this.setState({
           instruments: responseJson
         })
@@ -188,9 +177,9 @@ export default class JamForm extends React.Component {
     });
   }
 
-  // Request to the data base to get genre
+  // Request to the data base to get genre 
   getGenres() {
-    fetch('http://7884b2ac.ngrok.io/Genre', {
+    fetch('http://bd5dc599.ngrok.io/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 
@@ -198,7 +187,7 @@ export default class JamForm extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-        console.log(responseJson)
+        // console.log(responseJson)
         this.setState({
           genres: responseJson
         })
@@ -223,7 +212,7 @@ export default class JamForm extends React.Component {
     var splitDate = data.split(' ');
     var date = splitDate[0] + "T" + splitDate[1] + ":00";
     date = new Date(date);
-    this.setState({date: data.toJSON()}) 
+    this.setState({date: date.toJSON()}) 
   }
   
   onLocationChange(data) {
