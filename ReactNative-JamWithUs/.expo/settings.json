@@ -1,15 +1,9 @@
 {
-<<<<<<< HEAD
+
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
   "urlRandomness": "4b-3xm"
-=======
-  "hostType": "tunnel",
-  "lanType": "ip",
-  "dev": true,
-  "minify": false,
-  "urlRandomness": "tp-sue"
->>>>>>> origin/lucile
+
 }
