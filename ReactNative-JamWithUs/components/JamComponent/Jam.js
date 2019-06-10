@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   bold: { 
     fontWeight: 'bold',
   },
-  italic: {
+  italic: { 
     fontStyle: 'italic'
   },
 }); 
@@ -58,9 +58,12 @@ export default class Jam extends React.Component {
     } 
   }
 
+  componentDidMount() {
+    console.log("Alllleeeeeeerrrrtttttt")
+  }
 
   componentWillMount() {
-    fetch('http://bd5dc599.ngrok.io/Jam/show/1', {
+    fetch('http://729119a4.ngrok.io/Jam/show/1', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -69,7 +72,7 @@ export default class Jam extends React.Component {
     })
     .then((response) => response.json())
     .then(json => {
-      console.log(json.instruments)
+      // console.log(json.instruments)
         this.setState({ name: json.name}); 
         this.setState({ date: new Date(json.date)}); 
         // this.setState({ admin: json.admin}); 

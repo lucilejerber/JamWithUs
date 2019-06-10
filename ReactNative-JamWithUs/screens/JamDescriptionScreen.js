@@ -15,7 +15,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
-import FormLocation from '../components/FormLocation'; 
+import FormLocation from '../components/Common/FormLocation'; 
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
@@ -87,7 +87,7 @@ export default class JamDescription extends React.Component {
     super(props)
     
     this.state = { 
-      userId: 1
+      userId: 3
     } 
   }
 

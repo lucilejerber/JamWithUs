@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   header: {
-    marginBottom: 10,
+    marginBottom: 10, 
     paddingBottom: 10, 
     backgroundColor:'#EC5314',
     paddingTop: 40, 
@@ -132,7 +132,7 @@ export default class JamForm extends React.Component {
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
 
-    fetch('http://bd5dc599.ngrok.io/Jam/save', {
+    fetch('http://729119a4.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -158,7 +158,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://bd5dc599.ngrok.io/Instrument', {
+    fetch('http://729119a4.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -169,8 +169,7 @@ export default class JamForm extends React.Component {
       // console.log(responseJson)
         this.setState({
           instruments: responseJson
-        })
-        console.log(this.state.instruments)  
+        }) 
     })
     .catch((error) => {
       console.error(error);
@@ -179,7 +178,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://bd5dc599.ngrok.io/Genre', {
+    fetch('http://729119a4.ngrok.io/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 
@@ -191,7 +190,6 @@ export default class JamForm extends React.Component {
         this.setState({
           genres: responseJson
         })
-        console.log(this.state.genres)
     })
     .catch((error) => {
       console.error(error);
