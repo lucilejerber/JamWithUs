@@ -6,5 +6,6 @@ class Image {
     String role  // avatar, instrument, genre
 
     static constraints = {
+    	role inList: ["avatar", "instrument", "genre"]
     }
 }
