@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 18893,
-  "expoServerNgrokUrl": "https://yn-tze.anonymous.reactnative-jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.yn-tze.anonymous.reactnative-jamwithus.exp.direct",
-  "ngrokPid": 18913
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
