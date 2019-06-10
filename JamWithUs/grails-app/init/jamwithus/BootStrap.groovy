@@ -16,13 +16,9 @@ class BootStrap {
         new Instrument(name: 'Flute',  logo: 4).save()
         new Instrument(name: 'Guitare',  logo: 5).save()
 
-<<<<<<< HEAD
         new Jam(name: 'Première Jam',  date: '2019-06-12T14:04:00.000Z', locationName: "Home", locationAdress: "15 rue Berthollet 75005 Paris", latitude: "48.839052", longitude: "2.345883", maxParticipants: 9).save()
         new User(username: 'admin',  password: 'test',  mail: 'jamwithusISEP@gmail.com', jams: [1]).save()
-=======
-        new User(username: 'admin',  password: 'test',  mail: 'jamwithusISEP@gmail.com').save()
->>>>>>> fb82320bb805a708abd0cb98893cdf7cd3ee41fb
-       
+ 
     }
     def destroy = {
     }
