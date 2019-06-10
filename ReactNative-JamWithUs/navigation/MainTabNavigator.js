@@ -6,10 +6,11 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import JamForm from '../screens/JamFormScreen';
+import JamFormScreen from '../screens/JamFormScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const HomeStack = createStackNavigator({
-  Home: JamForm,
+  Home: LoginScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -27,11 +28,11 @@ HomeStack.navigationOptions = {
 };
 
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+  Links: JamFormScreen,
 });
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'Jam',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -53,7 +54,7 @@ SettingsStack.navigationOptions = {
     />
   ),
 };
-
+   
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
