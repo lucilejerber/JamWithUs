@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { 
+  AsyncStorage,
+  Button,
   StyleSheet, 
   Text,
   TextInput,
@@ -8,12 +10,10 @@ import {
   StatusBar } from 'react-native';
 
 
-/*import SignupForm from '../components/SignupForm';*/
-
-export default class SignupScreen extends Component <{}> {
-  render() {
-     return (
-      <View>
+export default class Signup extends React.Component {
+      render() {
+    return (
+      <View style={styles.container}>
         <TextInput style={styles.inputBox} 
         placeholder='Votre nom'
         placeholderTextColor='#ffffff'/>
@@ -24,11 +24,25 @@ export default class SignupScreen extends Component <{}> {
         placeholder='Mot de passe'
         secureTextEntry={true}
         placeholderTextColor='#ffffff'/>
+        <TextInput style={styles.inputBox} 
+        placeholder='Confirmer mot de passe'
+        secureTextEntry={true}
+        placeholderTextColor='#ffffff'/>
+        <Button
+          title="Créer un compte"
+          onPress={this._signInAsync}
+        />
       </View>
-    )
+    );
   }
-}
 
+  _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+  };
+
+}
+  
 const styles = StyleSheet.create({
   container : {
     padding: 20,

@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { 
   StyleSheet, 
+  Button,
   Text,
   TextInput,
   ScrollView,
   View,
   StatusBar } from 'react-native';
 
-export default class ForgotPasswordScreen extends Component <{}> {
+//page mdp oublié
+export default class ForgotPasswordScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Mot de passe oublié',
+  };
   render() {
-     return (
-      <View>
-         <TextInput style={styles.inputBox} 
+    return (
+      <View style={styles.container}>
+        <TextInput style={styles.inputBox} 
         placeholder='Votre adresse mail'
         placeholderTextColor='#ffffff'/>
+        <Button title="Envoyer" onPress={() => this.props.navigation.navigate('PostForgotPassword')}/>
       </View>
-    )
+    );
   }
 }
+
 
 const styles = StyleSheet.create({
   container : {

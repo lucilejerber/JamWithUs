@@ -3,10 +3,9 @@ import {
   StyleSheet,
   Text,
   ScrollView } from 'react-native';
+  
 
-import Login from './LoginScreen';
-
-export default class HomeScreen extends React.Component {
+export default class Home extends React.Component {
   static navigationOptions = {
     title: 'Home',
   };
