@@ -1,5 +1,6 @@
 /* 
-Laura Components Compléter Profil
+Laura Screen Compléter Profil
+avec les informations : birthday phoneNumber country city description genres instruments 
 */
 import React from 'react'
 import { 
@@ -18,13 +19,18 @@ import {
 
 import MenuButton from '../components/MenuButton';
 import {TOMCATSAVE,TOMCATUPDATE,TOMCATCREATE} from '../constants/index';
-//import * as Lonstants from '../constants'
+import {screens, buttons, form} from '../constants/StylesAll.js'
+
+//import * as Constants from '../constants'
 
 class ProfilForm extends React.Component {
-
+	static navigationOptions = {
+		title: 'Modifier profil',
+	};
+	
 	constructor(props){
 		super (props);
-    this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 		this.state = {
 			pickerSelection: 'Default',
 			username: '',
@@ -75,87 +81,66 @@ class ProfilForm extends React.Component {
 
 	render (){
 		return (
-	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
-				
-        <MenuButton navigation={this.props.navigation} />
+				<View style={screens.header}>
+				<MenuButton navigation={this.props.navigation} />
+				<Text style={screens.title}>Modifier Profil</Text>
+				</View>
 				<View style={styles.middle_container}>
-					<View style = {styles.image_container}>
-						<Image
-							style={{width: 50, height: 50}}
-							source={require('../assets/images/profil_png_default.jpg')}
-	        			/>
-      		 		</View>
-  
+					<ScrollView>
+						<View style={styles.middle_container}>					
+							<Text style={styles.inputtitle}>Surnom</Text>
+							<TextInput style={form.input} 
+							placeholderTextColor = "#AFAFAF" 
+							placeholder='Chacha'
+							onChangeText={(text) => this.setState({name: text})}
+							/>
 
-      		 	<ScrollView>
-				<View style={styles.middle_container}>
-	            		<Image/>
-	            		
-	            		<Text style={styles.inputtitle}>Surnom</Text>
-						<TextInput style={styles.textinput} 
-              placeholderTextColor = "#AFAFAF" 
-	        		placeholder='Chacha'
-              onChangeText={(text) => this.setState({name: text})}
-	        	/>
-
-	        			<Text style={styles.inputtitle}>Mail</Text>
-						<TextInput style={styles.textinput} 
+							<Text style={styles.inputtitle}>Mail</Text>
+							<TextInput style={form.input}  
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Charles.truc@truc.com'
-              onChangeText={(text) => this.setState({mail: text})}
-						/>
+							onChangeText={(text) => this.setState({mail: text})}
+							/>
 
-						<Text style={styles.inputtitle}>Nom</Text>
-						<TextInput style={styles.textinput} 
+							<Text style={styles.inputtitle}>Nom</Text>
+							<TextInput style={form.input} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Dupont'
-              onChangeText={(text) => this.setState({lastname: text})}
-						/>
-				{/*		<TextInput style={styles.textinput} placeholder='JJ/MM/AAAA'/>
-						<TextInput style={styles.textinput} placeholder='charles.dupont@exemple.com'/>
-						<TextInput style={styles.textinput} placeholder=''/>
-						<TextInput style={styles.textinput} placeholder='<br /> <br> </br>Je suis un passionné de Jazz /\nmais\n'/><TextInput style={styles.textinput} placeholder='06XXXXXXXX'/>
-						<TextInput style={styles.textinput} placeholder='FRANCE'/>
-						<TextInput style={styles.textinput} placeholder='Paris'/> 
-						<TextInput style={styles.textinput} placeholder='Saxophone'/>
-				*/}	    
-						<View style = {styles.picker_area}>
-							<Text style={styles.inputtitle}>Pays</Text>
-							<Picker
-								itemStyle = {styles.picker_item}
-								style = {styles.pickerinput}
-							  	selectedValue={this.state.pickerSelection}
-								onValueChange={(itemValue, itemIndex) =>this.setState({pickerSelection: itemValue})}>
-								<Picker.Item label="France" value="fr" />
-								<Picker.Item label="Belgique" value="bg" />
-								<Picker.Item label="Japon" value="jp" />
-							</Picker>
-						</View>
-						<Text style={styles.inputtitle}>Genres appréciés</Text>
-						<TextInput style={styles.textinput} 
+							onChangeText={(text) => this.setState({lastname: text})}
+							/>
+		
+							<View style = {styles.picker_area}>
+								<Text style={styles.inputtitle}>Pays</Text>
+									<Picker
+										itemStyle = {styles.picker_item}
+										style = {styles.pickerinput}
+										selectedValue={this.state.pickerSelection}
+										onValueChange={(itemValue, itemIndex) =>this.setState({pickerSelection: itemValue})}>
+										<Picker.Item label="France" value="fr" />
+										<Picker.Item label="Belgique" value="bg" />
+										<Picker.Item label="Japon" value="jp" />
+									</Picker>
+							</View>
+							<Text style={styles.inputtitle}>Genres appréciés</Text>
+							<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF"
 							placeholder='Jazz'
-						/>									
-						{/*<Button Style={styles.button} title='Sauvegarder' onPress={()=>{}}/>*/}
-
-						<TouchableOpacity 
-              style={styles.button_opacity}
-              onPress={this.handleSubmit}>
-  						  <Text 
-                style = {{marginLeft: 5, marginRight: 5}}>
-                  Enregistrer
-                </Text>   
-						</TouchableOpacity>
-					
-          </View>
+							/>									
+								
+							<TouchableOpacity 
+								style={styles.button_opacity}
+								onPress={this.handleSubmit}>
+								<Text 
+									style = {{marginLeft: 5, marginRight: 5}}>
+									Enregistrer
+								</Text>   
+							</TouchableOpacity>
+							
+						</View>
 					</ScrollView>
-
-
 				</View>
-
 			</View>
-
 		)
 	}
   
@@ -163,20 +148,12 @@ class ProfilForm extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-  	backgroundColor: '#d1d3d5',
-  	marginTop: 20,
+  	height: '100%',
   	flex: 1
   },  
-
-  top_container: {
-  	backgroundColor: '#383939',
-  	marginTop: 10,
-  	flex: 1
-  },
-
+	
   middle_container: {
-  	backgroundColor: '#fafafa',
-  	flex: 10
+  	flex: 1
   },
 
   picker_area: {

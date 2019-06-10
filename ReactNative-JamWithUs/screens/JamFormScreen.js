@@ -79,20 +79,8 @@ const styles = StyleSheet.create({
   mapStyle: {
     height: 50,
     width: 50
-  },
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-  button: {
-    color: '#ffffff',
-    borderRadius: 20,
-    borderColor: '#fa9605',
-    backgroundColor:'#68a0cf',
-    borderRadius:10,
-    borderWidth: 1,
-   // borderColor: '#fff'//borderWidth: '#fa9605',
-  },
-=======
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
-}); 
+  }
+}) 
 
 export default class JamForm extends React.Component {
   static navigationOptions = {
@@ -104,23 +92,19 @@ export default class JamForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onSelectedInstrumentsChange = this.onSelectedInstrumentsChange.bind(this)
     this.onSelectedGenresChange = this.onSelectedGenresChange.bind(this)
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-=======
     this.onDateChange = this.onDateChange.bind(this)
     this.onLocationChange = this.onLocationChange.bind(this)
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
     
     this.state = { 
       name: '',
       date: new Date(),
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-      location: '',
-=======
+
       locationName: '',
       locationAdress: '',
       latitude: '',
       longitude: '',
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
       admin: '',
       description: '',
       maxParticipants: '',
@@ -151,19 +135,7 @@ export default class JamForm extends React.Component {
     this.getGenres();
     this.getInstruments();
   }
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
- 
-  
-  handleSubmit() {
-    var date;
-    console.log("name = " + this.state.name)
-    console.log("date = " + this.state.date)
-    console.log("maxParticipants = " + this.state.maxParticipants)
-    console.log("description = " + this.state.description)
-    console.log("administrateur = " + "admin")
-    console.log("lieu = " +  this.state.lieu)
-    console.log("instruments = " +  this.state.selectedInstruments)
-=======
+
   
   handleSubmit() {
     // var date;
@@ -175,40 +147,33 @@ export default class JamForm extends React.Component {
     console.log("Longitude = " + this.state.longitude)
     console.log("Administrateur = " + "admin")
     console.log("Instruments = ")
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
     console.log(this.state.selectedInstruments)
     console.log("Genres = ")
     console.log(this.state.genres)
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-  
-    fetch('http://7b4c103f.ngrok.io/Jam/save', {
-=======
+
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
 
     fetch('http://7884b2ac.ngrok.io/Jam/save', {
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-      }, 
-=======
+
       },  
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
       body: JSON.stringify({
         "name": this.state.name,
         "date": this.state.date,
         "admin": this.state.admin,
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-        "location": this.state.location, 
-=======
+
         "locationName": this.state.locationName, 
         "locationAdress": this.state.locationAdress, 
         "latitude": this.state.latitude, 
         "longitude": this.state.longitude, 
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
         "description": this.state.description, 
         "maxParticipants": this.state.maxParticipants,
         "instruments": this.state.instruments,
@@ -221,11 +186,9 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-    fetch('http://7b4c103f.ngrok.io/Instrument', {
-=======
+
     fetch('http://7884b2ac.ngrok.io/Instrument', {
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -246,11 +209,9 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre
   getGenres() {
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-    fetch('http://7b4c103f.ngrok.io/Genre', {
-=======
+
     fetch('http://7884b2ac.ngrok.io/Genre', {
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
       method: 'POST',   
       headers: {
         Accept: 'application/json', 
@@ -279,16 +240,13 @@ export default class JamForm extends React.Component {
     console.log(selectedGenres )
   };  
 
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-  onSelectedLocationChange(event) {
-    this.setState({message: event.target.value})
-=======
+
   onDateChange(data) {
     var splitDate = data.split(' ');
     var date = splitDate[0] + "T" + splitDate[1] + ":00";
     date = new Date(date);
     this.setState({date: data.toJSON()}) 
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
   }
   
   onLocationChange(data) {
@@ -313,16 +271,13 @@ export default class JamForm extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           
           <View style={styles.jamContainer}>
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-            
-            <Text style={styles.title}>Creation Jam</Text>  
-=======
+
             <View style={styles.header}>
               <MenuButton navigation={this.props.navigation} />
               <Text style={styles.title}>Création Jam</Text>  
             </View>
 
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
             <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>Nom de la jam</Text>
               <TextInput 
@@ -336,11 +291,9 @@ export default class JamForm extends React.Component {
               <View style={styles.input}>
                 <DatePicker
                   date={this.state.date}
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-                  onDateChange={date => this.setState({ date })}
-=======
+
                   onDateChange={this.onDateChange}
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
                   mode="datetime"
                   customStyles={{
                     dateIcon: {
@@ -353,23 +306,17 @@ export default class JamForm extends React.Component {
                       marginLeft: 36,
                       borderWidth: 0,
                       width: 300
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-                  }}}
-=======
+
                   }}} 
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
                 /> 
               </View>
 
 
               <Text style={styles.inputLabel}>Lieu</Text>
-<<<<<<< HEAD:ReactNative-JamWithUs/screens/JamFormScreen.js
-              <View style={styles.input}>
-                <FormLocation handler={this.onSelectedLocationChange} style={styles.input} />
-              </View>
-=======
+
               <FormLocation handler={this.onLocationChange} styles={styles.input} />
->>>>>>> origin/lucile:ReactNative-JamWithUs/screens/JamFormScreen.js
+
 
               <Text style={styles.inputLabel}>Instruments</Text>
               <MultiSelect

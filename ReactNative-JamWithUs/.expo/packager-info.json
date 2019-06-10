@@ -1,12 +1,10 @@
 {
-  "expoServerPort": 19000,
-
-  "expoServerNgrokUrl": "https://4b-3xm.anonymous.reactnative-jamwithus.exp.direct",
-  "packagerNgrokUrl": "https://packager.4b-3xm.anonymous.reactnative-jamwithus.exp.direct",
-  "ngrokPid": 376,
-  "packagerPort": 19001,
-  "packagerPid": 10384,
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "webpackServerPort": null,
   "devToolsPort": 19002
-
 }

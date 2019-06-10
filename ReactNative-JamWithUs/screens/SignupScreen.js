@@ -11,9 +11,15 @@ import {
 
 import Logo from '../components/Logo';
 import Form2 from '../components/Form';
-
+drawerLockMode: 'locked-closed'
 export default class SignUp extends Component <{}> {
-  render() {
+  	static navigationOptions = {
+		title: 'Sign Up',
+		drawerLockMode: 'locked-closed',
+	};
+	
+	render() {
+	 console.log(this.props)
      return (
       <View style= {styles.container}>
         <Form2 type = "Créer un compte"/>
