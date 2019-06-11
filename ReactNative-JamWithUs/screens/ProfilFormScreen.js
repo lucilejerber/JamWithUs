@@ -14,6 +14,7 @@ import {
   Image, 
   Picker, 
   Modal, 
+  Alert,
   TouchableOpacity,
 } from 'react-native';
 
@@ -115,6 +116,24 @@ class ProfilForm extends React.Component {
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))
+	
+	
+	if (this.state.birthday) {
+		Alert.alert(
+		'Le profil est complet',
+		
+		{text: 'OK', onPress: () => this.props.navigation.navigate("HomeScreen") },
+		{cancelable: false},
+		);
+
+	//Alert.alert(this.state.username + ' votre profil à bien été complété!',);
+	//this.props.navigation.navigate("HomeScreen")	
+	}else{
+		Alert.alert('Pour participer au Jam compléter le profil');
+	}
+	
+	
+	
   }
 
   

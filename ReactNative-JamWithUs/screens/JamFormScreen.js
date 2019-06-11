@@ -11,16 +11,22 @@ import {
   Picker,
   DatePickerIOS,
   Button,
+  Alert,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
 import FormLocation from '../components/Common/FormLocation'; 
+import {screens, buttons,forms} from '../constants/StylesAll.js'
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
 
 import MenuButton from '../components/MenuButton'
+
+import {
+	TOMCATUPDATE,LOCALUPDATE,LOCALSHOW,LOCALSAVE
+} from '../constants/index';
 
 const styles = StyleSheet.create({
   container: {
@@ -143,7 +149,7 @@ export default class JamForm extends React.Component {
     console.log(this.state.selectedGenres)
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
-
+  
     fetch('http://729119a4.ngrok.io/Jam/save', {
 
       method: 'POST',
@@ -171,7 +177,15 @@ export default class JamForm extends React.Component {
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))
-  }   
+	 
+	//Pop-up alert here plus condition que le name soit pas vide
+	if (this.state.name) {
+		Alert.alert('La Jam ' + this.state.name + ' à bien été créée!');
+	}else{
+		Alert.alert('Le nom de la Jam ne peut pas être nul!');
+	}
+
+}   
 
   // Request to the data base to get instruments
   getInstruments() {  
@@ -343,8 +357,12 @@ export default class JamForm extends React.Component {
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({maxParticipants: text})}
               />
-              
-              <Button style={styles.button}  title="Enregistrer" onPress={this.handleSubmit} />
+			// Bouton button remplacement par TouchableOpacity here + le style pour les boutons "Enregistrer"
+			<TouchableOpacity 
+				onPress={this.handleSubmit}
+				style={buttons.opacity}>
+				<Text style={buttons.name}>Enregistrer</Text>
+			</TouchableOpacity>
             </View>
           </View>
 
