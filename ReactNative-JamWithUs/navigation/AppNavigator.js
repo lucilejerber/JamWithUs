@@ -1,10 +1,53 @@
+//Auteur : Gaël
+	//Navigation
+	
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {
+  ActivityIndicator,
+  Button,
+  Text,
+  Platform,
+  ScrollView,
+  Dimensions,
+  AsyncStorage,
+  StatusBar,
+  StyleSheet,
+  View,
+  TouchableOpacity
+} from 'react-native';
 
-import MainTabNavigator from './MainTabNavigator';
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+	  createSwitchNavigator,
+	  createAppContainer } from 'react-navigation';
 
-export default createAppContainer(createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
-}));
+import SigninScreen from '../screens/SigninScreen';
+import SignupScreen from '../screens/SignupScreen';
+import SignoutScreen from '../screens/SignoutScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import PostForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import HomeScreen from '../screens/HomeScreen';
+import Profil_Display from '../components/Profil_Display';
+import ProfilForm from '../components/ProfilForm';
+import ProfilScreen from '../screens/ProfilScreen';
+import JamForm from '../screens/JamFormScreen';
+
+const AppStack = createDrawerNavigator({HomeScreen: HomeScreen, JamForm: JamForm,ProfilDisplay: Profil_Display,ProfilForm: ProfilForm, Signout: SignoutScreen}, DrawerConfig,);
+const AuthStack = createStackNavigator({ Signin: SigninScreen, Signup:SignupScreen, ForgotPassword:ForgotPasswordScreen, PostForgotPassword:PostForgotPasswordScreen });
+	
+const WIDTH = Dimensions.get('window').width;
+	const DrawerConfig = {
+  drawerwidth: WIDTH*0.43,
+}
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+	  }
+	));

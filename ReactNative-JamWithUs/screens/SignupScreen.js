@@ -1,79 +1,52 @@
+//Auteur : Gaël
+//Création de compte
+
 import React, { Component } from 'react';
 import { 
+  AsyncStorage,
   StyleSheet, 
   Text,
+  Button,
+  TextInput,
   View,
   StatusBar } from 'react-native';
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-import Logo from '../components/Logo';
-import Form2 from '../components/Form';
-
-export default class SignUp extends Component <{}> {
-  render() {
-     return (
-      <View style= {styles.container}>
-        <Form2 type = "Créer un compte"/>
-        <View style={styles.signupTextCont}> 
-          <Text style={styles.signupText}>Vous avez déjà un compte ? </Text>
-          <Text style={styles.signupButton}> Se connecter</Text>
-        </View>
-=======
-
-=======
 
 
->>>>>>> parent of e60e6407... update signup/signin
-export default class Signup extends React.Component {
-      render() {
+export default class Signup extends Component <{}> {
+    render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox} 
+        <TextInput style={styles.inputBox}
         placeholder='Votre nom'
-        placeholderTextColor='#ffffff'/>
-         <TextInput style={styles.inputBox} 
+        placeholderTextColor='#fff'/>
+        <TextInput style={styles.inputBox}
         placeholder='Votre adresse mail'
-        placeholderTextColor='#ffffff'/>
-        <TextInput style={styles.inputBox} 
+        placeholderTextColor='#fff'/>
+        <TextInput style={styles.inputBox}
         placeholder='Mot de passe'
         secureTextEntry={true}
-        placeholderTextColor='#ffffff'/>
-        <TextInput style={styles.inputBox} 
-        placeholder='Confirmer mot de passe'
-        secureTextEntry={true}
-        placeholderTextColor='#ffffff'/>
+        placeholderTextColor='#fff'/>
         <Button
           title="Créer un compte"
           onPress={this._signInAsync}
         />
->>>>>>> parent of e60e6407... update signup/signin
       </View>
     )
   }
+    _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+    }
 }
 
 const styles = StyleSheet.create({
   container : {
-    backgroundColor : "#000000" ,
-    flex : 1,
-    alignItems : 'center' ,
-    justifyContent : 'center'
+    padding : 20
   },
-  signupTextCont : {
-    flexGrow : 1,
-    alignItems : 'center',
-    justifyContent : 'flex-end',
-    marginVertical : 16,
-    flexDirection : 'row'
-  },
-  signupText : {
-    color : '#ffffff',
-    fontSize : 12
-  },
-  signupButton : {
-    color : '#ffffff',
-    fontSize : 12,
-    fontWeight : '600'
+  inputBox :{
+    height: 40,
+    backgroundColor: 'rgba(225,225,225,0.7)',
+    marginBottom: 10,
+    padding: 10
   }
 });

@@ -1,3 +1,7 @@
+//Auteur : Gaël
+//Connexion
+
+
 import React , { Component } from 'react';
 import { 
   AsyncStorage,
@@ -18,6 +22,7 @@ export default class SigninScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <Logo/>
         <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
         <TextInput style={styles.inputBox} 
         placeholder='Adresse mail'
