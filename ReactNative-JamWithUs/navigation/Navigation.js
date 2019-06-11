@@ -26,10 +26,6 @@ const ProfilStackNavigator = createStackNavigator({
 			title: 'Mes Jams'
 		}
 	},
-
-
-
-
 })
 
 export default createAppContainer(ProfilStackNavigator)

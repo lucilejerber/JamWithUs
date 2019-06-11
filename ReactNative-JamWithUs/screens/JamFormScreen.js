@@ -269,7 +269,6 @@ export default class JamForm extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          
           <View style={styles.jamContainer}>
 
             <View style={styles.header}>

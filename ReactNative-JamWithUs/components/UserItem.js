@@ -8,20 +8,11 @@ class UserItem extends React.Component {
 		<TouchableOpacity       
       onPress={()=> displayDetailForProfil(user.id)}
       style={styles.main_container}>
-        <Image
-          //style={styles.image}
-          //source={{uri: "image"}}
-        />
         <View style={styles.content_container}>
           
           <View style={styles.header_container}>
             <Text style={styles.title_text}>surnom</Text>
-            <Text style={styles.description_text}>{user.surnom}</Text>
-          </View>
-
-          <View style={styles.header_container}>
-            <Text style={styles.title_text}>prenom</Text>
-            <Text style={styles.description_text}>{user.prenom}</Text>
+            <Text style={styles.description_text}>{user.username}</Text>
           </View>
 
           <View style={styles.header_container}>
@@ -30,9 +21,19 @@ class UserItem extends React.Component {
           </View>
 
           <View style={styles.header_container}>
-            <Text style={styles.title_text}>instrument(s)</Text>
-            <Text style={styles.description_text}>{user.instrument}</Text>
+            <Text style={styles.title_text}>Date de Naissance</Text>
+            <Text style={styles.description_text}>{user.birthday}</Text>
           </View>
+
+          <View style={styles.header_container}>
+            <Text style={styles.title_text}>Numéro de Téléphone(s)</Text>
+            <Text style={styles.description_text}>{user.phoneNumber}</Text>
+          </View>
+		  <View style={styles.header_container}>
+            <Text style={styles.title_text}>Pays(s)</Text>
+            <Text style={styles.description_text}>{user.country}</Text>
+          </View>
+		  
         </View>
       </TouchableOpacity>
     )

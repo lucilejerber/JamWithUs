@@ -1,6 +1,6 @@
 /* 
-Laura Screen Compléter Profil
-avec les informations : birthday phoneNumber country city description genres instruments 
+Laura Screen Compléter ou Modifier Profil
+avec les informations : mail username password birthday phoneNumber country city description genres instruments 
 */
 import React from 'react'
 import { 
@@ -18,8 +18,12 @@ import {
 } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
-import {TOMCATSAVE,TOMCATUPDATE,TOMCATCREATE} from '../constants/index';
-import {screens, buttons, form} from '../constants/StylesAll.js'
+import {
+	TOMCATUPDATE,
+	LOCALUPDATE,LOCALSHOW,LOCALSAVE
+} from '../constants/index';
+
+import {screens, buttons, forms} from '../constants/StylesAll.js'
 
 //import * as Constants from '../constants'
 
@@ -31,54 +35,96 @@ class ProfilForm extends React.Component {
 	constructor(props){
 		super (props);
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.onDateChange = this.onDateChange.bind(this)
 		this.state = {
 			pickerSelection: 'Default',
 			username: '',
-			lastname: '',
+			mail: '',
+			password: '',
+			birthday: '',
+			phoneNumber:'',
+			country:'',
+			city:'',
+			description:'',
+			genres:[],
+			instruments:[],
 
 		};
 	}
 
   // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
   componentWillMount(){ 
-    const URL = TOMCATSAVE + '/user/save'
-    /*fetch('https://7b926458.ngrok.io', {
+    console.log("ComponentWillMount")//avant que le render se fasse
+	
+	fetch(LOCALSHOW, {
       method: 'POST',
       headers: {
-        Accept: 'application/json'
-      },
-    })
-    .then(json => console.log(json))
-    //.then(json => this.setState({
-      //  name: json.name
-      //}))
-    .catch(error => console.error(error))*/
+        Accept: 'application/json',
+		'Content-Type': 'application/json'
+      }       
+    })	
+	//.then((response) => console.log(response))//affiche la reposne dans la console
+    .then((response) => response.json())// converti en json 
+	.then(json => {
+		this.setState({ username: json.username});
+		this.setState({ mail: json.mail});
+		this.setState({ password: json.password});
+	})
+    .catch(error => console.error(error))
+	
+	console.log(LOCALSHOW)
 	}
 
   // A REVOIR - recup les données formulaires soumises par l'utilisateur
   handleSubmit() {
-    console.log("name = " + this.state.name)
-    console.log("lastname = " + this.state.lastname)
+    console.log("username = " + this.state.username)
     console.log("mail = " + this.state.mail)
-    console.log("TOMCATSAVE =" + TOMCATSAVE)
-    console.log("URL =" + URL)
+    console.log("password = " + this.state.password)
+    
+    console.log("birthday = " + this.state.birthday)
+    console.log("phoneNumber = " + this.state.phoneNumber)
+    console.log("country = " + this.state.country)
 
-    fetch(URL + 'user/save', {
+    console.log("city = " + this.state.city)
+    console.log("description = " + this.state.description)
+    console.log("genres = " + this.state.genres)
+
+	console.log("instruments = " + this.state.instruments)
+	
+
+    fetch(LOCALUPDATE, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }, 
       body: JSON.stringify({
-        "name": this.state.name,
-        "lastname": this.state.lastname,
-        "mail": this.state.mail, 
+        "username": this.state.username,
+        "mail": this.state.mail,
+        "password": this.state.password,
+        "birthday": this.state.birthday,
+        "phoneNumber": this.state.phoneNumber,
+        
+		"country": this.state.country,
+        "city": this.state.city,
+        "description": this.state.description,
+        "genres": this.state.genres,
+        "instruments": this.state.instruments,
+	
       }),
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))
   }
 
+  
+    onDateChange(data) {
+    var splitDate = data.split(' ');
+    var date = splitDate[0] + "T" + splitDate[1] + ":00";
+    date = new Date(date);
+    this.setState({date: data.toJSON()}) 
+
+	}
 	render (){
 		return (
 			<View style = {styles.main_container}>
@@ -89,29 +135,48 @@ class ProfilForm extends React.Component {
 				<View style={styles.middle_container}>
 					<ScrollView>
 						<View style={styles.middle_container}>					
-							<Text style={styles.inputtitle}>Surnom</Text>
-							<TextInput style={form.input} 
+							<Text style={forms.inputLabel}>Nom d'utilisateur</Text>
+							<TextInput style={forms.input} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Chacha'
-							onChangeText={(text) => this.setState({name: text})}
+							value={this.state.username}
+							onChangeText={(text) => this.setState({username: text})}
 							/>
 
-							<Text style={styles.inputtitle}>Mail</Text>
-							<TextInput style={form.input}  
+							<Text style={forms.inputLabel}>Adresse Mail</Text>
+							<TextInput style={forms.input}  
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Charles.truc@truc.com'
+							value={this.state.mail}
 							onChangeText={(text) => this.setState({mail: text})}
 							/>
-
-							<Text style={styles.inputtitle}>Nom</Text>
-							<TextInput style={form.input} 
+							
+							<Text style={forms.inputLabel}>Mot de Passe</Text>
+							<TextInput style={forms.input} 
 							placeholderTextColor = "#AFAFAF" 
-							placeholder='Dupont'
-							onChangeText={(text) => this.setState({lastname: text})}
+							placeholder='*****'
+							value={this.state.password}
+							onChangeText={(text) => this.setState({password: text})}
 							/>
-		
+							
+							<Text style={forms.inputLabel}>Date de Naissance</Text>
+							<TextInput style={forms.input} 
+							placeholderTextColor = "#AFAFAF" 
+							placeholder='JJ/MM/AAAA'
+							onChangeText={(text) => this.setState({birthday: text})}
+							/>
+							
+							<Text style={forms.inputLabel}>Numéro de Téléphone</Text>
+							<TextInput style={forms.input} 
+							placeholderTextColor = "#AFAFAF" 
+							placeholder='+33---------'
+							onChangeText={(text) => this.setState({phoneNumber: text})}
+							/>
+							
+
+							
 							<View style = {styles.picker_area}>
-								<Text style={styles.inputtitle}>Pays</Text>
+								<Text style={forms.inputLabel}>Pays</Text>
 									<Picker
 										itemStyle = {styles.picker_item}
 										style = {styles.pickerinput}
@@ -122,19 +187,32 @@ class ProfilForm extends React.Component {
 										<Picker.Item label="Japon" value="jp" />
 									</Picker>
 							</View>
-							<Text style={styles.inputtitle}>Genres appréciés</Text>
-							<TextInput style={styles.textinput} 
-							placeholderTextColor = "#AFAFAF"
+							
+							<Text style={forms.inputLabel}>Ville</Text>
+							<TextInput style={forms.input} 
+							placeholderTextColor = "#AFAFAF" 
+							placeholder='Marseille'
+							onChangeText={(text) => this.setState({city: text})}
+							/>
+							
+							<Text style={forms.inputLabel}>Genres appréciés</Text>
+							<TextInput style={forms.input} 
+							placeholderTextColor = "#AFAFAF" 
 							placeholder='Jazz'
-							/>									
+							onChangeText={(text) => this.setState({genres: text})}
+							/>
+
+							<Text style={forms.inputLabel}>Instruments pratiqués</Text>
+							<TextInput style={forms.input} 
+							placeholderTextColor = "#AFAFAF" 
+							placeholder='Banjo'
+							onChangeText={(text) => this.setState({instruments: text})}
+							/>							
 								
 							<TouchableOpacity 
-								style={styles.button_opacity}
+								style={buttons.opacity}
 								onPress={this.handleSubmit}>
-								<Text 
-									style = {{marginLeft: 5, marginRight: 5}}>
-									Enregistrer
-								</Text>   
+								<Text style={buttons.name}>	Enregistrer	</Text>   
 							</TouchableOpacity>
 							
 						</View>
@@ -157,9 +235,9 @@ const styles = StyleSheet.create({
   },
 
   picker_area: {
-  	//height: 100,
-  	//width: 200,
   	backgroundColor: '#fafafa',
+	//height: 100,
+  	//width: 200,
   	//flex: 1
   },
   picker_item: {
@@ -212,26 +290,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },  
 
-  button_opacity: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10
-  },
-
-  button: {
-    borderColor: '#FFFFFF',
-    backgroundColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 20
-  }
 
 })
 
 export default ProfilForm;
-//exporte les éléments pour pouvoir les utiliser ailleurs

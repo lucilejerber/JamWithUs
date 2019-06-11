@@ -26,17 +26,12 @@ class ProfilDisplay extends React.Component {
 	}
 	
 	render (){
-		console.log(this.props)
+		//console.log(this.props)
 		const { user, displayDetailForProfil } = this.props
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
-				<MenuButton navigation={this.props.navigation} />
-        {/*<View style={styles.top_container}>
-					<Text style={styles.header_text}>Mon Profil</Text>
-
-				</View>*/}
-				
+				<MenuButton navigation={this.props.navigation} />		
 				<View style = {styles.image_container}>
 					<Image
 						style={{width: 50, height: 50}}

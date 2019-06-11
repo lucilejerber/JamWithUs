@@ -3,12 +3,16 @@
 export default data = [
    {
       id:181808,
-      surnom:"Chacha",
-      prenom:"Charles",
-      nom:"Dupont",
-      mail:"charles.dupont@exemple.com",
-      instrument:"Guitare",
-      genre:"Jazz"
+		username: 'Chacha',
+		mail: 'charles.dupont@exemple',
+		password: 'MotdePasse',
+		birthday: '01/01/1990',
+		phoneNumber:'+33611111111',
+		country:'France',
+		city:'Marseille',
+		description:'Je suis fan de Jazz',
+		genres:'Jazz',
+		instruments:'Saxophone'
    }
    /*,
    {

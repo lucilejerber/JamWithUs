@@ -1,3 +1,4 @@
+/*Laura*/
 import { StyleSheet } from 'react-native'
   
  const screens = StyleSheet.create({   
@@ -21,7 +22,7 @@ import { StyleSheet } from 'react-native'
   },
  })
  
- const form = StyleSheet.create({
+ const forms = StyleSheet.create({
 	input: {
     height: 50,
     paddingLeft: 20,
@@ -33,6 +34,11 @@ import { StyleSheet } from 'react-native'
     backgroundColor: '#f3f3f3', 
     borderRadius: 20,
 	},
+	
+	inputLabel: {
+    marginLeft: 40,
+    fontWeight: 'bold',
+  },
   
  })
  const buttons = StyleSheet.create({  
@@ -63,4 +69,4 @@ import { StyleSheet } from 'react-native'
   }
  })
   
- export { screens, buttons, form }           
+ export { screens, buttons, forms }           
