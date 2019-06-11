@@ -61,7 +61,7 @@ export default class JamDescription extends React.Component {
 
     // Request to the data base to get instruments
   componentWillMount() {  
-    var url = 'http://7169c2da.ngrok.io/Jam/show' + jamId;
+    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam/show/' + this.state.jamId;
 
     fetch(url, {
       method: 'POST',

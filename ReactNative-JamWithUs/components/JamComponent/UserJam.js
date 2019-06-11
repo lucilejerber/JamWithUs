@@ -61,7 +61,7 @@ export default class Jam extends React.Component {
   componentDidMount() {
     console.log("Alllleeeeeeerrrrtttttt")
     console.log(this.props.data)
-    var url = 'http://7169c2da.ngrok.io/Jam/show/' + this.props.data;
+    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam/show/' + this.props.data;
 
     fetch(url, {
       method: 'POST',

@@ -134,7 +134,7 @@ export default class JamForm extends React.Component {
     console.log("MaxParticipants = " + this.state.maxParticipants)
     console.log("userId = " + this.state.userId)
 
-    fetch('http://7169c2da.ngrok.io/Jam/save', {
+    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -161,7 +161,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://7169c2da.ngrok.io/Instrument', {
+    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -181,7 +181,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://7169c2da.ngrok.io/Genre', {
+    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 

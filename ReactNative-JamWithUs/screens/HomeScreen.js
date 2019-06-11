@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchData() {
-    var url = 'http://7169c2da.ngrok.io/Jam'; 
+    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam'; 
 
     fetch(url, {
       method: 'POST',
