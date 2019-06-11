@@ -22,7 +22,7 @@ const DrawerConfig = {
 	drawerwidth: WIDTH*0.43,
 }
 
-const DrawerNavigator = createDrawerNavigator(
+const DrawerNavigator = createDrawerNavigator( 
 
 {
 		//Accueil: Accueil,
@@ -30,8 +30,8 @@ const DrawerNavigator = createDrawerNavigator(
 		JamForm: JamForm,
 		ProfilDisplay: Profil_Display,
 		ProfilForm: ProfilForm,
-		Links: LinksScreen,
-		Settings: SettingsScreen,
+		// Links: LinksScreen,
+		// Settings: SettingsScreen,
 		JamDescription: JamDescription,
 	
 },
