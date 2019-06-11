@@ -10,6 +10,7 @@ import {
   TextInput,
   Picker,
   DatePickerIOS,
+  RefreshControl,
   Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
@@ -108,6 +109,7 @@ export default class JamForm extends React.Component {
       genres: [],
       selectedGenres: [],
       selectedInstruments: [],
+      userId: 1
     } 
   }
 
@@ -124,15 +126,15 @@ export default class JamForm extends React.Component {
     console.log("Location Adress = " + this.state.locationAdress)
     console.log("Latitude = " + this.state.latitude)
     console.log("Longitude = " + this.state.longitude)
-    console.log("Administrateur = " + "admin")
     console.log("Instruments = ")
     console.log(this.state.selectedInstruments)
     console.log("Genres = ")
     console.log(this.state.selectedGenres)
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
+    console.log("userId = " + this.state.userId)
 
-    fetch('http://729119a4.ngrok.io/Jam/save', {
+    fetch('http://7169c2da.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -141,7 +143,6 @@ export default class JamForm extends React.Component {
       body: JSON.stringify({
         "name": this.state.name,
         "date": this.state.date,
-        "admin": this.state.admin,
         "locationName": this.state.locationName, 
         "locationAdress": this.state.locationAdress, 
         "latitude": this.state.latitude, 
@@ -150,6 +151,8 @@ export default class JamForm extends React.Component {
         "maxParticipants": this.state.maxParticipants,
         "instruments": this.state.selectedInstruments,
         "genres": this.state.selectedGenres,
+        "numberParticipants": 1,
+        "gens":[{"user": this.state.userId, "role": "admin"}]
       }),
     })
     .then(json => console.log(json))
@@ -158,7 +161,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://729119a4.ngrok.io/Instrument', {
+    fetch('http://7169c2da.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -178,7 +181,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://729119a4.ngrok.io/Genre', {
+    fetch('http://7169c2da.ngrok.io/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 

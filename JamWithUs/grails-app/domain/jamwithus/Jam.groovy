@@ -16,9 +16,6 @@ class Jam {
 
     static hasMany = [
         gens: JamRole,
-        // participants: User, 
-        // askers: User, 
-        // watchers: User, 
         instruments: Instrument, 
         genres: Genre
     ]

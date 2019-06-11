@@ -9,10 +9,9 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Profil_Display from '../components/Profil_Display';
 import ProfilForm from '../components/ProfilForm';
 
+import HomeScreen from '../screens/HomeScreen';
 import ProfilScreen from '../screens/ProfilScreen';
-import LinksScreen from '../screens/LinksScreen';
 //import Accueil from '../screens/AccueilScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import JamForm from '../screens/JamFormScreen';
 import JamDescription from '../screens/JamDescriptionScreen';
 
@@ -24,19 +23,19 @@ const DrawerConfig = {
 	drawerwidth: WIDTH*0.43,
 }
 
-const DrawerNavigator = createDrawerNavigator(
+const DrawerNavigator = createDrawerNavigator( 
 
 {
 		//Accueil: Accueil,
 		
 		JamForm: JamForm,
-
+		HomeScreen: HomeScreen,
 		ProfilDisplay: Profil_Display,
 		ProfilForm: ProfilForm,
-		Links: LinksScreen,
-		Settings: SettingsScreen,
+		// Links: LinksScreen,
+		// Settings: SettingsScreen,
 		JamDescription: JamDescription,
-		
+	
 },
 DrawerConfig,
 );

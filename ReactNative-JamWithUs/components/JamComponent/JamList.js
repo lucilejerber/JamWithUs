@@ -54,7 +54,7 @@ export default class JamList extends React.Component {
     var userId = this.props.userId;
     console.log("JamList userId = " + userId) 
 
-    var url = 'http://729119a4.ngrok.io/User/show/' + userId;
+    var url = 'http://7169c2da.ngrok.io/User/show/' + userId;
     fetch(url, {
       method: 'POST',
       headers: {
