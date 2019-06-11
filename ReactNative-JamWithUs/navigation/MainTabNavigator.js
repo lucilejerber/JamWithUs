@@ -41,12 +41,12 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const JamStack = createStackNavigator({
-  Jam: JamScreen,
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
 });
 
-JamStack.navigationOptions = {
-  tabBarLabel: 'Jams',
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -56,9 +56,7 @@ JamStack.navigationOptions = {
 };
    
 export default createBottomTabNavigator({
-  ProfileStack,
   HomeStack,
   LinksStack,
   SettingsStack,
 }); 
-

@@ -15,142 +15,141 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
+import FormLocation from '../components/Common/FormLocation'; 
 
-import DateTimePicker from "react-native-modal-datetime-picker";
+import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
+
+import MenuButton from '../components/MenuButton'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     height: '100%',
   },
+  header: {
+    marginBottom: 10, 
+    paddingBottom: 10, 
+    backgroundColor:'#EC5314',
+    paddingTop: 40, 
+  },
   title: {
-    color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 25, 
     fontWeight: 'bold',
-    backgroundColor: '#4F2214',
-    marginBottom: 10,
-    // marginTop: 40,
-    paddingBottom: 20, 
-    paddingTop: 50, 
-    paddingLeft: 30,
-    paddingRight: 30,
+    marginLeft: 60, 
+    color: 'white',
   },
   contentContainer: {
   },
-  textInput: {
-    height: 40,
-    fontSize: 15,
+  input: {
+    height: 50,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 20, 
+    marginLeft: 40,
+    marginRight: 40,
     marginBottom: 10,
-    backgroundColor: '#ededed', 
+    marginTop: 5,
+    backgroundColor: '#f3f3f3', 
+    borderRadius: 20,
+  },
+  round: {
+    borderRadius: 20,
+    paddingLeft: 20,
+    backgroundColor: '#f3f3f3', 
+    paddingRight: 20, 
   },
   inputLabel: {
-    color: 'black',
+    marginLeft: 40,
     fontWeight: 'bold',
   },
-  inputContainer: {
-    marginLeft: 30,
-    marginRight: 30,
+  inputsContainer: {
+    marginLeft: 5,
+    marginRight: 5,
   },
   multiSelect: {
-    marginTop: 5,   
+    padding: 5,   
+    marginLeft: 40,
+    marginRight: 40,
   },  
+  dateContainer: {
+    width: 50
+  },
+  mapStyle: {
+    height: 50,
+    width: 50
+  },
 }); 
- 
+
 export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
-
-  /*
   constructor(props) {
     super(props)
 
-    this.showDateTimePicker = this.showDateTimePicker.bind(this)
-    this.hideDateTimePicker = this.hideDateTimePicker.bind(this)
-    this.handleDatePicked = this.handleDatePicked.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onSelectedInstrumentsChange = this.onSelectedInstrumentsChange.bind(this)
     this.onSelectedGenresChange = this.onSelectedGenresChange.bind(this)
-
-    this.state = {
+    this.onDateChange = this.onDateChange.bind(this)
+    this.onLocationChange = this.onLocationChange.bind(this)
+    
+    this.state = { 
       name: '',
       date: new Date(),
-      lieu: '',
-      administrateur: '',
-      nbMaxParticipants: '',
+      locationName: '',
+      locationAdress: '',
+      latitude: '',
+      longitude: '',
+      admin: '',
       description: '',
+      maxParticipants: '',
 
-      isDateTimePickerVisible: false,
-      day: new Date().getDate().toLocaleString(), //Current Date
-      month: (new Date().getMonth() + 1).toLocaleString(), //Current Month
-      year: new Date().getFullYear().toLocaleString(), //Current Year,
       instruments: [],
       genres: [],
-      selectedItems: [],
       selectedGenres: [],
       selectedInstruments: [],
     } 
   }
 
-  showDateTimePicker() { 
-    this.setState({ isDateTimePickerVisible: true });
-  };
-
-  hideDateTimePicker() {
-    this.setState(); 
-  }; 
-
-  handleDatePicked(date) {
-    console.log("A date has been picked: ", date.getDate());
-    console.log("A date has been picked: ", date.getMonth());
-    console.log("A date has been picked: ", date.getFullYear());
-    this.setState({ day: date.getDate().toLocaleString() }); 
-    this.setState({ month: (date.getMonth() + 1).toLocaleString() }); 
-    this.setState({ year: date.getFullYear().toLocaleString() }); 
-    this.setState({ date: date }); 
-    this.hideDateTimePicker(); 
-  };
-
   componentWillMount() {
     this.getGenres();
     this.getInstruments();
   }
-
-  // TO-DO : Rajouter bouton "ajouter lieu"
+  
   handleSubmit() {
-    var date;
-    console.log("date = " + this.state.date)
-    console.log("name = " + this.state.name)
-    console.log("complet = " + null)
-    console.log("nombreMaxParticipants = " + 0)
-    console.log("nombreDeParticipants = " + 0)
-    console.log("description = " + this.state.description)
-    console.log("administrateur = " + "admin")
-    console.log("lieu = " +  this.state.lieu)
-    console.log("instruments = " +  this.state.selectedInstruments)
+    // var date;
+    console.log("Name = " + this.state.name)
+    console.log("Date = " + this.state.date)
+    console.log("Location Name = " + this.state.locationName)
+    console.log("Location Adress = " + this.state.locationAdress)
+    console.log("Latitude = " + this.state.latitude)
+    console.log("Longitude = " + this.state.longitude)
+    console.log("Administrateur = " + "admin")
+    console.log("Instruments = ")
     console.log(this.state.selectedInstruments)
-    console.log("genres = " +  this.state.selectedGenres)
-    console.log(this.state.genres)
+    console.log("Genres = ")
+    console.log(this.state.selectedGenres)
+    console.log("Description = " + this.state.description)
+    console.log("MaxParticipants = " + this.state.maxParticipants)
 
-   fetch('https://ce68f9e0.ngrok.io/Jam/save', {
+    fetch('http://729119a4.ngrok.io/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        ContentType: 'application/json'
-      }, 
+        'Content-Type': 'application/json'
+      },  
       body: JSON.stringify({
-        "nom": this.state.name,
+        "name": this.state.name,
         "date": this.state.date,
-        "lieu": this.state.lieu, 
-        "administrateur": "admin", 
-        "nombreMaxParticipants": this.state.nbMaxParticipants,
-        "complet": false, 
-        "nombreDeParticipants": 1,
-        "description": this.state.description,
+        "admin": this.state.admin,
+        "locationName": this.state.locationName, 
+        "locationAdress": this.state.locationAdress, 
+        "latitude": this.state.latitude, 
+        "longitude": this.state.longitude, 
+        "description": this.state.description, 
+        "maxParticipants": this.state.maxParticipants,
+        "instruments": this.state.selectedInstruments,
+        "genres": this.state.selectedGenres,
       }),
     })
     .then(json => console.log(json))
@@ -159,7 +158,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('https://ce68f9e0.ngrok.io/Instrument', {
+    fetch('http://729119a4.ngrok.io/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -167,26 +166,27 @@ export default class JamForm extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson)
+      // console.log(responseJson)
         this.setState({
           instruments: responseJson
-        })
+        }) 
     })
     .catch((error) => {
       console.error(error);
     });
   }
-  
-  // Request to the data base to get genre
+
+  // Request to the data base to get genre 
   getGenres() {
-    fetch('https://ce68f9e0.ngrok.io/Genre', {
-      method: 'POST',
+    fetch('http://729119a4.ngrok.io/Genre', {
+      method: 'POST',   
       headers: {
         Accept: 'application/json', 
       },  
     })
     .then((response) => response.json())
     .then((responseJson) => {
+        // console.log(responseJson)
         this.setState({
           genres: responseJson
         })
@@ -204,93 +204,122 @@ export default class JamForm extends React.Component {
   onSelectedGenresChange(selectedGenres) {
     this.setState({ selectedGenres: selectedGenres });
     console.log(selectedGenres )
-  }; 
+  };  
 
+  onDateChange(data) {
+    var splitDate = data.split(' ');
+    var date = splitDate[0] + "T" + splitDate[1] + ":00";
+    date = new Date(date);
+    this.setState({date: date.toJSON()}) 
+  }
+  
+  onLocationChange(data) {
+    console.log("-- Location --")
+    // console.log(data)
+    this.setState({ locationName: data.name });
+    this.setState({ locationAdress: data.formatted_address });
+    this.setState({ latitude: data.geometry.location.lat });
+    this.setState({ longitude: data.geometry.location.lng });
+
+    console.log("Name: " + data.name)
+    console.log("Adress: " + data.formatted_address)
+    console.log("Latitude: " + data.geometry.location.lat)
+    console.log("Longitude: " + data.geometry.location.lng)
+  }
 
   render() { 
-  const { selectedInstruments } = this.state;
+    const { selectedInstruments } = this.state;
     const { selectedGenres } = this.state;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          
           <View style={styles.jamContainer}>
-            <Text style={styles.title}>CREATION D'UNE JAM</Text>
+            <View style={styles.header}>
+              <MenuButton navigation={this.props.navigation} />
+              <Text style={styles.title}>Création Jam</Text>  
+            </View>
 
-              <View style={styles.inputContainer}>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Nom de la jam</Text>
+              <TextInput 
+                style={styles.input}   
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({name: text})}
+              />        
  
-                <Text style={styles.inputLabel}>Nom de la jam</Text>
-                <TextInput 
-                  style={styles.textInput}   
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({name: text})}
-                />
- 
-                <Text style={styles.inputLabel}>Date : {this.state.day} {this.state.month} {this.state.year}</Text> 
-                <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
-                <DateTimePicker
-                  isVisible={this.state.isDateTimePickerVisible}
-                  onConfirm={this.handleDatePicked}
-                  onCancel={this.hideDateTimePicker}
-                />  
-                 
-                <Text style={styles.inputLabel}>Lieu</Text>
-                <TextInput 
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({lieu: text})}
+              <Text style={styles.inputLabel}>Date</Text> 
+              <View style={styles.input}>
+                <DatePicker
+                  date={this.state.date}
+                  onDateChange={this.onDateChange}
+                  mode="datetime"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36,
+                      borderWidth: 0,
+                      width: 300
+                  }}} 
                 /> 
+              </View>
 
-                <Text style={styles.inputLabel}>Instruments</Text>
-                <MultiSelect
-                  items={this.state.instruments}
-                  uniqueKey="id"
-                  displayKey="nom"
-                  onSelectedItemsChange={this.onSelectedInstrumentsChange}
-                  styleMainWrapper={styles.multiSelect}
-                  selectedItems={selectedInstruments}
-                />
-                
-                <Text style={styles.inputLabel}>Genres</Text>
-                <MultiSelect
-                  styleMainWrapper={styles.multiSelect}
-                  items={this.state.genres}
-                  uniqueKey="id"
-                  displayKey="nom"
-                  onSelectedItemsChange={this.onSelectedGenresChange}
-                  selectedItems={selectedGenres}                
-                />              
-             
-                <Text style={styles.inputLabel}>Description</Text>
-                <TextInput 
-                  styleInputGroup={styles.multiSelect}
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({description: text})}
-                />
 
-                <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
-                <TextInput 
-                  style={styles.textInput} 
-                  editable = {true} 
-                  maxLength = {40} 
-                  onChangeText={(text) => this.setState({nbMaxParticipants: text})}
-                />
+              <Text style={styles.inputLabel}>Lieu</Text>
+              <FormLocation handler={this.onLocationChange} styles={styles.input} />
+
+              <Text style={styles.inputLabel}>Instruments</Text>
+              <MultiSelect
+                items={this.state.instruments}
+                uniqueKey="id"
+                displayKey="name"
+                onSelectedItemsChange={this.onSelectedInstrumentsChange}
+                styleMainWrapper={styles.multiSelect}
+                styleDropdownMenuSubsection={styles.round}
+                selectedItems={selectedInstruments}
+              />
+                 
+              <Text style={styles.inputLabel}>Genres</Text>
+              <MultiSelect
+                styleMainWrapper={styles.multiSelect}
+                items={this.state.genres}
+                uniqueKey="id"
+                displayKey="name"
+                onSelectedItemsChange={this.onSelectedGenresChange}
+                styleDropdownMenuSubsection={styles.round}
+                selectedItems={selectedGenres}                
+              />              
+           
+              <Text style={styles.inputLabel}>Description</Text>
+              <TextInput 
+                styleInputGroup={styles.multiSelect}
+                style={styles.input} 
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({description: text})}
+              />
+
+              <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
+              <TextInput 
+                style={styles.input} 
+                editable = {true} 
+                maxLength = {40} 
+                onChangeText={(text) => this.setState({maxParticipants: text})}
+              />
               
               <Button color='#EC5314' title="Créer Jam" onPress={this.handleSubmit} />
             </View>
           </View>
+
         </ScrollView>
-      </View> 
+
+      </View>
     );
   }
-} */
-
-render() {
-      return (
-          <ScrollView/>
-      )
-    }
-}
+} 

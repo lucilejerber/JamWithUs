@@ -4,16 +4,29 @@ class Jam {
     String name
     Date date
     
-    Location location
+    String locationName
+    String locationAdress
+    String latitude
+    String longitude
     
     String description
 
     int numberParticipants
     int maxParticipants
-    //boolean full  
 
-    static hasMany = [participants: User, askers: User, watchers: User, instruments: Instrument, genres: Genre]
+    static hasMany = [
+        gens: JamRole,
+        // participants: User, 
+        // askers: User, 
+        // watchers: User, 
+        instruments: Instrument, 
+        genres: Genre
+    ]
 
     static constraints = {
+        description nullable: true
+        numberParticipants nullable: true
+        instruments nullable: true
+        genres nullable: true
     }
 }

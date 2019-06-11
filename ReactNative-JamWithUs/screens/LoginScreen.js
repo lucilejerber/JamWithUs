@@ -6,16 +6,18 @@ import {
   StatusBar } from 'react-native';
 
 import Logo from '../components/Logo';
-import Form2 from '../components/Form';
+import Form from '../components/Form';
 
-export default class SignUp extends Component <{}> {
+export default class Login extends Component <{}> {
   render() {
      return (
       <View style= {styles.container}>
-        <Form2 type = "Créer un compte"/>
+        <Logo/>
+        <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
+        <Form type = "Connexion"/>
         <View style={styles.signupTextCont}> 
-          <Text style={styles.signupText}>Vous avez déjà un compte ? </Text>
-          <Text style={styles.signupButton}> Se connecter</Text>
+        <Text style={styles.signupText}>Pas encore de compte ? </Text>
+          <Text style={styles.signupButton}>Créer un compte </Text>
         </View>
       </View>
     )
@@ -39,6 +41,11 @@ const styles = StyleSheet.create({
   signupText : {
     color : '#ffffff',
     fontSize : 12
+  },  
+  logoText : {
+    marginVertical: 15,
+    fontSize: 18,
+    color: 'rgba(255, 255, 255, 0.7)'
   },
   signupButton : {
     color : '#ffffff',
