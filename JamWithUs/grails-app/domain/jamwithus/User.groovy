@@ -14,15 +14,15 @@ class User {
     String description
 
     static hasMany = [
-        genres: Genre
-        , instruments: Instrument
-        , jams: Jam
+        jams: Jam,
+        genres: Genre, 
+        instruments: Instrument, 
     ]
 
 
     static constraints = {    	 
     	username nullable: false
-    	mail nullable: false, email: true
+    	mail nullable: false, email: true, unique: true
         password nullable: false
 
     	birthday nullable: true

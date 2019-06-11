@@ -20,6 +20,7 @@ import SignupScreen from '../screens/SignupScreen';
 //import SettingsScreen from '../screens/SettingsScreen';
 
 import JamForm from '../screens/JamFormScreen';
+import JamDescription from '../screens/JamDescriptionScreen';
 
 
 
@@ -39,10 +40,9 @@ const DrawerNavigator = createDrawerNavigator(
 		SignupScreen: SignupScreen,
 		JamForm: JamForm,
 
-		
-		
 		//Links: LinksScreen,
 		//Settings: SettingsScreen,
+
 		
 },
 DrawerConfig,

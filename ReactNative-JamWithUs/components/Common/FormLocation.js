@@ -21,7 +21,8 @@ class FormLocation extends Component {
       country : '',
       postal_code: '',
       capacity : 0,
-      availability: true
+      availability: true,
+      resultsDisplayed: true
     } 
   }
 
@@ -135,7 +136,11 @@ class FormLocation extends Component {
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
           // console.log(details);
           this.props.handler(details);
+          this.state.resultsDisplayed
+          this.setState({ resultsDisplayed: false}); 
+
         }}
+        listViewDisplayed={this.state.resultsDisplayed}
       />
     );
   }

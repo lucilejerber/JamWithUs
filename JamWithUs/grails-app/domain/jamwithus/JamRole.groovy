@@ -1,6 +1,6 @@
 package jamwithus
 
-class UserRole {
+class JamRole {
     User user
     String role
 
