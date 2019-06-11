@@ -6,6 +6,8 @@ import {
   TextInput,
   View,
   Button,
+  TouchableOpacity,
+  StatusBar,
   ScrollView
 } from 'react-native';
 
@@ -15,20 +17,52 @@ export default class SigninScreen extends React.Component {
   static navigationOptions = {
     title: 'Connexion',
   };
+
+  constructor(props){
+    super(props);
+
+    this.state =({
+    email: '',
+    password:''
+      })
+    }  
+
+loginUser = (email, password) =>{
+}
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
-        <TextInput style={styles.inputBox} 
+      <Logo/>
+        <TextInput 
+        style={styles.inputBox} 
         placeholder='Adresse mail'
-        placeholderTextColor='#000'/>
+        placeholderTextColor='#000'
+        color='#000'
+        returnKeyType="next"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        onChangeText={(email) => this.setState({email})}
+        autoCorrect={false}/>
+
         <TextInput style={styles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
-        placeholderTextColor='#000'/>
-        <Button title="Connexion" onPress={this._signInAsync} />
-        <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
-        <Button title="Mot de passe oublié" onPress={() => this.props.navigation.navigate('ForgotPassword')}/>
+        returnKeyType="go"
+        placeholderTextColor='#000'
+        onChangeText={(password) => this.setState({password})}
+        color='#000'/>
+      <TouchableOpacity style={styles.signupButton} onPress={()=> this.loginUser(this.state.email,this.state.password)} /*{this._signInAsync}*/>
+        <Text>Se connecter</Text> 
+      </TouchableOpacity>  
+
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Signup')}>
+        <Text>S'inscrire</Text> 
+      </TouchableOpacity>
+      <TouchableOpacity type=''style={styles.button} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
+        <Text>Mot de passe oublié</Text> 
+      </TouchableOpacity>
       </View>
     );
   }
@@ -41,32 +75,34 @@ export default class SigninScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container : {
-    backgroundColor : "#fff" ,
-    flex : 1,
+    flex:1,
+    padding:20,
+    justifyContent:'center'
   },
   signupText : {
     color : '#000',
     fontSize : 12
   },  
-  logoText : {
-    marginVertical: 15,
-    fontSize: 18,
-    color: 'rgba(255, 255, 255, 0.7)'
-  },
   inputBox :{
     height: 40,
-    backgroundColor: 'rgba(225,225,225,0.7)',
+    backgroundColor: 'rgba(225,225,225,0.2)',
     marginBottom: 10,
-    padding: 10,
-    color: '#000000'
-  },
-  buttonText :{
-    fontSize: 16,
-    fontWeight: '500',
-    textAlign:'center'
+    paddingHorizontal: 40,
   },
   signupButton : {
-    color : '#000',
+    alignItems:'center',
+    padding:10 ,
+    marginTop: 20,
+    marginBottom: 10,
+    backgroundColor: '#f3f3f3',
+    fontSize : 12,
+    fontWeight : '600'
+  },
+    button : {
+    alignItems:'center',
+    padding:10 ,
+    marginBottom: 10,
+    backgroundColor: '#f3f3f3',
     fontSize : 12,
     fontWeight : '600'
   }

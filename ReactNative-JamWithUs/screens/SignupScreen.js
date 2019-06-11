@@ -1,3 +1,9 @@
+/*
+inscription
+Auteur: Gael
+*/
+
+
 import React, { Component } from 'react';
 import { 
   AsyncStorage,
@@ -8,29 +14,61 @@ import {
   ScrollView,
   View,
   StatusBar } from 'react-native';
+import TOMCATSAVE from '../constants/url';
 
 
-export default class Signup extends React.Component {
-      render() {
+export default class Signup extends React.Component {  
+  constructor(props){
+    super(props)
+    this.signupUser = this.signupUser.bind(this)
+    this.state = ({
+    username:'',
+    mail: '',
+    password:''
+      })
+    }  
+
+signupUser() {
+    console.log("usermame = " + this.state.username)
+    console.log("mail = " + this.state.mail)
+    console.log("password = " + this.state.password)
+
+    fetch(TOMCATSAVE, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        ContentType: 'application/json'
+      }, 
+      body: JSON.stringify({
+        "username": this.state.username,
+        "mail": this.state.mail,
+        "password": this.state.password, 
+      }),
+    })
+    .then(json => console.log(json))
+    .catch(error => console.error(error))
+  }
+
+  render() {
+    //console.log(this.props)
     return (
       <View style={styles.container}>
         <TextInput style={styles.inputBox} 
-        placeholder='Votre nom'
+        placeholder="nom d'utilisateur"
+        onChangeText={(text) => this.setState({username: text})}
         placeholderTextColor='#ffffff'/>
          <TextInput style={styles.inputBox} 
-        placeholder='Votre adresse mail'
+        placeholder='adresse mail'
+        onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#ffffff'/>
         <TextInput style={styles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
-        placeholderTextColor='#ffffff'/>
-        <TextInput style={styles.inputBox} 
-        placeholder='Confirmer mot de passe'
-        secureTextEntry={true}
+        onChangeText={(text) => this.setState({password: text})}
         placeholderTextColor='#ffffff'/>
         <Button
           title="Créer un compte"
-          onPress={this._signInAsync}
+          onPress={()=> this.signupUser()}
         />
       </View>
     );
