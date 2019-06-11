@@ -6,8 +6,6 @@ import {
   TextInput,
   View,
   Button,
-  TouchableOpacity,
-  StatusBar,
   ScrollView
 } from 'react-native';
 
@@ -17,52 +15,20 @@ export default class SigninScreen extends React.Component {
   static navigationOptions = {
     title: 'Connexion',
   };
-
-  constructor(props){
-    super(props);
-
-    this.state =({
-    email: '',
-    password:''
-      })
-    }  
-
-loginUser = (email, password) =>{
-}
-
-
   render() {
     return (
       <View style={styles.container}>
-      <Logo/>
-        <TextInput 
-        style={styles.inputBox} 
+        <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
+        <TextInput style={styles.inputBox} 
         placeholder='Adresse mail'
-        placeholderTextColor='#000'
-        color='#000'
-        returnKeyType="next"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        onChangeText={(email) => this.setState({email})}
-        autoCorrect={false}/>
-
+        placeholderTextColor='#000'/>
         <TextInput style={styles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
-        returnKeyType="go"
-        placeholderTextColor='#000'
-        onChangeText={(password) => this.setState({password})}
-        color='#000'/>
-      <TouchableOpacity style={styles.signupButton} onPress={()=> this.loginUser(this.state.email,this.state.password)} /*{this._signInAsync}*/>
-        <Text>Se connecter</Text> 
-      </TouchableOpacity>  
-
-      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Signup')}>
-        <Text>S'inscrire</Text> 
-      </TouchableOpacity>
-      <TouchableOpacity type=''style={styles.button} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
-        <Text>Mot de passe oublié</Text> 
-      </TouchableOpacity>
+        placeholderTextColor='#000'/>
+        <Button title="Connexion" onPress={this._signInAsync} />
+        <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
+        <Button title="Mot de passe oublié" onPress={() => this.props.navigation.navigate('ForgotPassword')}/>
       </View>
     );
   }
@@ -75,34 +41,32 @@ loginUser = (email, password) =>{
 
 const styles = StyleSheet.create({
   container : {
-    flex:1,
-    padding:20,
-    justifyContent:'center'
+    backgroundColor : "#fff" ,
+    flex : 1,
   },
   signupText : {
     color : '#000',
     fontSize : 12
   },  
+  logoText : {
+    marginVertical: 15,
+    fontSize: 18,
+    color: 'rgba(255, 255, 255, 0.7)'
+  },
   inputBox :{
     height: 40,
-    backgroundColor: 'rgba(225,225,225,0.2)',
+    backgroundColor: 'rgba(225,225,225,0.7)',
     marginBottom: 10,
-    paddingHorizontal: 40,
+    padding: 10,
+    color: '#000000'
+  },
+  buttonText :{
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign:'center'
   },
   signupButton : {
-    alignItems:'center',
-    padding:10 ,
-    marginTop: 20,
-    marginBottom: 10,
-    backgroundColor: '#f3f3f3',
-    fontSize : 12,
-    fontWeight : '600'
-  },
-    button : {
-    alignItems:'center',
-    padding:10 ,
-    marginBottom: 10,
-    backgroundColor: '#f3f3f3',
+    color : '#000',
     fontSize : 12,
     fontWeight : '600'
   }

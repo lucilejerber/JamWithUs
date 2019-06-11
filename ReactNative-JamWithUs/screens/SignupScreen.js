@@ -5,6 +5,7 @@ import {
   View,
   StatusBar } from 'react-native';
 
+<<<<<<< HEAD
 import Logo from '../components/Logo';
 import Form2 from '../components/Form';
 
@@ -17,6 +18,31 @@ export default class SignUp extends Component <{}> {
           <Text style={styles.signupText}>Vous avez déjà un compte ? </Text>
           <Text style={styles.signupButton}> Se connecter</Text>
         </View>
+=======
+
+export default class Signup extends React.Component {
+      render() {
+    return (
+      <View style={styles.container}>
+        <TextInput style={styles.inputBox} 
+        placeholder='Votre nom'
+        placeholderTextColor='#ffffff'/>
+         <TextInput style={styles.inputBox} 
+        placeholder='Votre adresse mail'
+        placeholderTextColor='#ffffff'/>
+        <TextInput style={styles.inputBox} 
+        placeholder='Mot de passe'
+        secureTextEntry={true}
+        placeholderTextColor='#ffffff'/>
+        <TextInput style={styles.inputBox} 
+        placeholder='Confirmer mot de passe'
+        secureTextEntry={true}
+        placeholderTextColor='#ffffff'/>
+        <Button
+          title="Créer un compte"
+          onPress={this._signInAsync}
+        />
+>>>>>>> parent of e60e6407... update signup/signin
       </View>
     )
   }
