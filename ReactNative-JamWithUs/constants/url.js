@@ -5,10 +5,10 @@ export const TOMCATUPDATE 	= 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/u
 export const TOMCATCREATE 	= 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/user/create'
 
 // ngrok Link
-export const LOCALSAVE 		= 'http://5e5532ad.ngrok.io/user/save'
-export const LOCALUPDATE 	= 'http://5e5532ad.ngrok.io/user/update/2'
-export const LOCALCREATE 	= 'http://5e5532ad.ngrok.io/user/create'
-export const LOCALEDIT 		= 'http://5e5532ad.ngrok.io/user/edit/2'
-export const LOCALEDELETE 	= 'http://5e5532ad.ngrok.io/user/delete/2'
+export const LOCALSAVE 		= 'http://utilis.serveo.net/user/save'
+export const LOCALUPDATE 	= 'http://utilis.serveo.net/user/update/2'
+export const LOCALCREATE 	= 'http://utilis.serveo.net/user/create'
+export const LOCALEDIT 		= 'http://utilis.serveo.net/user/edit/2'
+export const LOCALEDELETE 	= 'http://utilis.serveo.net/user/delete/2'
 
 export const NGROK 			= "https://3939cabf.ngrok.io"

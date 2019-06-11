@@ -11,32 +11,47 @@ import {
   View,
   StatusBar } from 'react-native';
 
+import LOCALSAVE from '../constants/url';
 
 export default class Signup extends Component <{}> {
+
+  constructor(props){
+      super(props);
+  
+      this.state =({
+      username:'',
+      mail: '',
+      password:''
+        })
+      }  
+  
+ userSignUp() {
+  
+  }   
+
+
     render() {
     return (
       <View style={styles.container}>
         <TextInput style={styles.inputBox}
-        placeholder='Votre nom'
+        placeholder="nom d'utilisateur"
+        onChangeText={(text) => this.setState({username: text})}
         placeholderTextColor='#fff'/>
         <TextInput style={styles.inputBox}
-        placeholder='Votre adresse mail'
+        placeholder='email'
+        onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#fff'/>
         <TextInput style={styles.inputBox}
         placeholder='Mot de passe'
+        onChangeText={(text) => this.setState({password: text})}
         secureTextEntry={true}
         placeholderTextColor='#fff'/>
         <Button
-          title="Créer un compte"
-          onPress={this._signInAsync}
-        />
+          title='Créer un compte'
+          onPress={this.userSignUp}/>
       </View>
     )
   }
-    _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
-    }
 }
 
 const styles = StyleSheet.create({
