@@ -11,22 +11,39 @@ import {
   View,
   StatusBar } from 'react-native';
 
-import LOCALSAVE from '../constants/url';
-
-export default class Signup extends Component <{}> {
+export default class SignupScreen extends Component <{}> {
 
   constructor(props){
       super(props);
-  
+      this.userSignup = this.userSignup.bind(this)
       this.state =({
       username:'',
       mail: '',
       password:''
         })
       }  
-  
- userSignUp() {
-  
+
+//fonction creation compte
+userSignup() {
+  console.log("username = " + this.state.username)
+  console.log("mail = " + this.state.mail)
+  console.log("password = " + this.state.password)
+
+
+  fetch('http://fama.serveo.net/user/save', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({
+        "username": this.state.username,
+        "mail": this.state.mail, 
+        "password": this.state.password,
+      }),
+    })
+    .then(json => console.log(json))
+    .catch(error => console.error(error))
   }   
 
 
@@ -47,8 +64,8 @@ export default class Signup extends Component <{}> {
         secureTextEntry={true}
         placeholderTextColor='#fff'/>
         <Button
-          title='Créer un compte'
-          onPress={this.userSignUp}/>
+          title='Créer un compte' onPress={this.userSignup}
+        />
       </View>
     )
   }
