@@ -16,6 +16,9 @@ import {
 =======
      		<Image style = {{width:250, height:150}}
      			source={require('../images/jamwithus.jpeg')}/>
+<<<<<<< HEAD
+>>>>>>> parent of e60e6407... update signup/signin
+=======
 >>>>>>> parent of e60e6407... update signup/signin
      	</View> 
     	)

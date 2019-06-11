@@ -4,6 +4,7 @@ import {
   Text,
   View,
   StatusBar } from 'react-native';
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 import Logo from '../components/Logo';
@@ -20,6 +21,10 @@ export default class SignUp extends Component <{}> {
         </View>
 =======
 
+=======
+
+
+>>>>>>> parent of e60e6407... update signup/signin
 export default class Signup extends React.Component {
       render() {
     return (
