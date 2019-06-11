@@ -16,7 +16,7 @@ export const UPDATE 		= 'update/'
 export const SEARCH			= 'search/'
 export const IDUSER			= '1'
 
-export const LOCALSAVE 		= LOCAL + USER + SAVE;
+export const LOCALSAVE 		= LOCAL + USER + SAVE
 export const LOCALUPDATE 	= LOCAL + USER + UPDATE + IDUSER
 export const LOCALDELETE 	= LOCAL + USER + DELETE + IDUSER
 export const LOCALSHOW 		= LOCAL + USER + SHOW + IDUSER

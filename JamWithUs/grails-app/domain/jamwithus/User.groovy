@@ -33,6 +33,6 @@ class User {
     	description nullable: true
     	instruments nullable: true
     	genres nullable: true
-    	jams nullable: true, blank: true
+    	jams nullable: true
     }
 }

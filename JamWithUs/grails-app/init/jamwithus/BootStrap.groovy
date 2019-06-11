@@ -14,6 +14,8 @@ class BootStrap {
         new Instrument(name: 'Drum Set',  logo: 3).save()
         new Instrument(name: 'Flute',  logo: 4).save()
         new Instrument(name: 'Guitar',  logo: 5).save()
+		
+		new User(username: 'Tim', mail:'mail.mail@truc.com', password: 'motdepasse').save()
        
     }
     def destroy = {
