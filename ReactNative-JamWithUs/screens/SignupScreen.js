@@ -3,7 +3,6 @@ inscription
 Auteur: Gael
 */
 
-
 import React, { Component } from 'react';
 import { 
   AsyncStorage,
