@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+
   Picker,
   DatePickerIOS,
   Button,
@@ -32,11 +33,12 @@ const styles = StyleSheet.create({
     marginTop: 50 
   },
 }); 
-   
+
 export default class JamDescription extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
+
   constructor(props) {
     super(props)
      
@@ -93,6 +95,7 @@ export default class JamDescription extends React.Component {
     return (
       <View style={styles.container}>
         <JamList userId={this.state.userId}/>
+
       </View>
     );
   }

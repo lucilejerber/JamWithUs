@@ -1,5 +1,5 @@
 /* 
-Laura Formulaire Profil
+Laura Components Compléter Profil
 */
 import React from 'react'
 import { 
@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
+import {TOMCATSAVE,TOMCATUPDATE,TOMCATCREATE} from '../constants/index';
+//import * as Lonstants from '../constants'
 
 class ProfilForm extends React.Component {
 
@@ -25,16 +27,16 @@ class ProfilForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
 		this.state = {
 			pickerSelection: 'Default',
-			surnom: '',
-			prenom: '',
-			nom:'',
+			username: '',
+			lastname: '',
 
 		};
 	}
 
   // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
   componentWillMount(){ 
-    fetch('https://7b926458.ngrok.io', {
+    const URL = TOMCATSAVE + '/user/save'
+    /*fetch('https://7b926458.ngrok.io', {
       method: 'POST',
       headers: {
         Accept: 'application/json'
@@ -44,25 +46,27 @@ class ProfilForm extends React.Component {
     //.then(json => this.setState({
       //  name: json.name
       //}))
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))*/
 	}
 
   // A REVOIR - recup les données formulaires soumises par l'utilisateur
   handleSubmit() {
-    console.log("surnom = " + this.state.surnom)
-    console.log("prenom = " + this.state.prenom)
-    console.log("nom = " + this.state.nom)
+    console.log("name = " + this.state.name)
+    console.log("lastname = " + this.state.lastname)
+    console.log("mail = " + this.state.mail)
+    console.log("TOMCATSAVE =" + TOMCATSAVE)
+    console.log("URL =" + URL)
 
-    fetch('https://7b926458.ngrok.io/User/save', {
+    fetch(URL + 'user/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        ContentType: 'application/json'
+        'Content-Type': 'application/json'
       }, 
       body: JSON.stringify({
-        "nom": this.state.surnom,
-        "date": this.state.prenom,
-        "lieu": this.state.nom, 
+        "name": this.state.name,
+        "lastname": this.state.lastname,
+        "mail": this.state.mail, 
       }),
     })
     .then(json => console.log(json))
@@ -92,21 +96,21 @@ class ProfilForm extends React.Component {
 						<TextInput style={styles.textinput} 
               placeholderTextColor = "#AFAFAF" 
 	        		placeholder='Chacha'
-              onChangeText={(text) => this.setState({surnom: text})}
+              onChangeText={(text) => this.setState({name: text})}
 	        	/>
 
-	        			<Text style={styles.inputtitle}>Prénom</Text>
+	        			<Text style={styles.inputtitle}>Mail</Text>
 						<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF" 
-							placeholder='Charles'
-              onChangeText={(text) => this.setState({prenom: text})}
+							placeholder='Charles.truc@truc.com'
+              onChangeText={(text) => this.setState({mail: text})}
 						/>
 
 						<Text style={styles.inputtitle}>Nom</Text>
 						<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Dupont'
-              onChangeText={(text) => this.setState({nom: text})}
+              onChangeText={(text) => this.setState({lastname: text})}
 						/>
 				{/*		<TextInput style={styles.textinput} placeholder='JJ/MM/AAAA'/>
 						<TextInput style={styles.textinput} placeholder='charles.dupont@exemple.com'/>

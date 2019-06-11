@@ -12,22 +12,29 @@ import {
   DatePickerIOS,
   RefreshControl,
   Button,
+  Alert,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText'; 
 import FormLocation from '../components/Common/FormLocation'; 
+import {screens, buttons,forms} from '../constants/StylesAll.js'
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
 
 import MenuButton from '../components/MenuButton'
 
+import {
+	TOMCATUPDATE,LOCALUPDATE,LOCALSHOW,LOCALSAVE
+} from '../constants/index';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
   },
+
   header: {
     marginBottom: 10, 
     paddingBottom: 10, 
@@ -39,6 +46,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 60, 
     color: 'white',
+
   },
   contentContainer: {
   },
@@ -78,8 +86,8 @@ const styles = StyleSheet.create({
   mapStyle: {
     height: 50,
     width: 50
-  },
-}); 
+  }
+}) 
 
 export default class JamForm extends React.Component {
   static navigationOptions = {
@@ -93,14 +101,17 @@ export default class JamForm extends React.Component {
     this.onSelectedGenresChange = this.onSelectedGenresChange.bind(this)
     this.onDateChange = this.onDateChange.bind(this)
     this.onLocationChange = this.onLocationChange.bind(this)
+
     
     this.state = { 
       name: '',
       date: new Date(),
+
       locationName: '',
       locationAdress: '',
       latitude: '',
       longitude: '',
+
       admin: '',
       description: '',
       maxParticipants: '',
@@ -117,6 +128,7 @@ export default class JamForm extends React.Component {
     this.getGenres();
     this.getInstruments();
   }
+
   
   handleSubmit() {
     // var date;
@@ -127,19 +139,22 @@ export default class JamForm extends React.Component {
     console.log("Latitude = " + this.state.latitude)
     console.log("Longitude = " + this.state.longitude)
     console.log("Instruments = ")
+
     console.log(this.state.selectedInstruments)
     console.log("Genres = ")
+
     console.log(this.state.selectedGenres)
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
-    console.log("userId = " + this.state.userId)
-
+    
     fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
+
       },  
+
       body: JSON.stringify({
         "name": this.state.name,
         "date": this.state.date,
@@ -147,6 +162,7 @@ export default class JamForm extends React.Component {
         "locationAdress": this.state.locationAdress, 
         "latitude": this.state.latitude, 
         "longitude": this.state.longitude, 
+
         "description": this.state.description, 
         "maxParticipants": this.state.maxParticipants,
         "instruments": this.state.selectedInstruments,
@@ -157,7 +173,15 @@ export default class JamForm extends React.Component {
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))
-  }   
+	 
+	//Pop-up alert here plus condition que le name soit pas vide
+	if (this.state.name) {
+		Alert.alert('La Jam ' + this.state.name + ' à bien été créée!');
+	}else{
+		Alert.alert('Le nom de la Jam ne peut pas être nul!');
+	}
+
+}   
 
   // Request to the data base to get instruments
   getInstruments() {  
@@ -209,11 +233,14 @@ export default class JamForm extends React.Component {
     console.log(selectedGenres )
   };  
 
+
   onDateChange(data) {
     var splitDate = data.split(' ');
     var date = splitDate[0] + "T" + splitDate[1] + ":00";
     date = new Date(date);
+
     this.setState({date: date.toJSON()}) 
+
   }
   
   onLocationChange(data) {
@@ -236,12 +263,13 @@ export default class JamForm extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          
           <View style={styles.jamContainer}>
+
             <View style={styles.header}>
               <MenuButton navigation={this.props.navigation} />
               <Text style={styles.title}>Création Jam</Text>  
             </View>
+
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>Nom de la jam</Text>
@@ -256,7 +284,9 @@ export default class JamForm extends React.Component {
               <View style={styles.input}>
                 <DatePicker
                   date={this.state.date}
+
                   onDateChange={this.onDateChange}
+
                   mode="datetime"
                   customStyles={{
                     dateIcon: {
@@ -269,13 +299,17 @@ export default class JamForm extends React.Component {
                       marginLeft: 36,
                       borderWidth: 0,
                       width: 300
+
                   }}} 
+
                 /> 
               </View>
 
 
               <Text style={styles.inputLabel}>Lieu</Text>
+
               <FormLocation handler={this.onLocationChange} styles={styles.input} />
+
 
               <Text style={styles.inputLabel}>Instruments</Text>
               <MultiSelect
@@ -315,8 +349,12 @@ export default class JamForm extends React.Component {
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({maxParticipants: text})}
               />
-              
-              <Button color='#EC5314' title="Créer Jam" onPress={this.handleSubmit} />
+			// Bouton button remplacement par TouchableOpacity here + le style pour les boutons "Enregistrer"
+			<TouchableOpacity 
+				onPress={this.handleSubmit}
+				style={buttons.opacity}>
+				<Text style={buttons.name}>Enregistrer</Text>
+			</TouchableOpacity>
             </View>
           </View>
 

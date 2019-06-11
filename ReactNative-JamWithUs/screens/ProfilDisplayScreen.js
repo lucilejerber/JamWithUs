@@ -2,31 +2,36 @@
 Laura 
 */
 import React, {Component} from 'react'
-import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
 import users from '../Helpers/usersData'
-import UserItem from './UserItem'
+import UserItem from '../components/UserItem'
+import {screens, buttons} from '../constants/StylesAll.js'
+import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
+
 
 import MenuButton from '../components/MenuButton'
 
-class Profil_Display extends React.Component {
-	/*_displayDetailForFilm = (idFilm) => {
-		console.log("Display film with id " + idFilm)
-	}*/
-  
-  render (){
-		const user = this.props.user
-		const displayDetailForProfil = this.props.displayDetailForProfil
-		// egal à ça => const { user, displayDetailForProfil } = this.props
-		
+class ProfilDisplay extends React.Component {
+	static navigationOptions = {
+		title: 'Profil',
+	};
+	
+	_displayDetailForProfil(){
+      console.log("Modifier Profil")
+      this.props.navigation.navigate("ProfilForm")
+	}
+	
+	_displayJams(){
+      console.log("Mes Jams")
+      //this.props.navigation.navigate("JamDescription")
+	}
+	
+	render (){
+		//console.log(this.props)
+		const { user, displayDetailForProfil } = this.props
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
-				<MenuButton navigation={this.props.navigation} />
-        {/*<View style={styles.top_container}>
-					<Text style={styles.header_text}>Mon Profil</Text>
-
-				</View>*/}
-				
+				<MenuButton navigation={this.props.navigation} />		
 				<View style = {styles.image_container}>
 					<Image
 						style={{width: 50, height: 50}}
@@ -46,16 +51,22 @@ class Profil_Display extends React.Component {
 						/>						
 					</ScrollView>
 					<TouchableOpacity 
-						onPress={()=> displayDetailForProfil(user.id)}
-              			style={styles.button_opacity}>
-						<Text style = {{marginLeft: 5, marginRight: 5}} >Modifier</Text>
+						onPress={()=> this._displayDetailForProfil()}
+              			style={buttons.opacity}>
+						<Text style={buttons.name}>Modifier Profil</Text>
+					</TouchableOpacity>
+					
+					<TouchableOpacity 
+						onPress={()=> this._displayJams()}
+              			style={buttons.opacity}>
+						<Text style={buttons.name}>Mes Jams</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
 
 		)
 	}
-  
+ 
 }
 
 const styles = StyleSheet.create({
@@ -101,7 +112,7 @@ const styles = StyleSheet.create({
   },
 
   header_text: {
-	color: '#fff',
+	color: '#ffffff',
     marginTop: 14,
     marginLeft: 5,
     marginRight: 5,
@@ -109,4 +120,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Profil_Display;
+export default ProfilDisplay;
