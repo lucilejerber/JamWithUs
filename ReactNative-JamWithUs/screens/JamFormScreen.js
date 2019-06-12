@@ -27,12 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
   },
-  header: {
-    marginBottom: 10, 
-    paddingBottom: 10, 
-    backgroundColor:'#EC5314',
-    paddingTop: 40, 
-  },
   title: {
     fontSize: 25, 
     fontWeight: 'bold',
@@ -41,26 +35,11 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
   },
-  input: {
-    height: 50,
-    paddingLeft: 20,
-    paddingRight: 20, 
-    marginLeft: 40,
-    marginRight: 40,
-    marginBottom: 10,
-    marginTop: 5,
-    backgroundColor: '#f3f3f3', 
-    borderRadius: 20,
-  },
   round: {
     borderRadius: 20,
     paddingLeft: 20,
     backgroundColor: '#f3f3f3', 
     paddingRight: 20, 
-  },
-  inputLabel: {
-    marginLeft: 40,
-    fontWeight: 'bold',
   },
   inputsContainer: {
     marginLeft: 5,
@@ -83,7 +62,9 @@ const styles = StyleSheet.create({
 export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
-  }; 
+    title: 'Créer une Jam',
+  };
+  
   constructor(props) {
     super(props)
 
@@ -115,7 +96,7 @@ export default class JamForm extends React.Component {
     this.getGenres();
     this.getInstruments();
   }
-  
+
   handleSubmit() {
     // var date;
     console.log("Name = " + this.state.name)
@@ -132,7 +113,7 @@ export default class JamForm extends React.Component {
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
 
-    fetch('http://729119a4.ngrok.io/Jam/save', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -152,13 +133,20 @@ export default class JamForm extends React.Component {
         "genres": this.state.selectedGenres,
       }),
     })
-    .then(json => console.log(json))
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if (responseJson.errors) {
+        Alert.alert('Veuillez vérifier que vous avez rempli tous les champs.');
+      } else{
+        Alert.alert('La Jam ' + this.state.name + ' à bien été créée!');
+      }
+    })
     .catch(error => console.error(error))
   }   
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://729119a4.ngrok.io/Instrument', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -178,7 +166,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://729119a4.ngrok.io/Genre', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 
@@ -235,7 +223,8 @@ export default class JamForm extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           
           <View style={styles.jamContainer}>
-            <View style={styles.header}>
+
+            <View style={screens.header}>
               <MenuButton navigation={this.props.navigation} />
               <Text style={styles.title}>Création Jam</Text>  
             </View>
@@ -243,14 +232,14 @@ export default class JamForm extends React.Component {
             <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>Nom de la jam</Text>
               <TextInput 
-                style={styles.input}   
+                style={forms.input}   
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({name: text})}
               />        
  
-              <Text style={styles.inputLabel}>Date</Text> 
-              <View style={styles.input}>
+              <Text style={forms.inputLabel}>Date</Text> 
+              <View style={forms.input}>
                 <DatePicker
                   date={this.state.date}
                   onDateChange={this.onDateChange}
@@ -270,7 +259,10 @@ export default class JamForm extends React.Component {
                 /> 
               </View>
 
+              <Text style={forms.inputLabel}>Lieu</Text>
+              <FormLocation handler={this.onLocationChange} styles={forms.input} />
 
+              <Text style={forms.inputLabel}>Instruments</Text>
               <Text style={styles.inputLabel}>Lieu</Text>
               <FormLocation handler={this.onLocationChange} styles={styles.input} />
 
@@ -285,7 +277,7 @@ export default class JamForm extends React.Component {
                 selectedItems={selectedInstruments}
               />
                  
-              <Text style={styles.inputLabel}>Genres</Text>
+              <Text style={forms.inputLabel}>Genres</Text>
               <MultiSelect
                 styleMainWrapper={styles.multiSelect}
                 items={this.state.genres}
@@ -296,22 +288,28 @@ export default class JamForm extends React.Component {
                 selectedItems={selectedGenres}                
               />              
            
-              <Text style={styles.inputLabel}>Description</Text>
+              <Text style={forms.inputLabel}>Description</Text>
               <TextInput 
                 styleInputGroup={styles.multiSelect}
-                style={styles.input} 
+                style={forms.input} 
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({description: text})}
               />
 
-              <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
+              <Text style={forms.inputLabel}>NombreMaxParticipants</Text>
               <TextInput 
-                style={styles.input} 
+                style={forms.input} 
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({maxParticipants: text})}
               />
+			
+      			<TouchableOpacity 
+        				onPress={this.handleSubmit}
+        				style={buttons.opacity}>
+        				<Text style={buttons.name}>Enregistrer</Text>
+        		</TouchableOpacity>
               
               <Button color='#EC5314' title="Créer Jam" onPress={this.handleSubmit} />
             </View>

@@ -6,15 +6,12 @@ import { Platform, Dimensions } from 'react-native';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
  
-import Profil_Display from '../components/Profil_Display';
-import ProfilForm from '../components/ProfilForm';
-
-import ProfilScreen from '../screens/ProfilScreen';
-//import Accueil from '../screens/AccueilScreen';
-import JamForm from '../screens/JamFormScreen';
+import ProfilDisplay from '../screens/ProfilDisplayScreen';
+import ProfilForm from '../screens/ProfilFormScreen';
 import JamDescription from '../screens/JamDescriptionScreen';
-
-//import Search from '../components/ProfilForm';
+import JamForm from '../screens/JamFormScreen';
+import SignupScreen from '../screens/SignupScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -22,18 +19,18 @@ const DrawerConfig = {
 	drawerwidth: WIDTH*0.43,
 }
 
-const DrawerNavigator = createDrawerNavigator( 
+const DrawerNavigator = createDrawerNavigator(
 
 {
-		//Accueil: Accueil,
-		
-		JamForm: JamForm,
-		ProfilDisplay: Profil_Display,
+		HomeScreen: HomeScreen,
 		ProfilForm: ProfilForm,
-		// Links: LinksScreen,
-		// Settings: SettingsScreen,
-		JamDescription: JamDescription,
-	
+		
+		ProfilDisplay: ProfilDisplay,
+		SignupScreen: SignupScreen,
+		JamForm: JamForm,
+
+
+		
 },
 DrawerConfig,
 );

@@ -4,11 +4,12 @@ class Jam {
     String name
     Date date
     
+
     String locationName
     String locationAdress
     String latitude
     String longitude
-    
+
     String description
 
     int numberParticipants

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+
   Picker,
   DatePickerIOS,
   Button,
@@ -32,23 +33,69 @@ const styles = StyleSheet.create({
     marginTop: 50 
   },
 }); 
-   
+
 export default class JamDescription extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
+
   constructor(props) {
     super(props)
      
     this.state = {
-      userId: 1
+      userId: 1,
+      jamId: 1,
+
+      name: '',
+      date: '',
+      locationName: '',
+      locationAdress: '',
+      latitude: '',
+      longitude: '',
+      description: '',
+      numberParticipants: 0,
+      maxParticipants: 0,
+      gens: '',
+      instruments: '', 
+      genres: ''
     }
   } 
+
+    // Request to the data base to get instruments
+  componentWillMount() {  
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam/show/' + this.state.jamId;
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      }, 
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        this.setState({ name: json.name}); 
+        this.setState({ date: new Date(json.date)}); 
+        this.setState({ locationName: json.locationName}); 
+        this.setState({ locationAdress: json.locationAdress}); 
+        this.setState({ latitude: json.latitude}); 
+        this.setState({ longitude: json.longitude}); 
+        this.setState({ description: json.description}); 
+        this.setState({ numberParticipants: json.numberParticipants});
+        this.setState({ maxParticipants: json.maxParticipants}); 
+        this.setState({ gens: json.gens}); 
+        this.setState({ instruments: json.instruments});  
+        this.setState({ genres: json.genres});  
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
    
   render() {
     return (
       <View style={styles.container}>
         <JamList userId={this.state.userId}/>
+
       </View>
     );
   }

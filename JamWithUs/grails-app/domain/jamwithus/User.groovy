@@ -19,12 +19,14 @@ class User {
         instruments: Instrument, 
     ]
 
+
     static constraints = {    	 
     	username nullable: false
     	mail nullable: false, email: true, unique: true
         password nullable: false
 
     	birthday nullable: true
+
     	phoneNumber nullable: true
     	country nullable: true
     	city nullable: true

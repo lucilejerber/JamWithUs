@@ -1,41 +1,39 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 
-import Film_Search from '../components/Film_Search'
-import FilmDetail from '../components/FilmDetail'
-import ProfilForm from '../components/ProfilForm'
-import Profil_Display from '../components/Profil_Display'
 
-const SearchStackNavigator = createStackNavigator({
-	/*Film_Search: {
-		screen: Film_Search,
-		navigationOptions: {
-			title: 'Rechercher'
-		}
-	},
-	FilmDetail: { // Encore une fois j'ai mis le même nom que celui du component mais libre à vous de choisir un nom différent
-    	screen: FilmDetail,
-    	navigationOptions: {
-			title: 'FilmDetail'
-		}
-  	},*/	
+import ProfilForm from '../screens/ProfilFormSceeen'
+import ProfilDisplay from '../screens/ProfilDisplayScreen'
+import JamDescription from '../screens/JamDescriptionScreen'
+import HomeScreen from '../screens/HomeScreen'
+
+const ProfilStackNavigator = createStackNavigator({
 
   	ProfilForm: {
 		screen: ProfilForm,
 		navigationOptions: {
-			title: 'Compléter le profil'
+			title: 'Modifier Profil'
 		}
 	},	
-  	Profil_Display: {
-		screen: Profil_Display,
+  	ProfilDisplay: {
+		screen: ProfilDisplay,
 		navigationOptions: {
-			title: 'Profil'
+			title: 'Mon Profil'
 		}
 	},
-
-
-
-
-
+	
+  	JamDescription: {
+		screen: JamDescription,
+		navigationOptions: {
+			title: 'Mes Jams'
+		}
+	},
+	
+	HomeScreen: {
+		screen: HomeScreen,
+		navigationOptions: {
+			title: 'Accueil'
+	}
+	},
 })
 
-export default createAppContainer(SearchStackNavigator)
+export default createAppContainer(ProfilStackNavigator)

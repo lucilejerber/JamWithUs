@@ -3,62 +3,130 @@ import {
   StyleSheet, 
   View,
   Text,
-  StatusBar } from 'react-native';
+  StatusBar,
+  ScrollView, 
+  RefreshControl,
+} from 'react-native';
 
 import Login from './LoginScreen';
+import AllJamList from '../components/JamComponent/AllJamList'
+import {TOMCATSAVE} from '../constants/index'
+
+import MenuButton from '../components/MenuButton'
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Accueil',
   };
 
-  /*componentWillMount(){ // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
-    fetch('http://ee9666f4.ngrok.io', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json'
-      },
-    })
-    .then(json => console.log(json))
-    //.then(json => this.setState({
-      //  name: json.name
-      //}))
-    .catch(error => console.error(error))
+  constructor(props) {
+    super(props)
 
-    fetch('https://d7642d77.ngrok.io/Jam/save', {
+    this.state = { 
+      url: '',
+      userId: 1,
+      jams: [],
+      refreshing: false,
+      completedProfile: false
+    } 
+    this._onRefresh = this._onRefresh.bind(this)
+    this.fetchData = this.fetchData.bind(this)
+    this.fetchUser = this.fetchUser.bind(this)
+
+  }  
+
+  componentWillMount() {
+    this.fetchData()
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    this.fetchData()
+
+    this.setState({refreshing: false});
+  }
+
+  fetchData() {
+    var url = TOMCATSAVE; 
+
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        ContentType: 'application/json'
-      },
-      body: JSON.stringify({
-        "date": this.state.date,
-        "nom": this.state.name,
-        "complet": null,
-        "nombreMaxParticipants": 0,
-        "nombreDeParticipants": 0,
-        "description": this.state.description,
-        "administrateur": "admin",
-        "lieu": this.state.lieu
-      }),
+        'Content-Type': 'application/json'
+      }
     })
-    .then(json => console.log(json))
+    .then((response) => response.json())
+    .then(json => {
+      this.setState({ jams: json});  
+    })
     .catch(error => console.error(error))
-  }*/
+  }
+
+
+  fetchUser() {
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/user/show/1'; 
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then(json => {
+      if(json.birthday) {
+        this.setState({ completedProfile: true});  
+      } else {
+        console.log("Profile not complete")
+      }
+    })
+    .catch(error => console.error(error)) 
+  }
+
 
   render() {
      return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <MenuButton navigation={this.props.navigation} />
+          <Text style={styles.title}>Jam</Text>  
+        </View>
+        <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }> 
+          <AllJamList 
+            data={this.state.jams} 
+            completedProfile={this.state.completedProfile}
+            navigation={this.props.navigation}
+          />
+        </ScrollView>
       </View>
     );
   }
 } 
 
 const styles = StyleSheet.create({
-  container : {
-    backgroundColor : "#000000" ,
-    flex : 1,
-    alignItems : 'center' ,
-    justifyContent : 'center'
-  }
+  container: {
+    flex: 1,
+    height: '100%',
+  },
+  header: {
+    marginBottom: 10, 
+    paddingBottom: 10, 
+    backgroundColor:'#EC5314',
+    paddingTop: 40, 
+  },
+  title: {
+    fontSize: 25, 
+    fontWeight: 'bold',
+    marginLeft: 60, 
+    color: 'white',
+  },
 }); 
+
