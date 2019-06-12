@@ -50,7 +50,7 @@ userSignup() {
     })
   //print the response in console
     .then((response) => {
-    console.log(TOMCATSAVE)
+    //console.log(TOMCATSAVE)
     if (response.ok) { 
     this._signInAsync;
     this.props.navigation.navigate('HomeScreen');
@@ -83,14 +83,20 @@ _signInAsync = async () => {
       <View style={styles.container}>
         <TextInput style={styles.inputBox}
         placeholder="nom d'utilisateur"
+        autoCorrect={false}
+        autoCapitalize='none'
         onChangeText={(text) => this.setState({username: text})}
         placeholderTextColor='#fff'/>
         <TextInput style={styles.inputBox}
         placeholder='email'
+        autoCorrect={false}
+        autoCapitalize='none'
         onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#fff'/>
         <TextInput style={styles.inputBox}
         placeholder='Mot de passe'
+        autoCorrect={false}
+        autoCapitalize='none'
         onChangeText={(text) => this.setState({password: text})}
         secureTextEntry={true}
         placeholderTextColor='#fff'/>

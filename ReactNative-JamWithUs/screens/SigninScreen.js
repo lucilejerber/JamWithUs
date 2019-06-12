@@ -4,6 +4,7 @@
 
 import React , { Component } from 'react';
 import { 
+  Alert,
   AsyncStorage,
   StyleSheet, 
   Text,
@@ -15,8 +16,8 @@ import {
 } from 'react-native';
 
 import Logo from '../components/Logo';
-import DeviceStorage from '../components/DeviceStorage'; // Import deviceStorage :)
-import {screens, buttons, forms} from '../constants/StylesAll.js'
+import {TOMCATUSERSEARCH} from '../constants/index'
+import {screens, buttons, forms} from '../constants/StylesAll'
 
 
 export default class SigninScreen extends React.Component {
@@ -34,19 +35,31 @@ export default class SigninScreen extends React.Component {
       }  
 
     _response_recognizer(data: string ){
-    console.log(data[0].password)//print string
-    }
+    console.log(data)
+    console.log(data[0].mail)
+    console.log(data[0].password)
+      if(data[0].mail == this.state.mail && data[0].password == this.state.password){
+        this._signInAsync;
+        this.props.navigation.navigate('HomeScreen');
+        console.log('connexion ok');
+      }
+      else {
+      console.log('connexion nok');
+      Alert.alert("Adresse mail / mot de passe incorrects.");
+      }
+}
+    
 
  _signInAsync = async () => {
     await AsyncStorage.setItem('userToken',1);
     this.props.navigation.navigate('App');
   };
 
-  onRegistrationFail() {
+  onLoginFail() {
     this.setState({
       error: 'Registration Failed',
     });
-    Alert.alert("Erreur");
+    Alert.alert("Erreur.");
   }
 
 //fonction creation compte
@@ -55,7 +68,7 @@ userSignin() {
   console.log("password = " + this.state.password)
 
 
-  fetch('http://effundo.serveo.net/user/search?q='+this.state.mail, {
+  fetch(TOMCATUSERSEARCH+this.state.mail, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -73,7 +86,7 @@ userSignin() {
     })
 .catch((error) => {
       //console.log(error);
-      this.onRegistrationFail();
+      this.onLoginFail();
     });
   }
 
@@ -95,24 +108,29 @@ userSignin() {
       <Logo/>
         <TextInput style={forms.input} 
         placeholder='Adresse mail'
+        autoCorrect={false}
+        autoCapitalize='none'
         onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#000'/>
         <TextInput style={forms.input} 
         placeholder='Mot de passe'
+        autoCorrect={false}
+        autoCapitalize='none'
         secureTextEntry={true}
         onChangeText={(text) => this.setState({password: text})}
         placeholderTextColor='#000'/>
         {/*<Button title="Connexion" onPress={this.userSignin} />*/}
         <TouchableOpacity 
-            onPress={()=> this.props.navigation.navigate("HomeScreen")}
-                    style={buttons.opacity}>
-            <Text style={buttons.name}>Connexion</Text>
-          </TouchableOpacity> 
+            /*onPress={()=> this.props.navigation.navigate("HomeScreen")}*/
+        onPress={this.userSignin}
+        style={buttons.opacity}>
+          <Text style={buttons.name}>Connexion</Text>
+        </TouchableOpacity> 
         <TouchableOpacity 
-            onPress={()=> this.props.navigation.navigate("Signup")}
-                    style={buttons.opacity}>
+        onPress={()=> this.props.navigation.navigate("Signup")}
+        style={buttons.opacity}>
             <Text style={buttons.name}>S'inscrire</Text>
-          </TouchableOpacity> 
+        </TouchableOpacity> 
       </View>
     );
   }
