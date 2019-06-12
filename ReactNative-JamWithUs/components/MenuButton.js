@@ -16,7 +16,6 @@ class MenuButton extends React.Component {
         color='#000000'
         style={styles.menuIcon}
         onPress={() => this.props.navigation.toggleDrawer()} 
-        //onPress={() => {}}
       />
     )
   }
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 20,
-    backgroundColor:'#EC5314'
+    //backgroundColor:'#FA9605'
   }
 })
 

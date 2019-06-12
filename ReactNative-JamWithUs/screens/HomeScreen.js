@@ -1,29 +1,103 @@
-//Auteur : Gaël
-  //Home --> en cours
-
 import React, { Component } from 'react';
 import { 
-  StyleSheet,
+  StyleSheet, 
+  View,
   Text,
-  ScrollView } from 'react-native';
+  StatusBar,
+  ScrollView, 
+  RefreshControl
+} from 'react-native';
+
+import Login from './LoginScreen';
+import AllJamList from '../components/JamComponent/AllJamList'
+
+import MenuButton from '../components/MenuButton'
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   };
-    render() {
-       return (
-        <ScrollView>
-        <Text styles={styles.title}> Accueil </Text>
-        </ScrollView>
-      );
-    }
-  
+
+  constructor(props) {
+    super(props)
+
+    this.state = { 
+      url: '',
+      userId: 1,
+      jams: [],
+      refreshing: false,
+    } 
+    this._onRefresh = this._onRefresh.bind(this)
+    this.fetchData = this.fetchData.bind(this)
+
+  }  
+
+  componentWillMount() {
+    this.fetchData()
   }
-  
-  const styles = StyleSheet.create({
-    title: {
-      fontSize : 24,
-      height : 40,
-    },
-  });
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    this.fetchData()
+
+    this.setState({refreshing: false});
+  }
+
+  fetchData() {
+    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam'; 
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then(json => {
+      // console.log(json.jams)
+      this.setState({ jams: json});  
+    })
+    .catch(error => console.error(error))
+  }
+
+  render() {
+     return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <MenuButton navigation={this.props.navigation} />
+          <Text style={styles.title}>Jam</Text>  
+        </View>
+        <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }> 
+          <AllJamList data={this.state.jams}/>
+        </ScrollView>
+      </View>
+    );
+  }
+} 
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    height: '100%',
+  },
+  header: {
+    marginBottom: 10, 
+    paddingBottom: 10, 
+    backgroundColor:'#EC5314',
+    paddingTop: 40, 
+  },
+  title: {
+    fontSize: 25, 
+    fontWeight: 'bold',
+    marginLeft: 60, 
+    color: 'white',
+  },
+}); 
+

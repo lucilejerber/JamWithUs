@@ -56,47 +56,36 @@ export default class Jam extends React.Component {
       instruments: [],
       genres: [],
     } 
+
   }
 
   componentDidMount() {
     console.log("Alllleeeeeeerrrrtttttt")
     console.log(this.props.data)
 
-    fetch('http://729119a4.ngrok.io/Jam/show/1', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => response.json())
-    .then(json => {
-        this.setState({ name: json.name}); 
-        this.setState({ date: new Date(json.date)}); 
-        // this.setState({ admin: json.admin}); 
-        this.setState({ locationName: json.locationName}); 
-        this.setState({ locationAdress: json.locationAdress}); 
-        this.setState({ latitude: json.latitude}); 
-        this.setState({ longitude: json.longitude}); 
-        this.setState({ description: json.description}); 
-        this.setState({ maxParticipants: json.maxParticipants}); 
-        this.setState({ genres: json.genres}); 
-        this.setState({ instruments: json.instruments}); 
-        this.setState({ numberParticipants: json.numberParticipants}); 
-      })
-    .catch(error => console.error(error))
+    this.setState({ name: this.props.data.name}); 
+    this.setState({ date: new Date(this.props.data.date)}); 
+    // this.setState({ admin: json.admin}); 
+    this.setState({ locationName: this.props.data.locationName}); 
+    this.setState({ locationAdress: this.props.data.locationAdress}); 
+    this.setState({ latitude: this.props.data.latitude}); 
+    this.setState({ longitude: this.props.data.longitude}); 
+    this.setState({ description: this.props.data.description}); 
+    this.setState({ maxParticipants: this.props.data.maxParticipants}); 
+    this.setState({ genres: this.props.data.genres}); 
+    this.setState({ instruments: this.props.data.instruments}); 
+    this.setState({ numberParticipants: this.props.data.numberParticipants}); 
   }
 
   render() { 
     return (
       <View style={styles.jamContainer}>
         <View style={{flex: 1}}>
-          <Text style={styles.title}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
+          <Text style={styles.bold}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
           <Text>{this.state.date.toLocaleTimeString()}</Text> 
         </View>
         <View style={{flex: 3}}>
-
-          <Text style={styles.title}>{this.state.name}</Text>  
+          <Text style={styles.bold}>{this.state.name}</Text>  
               
           <Text>{this.state.locationName} {this.state.locationAdress}</Text>
               

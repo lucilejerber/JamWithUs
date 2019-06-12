@@ -31,7 +31,7 @@ class Genres extends React.Component {
 
   getGenre(id) {
     console.log("Call getGenre")
-    var url = 'http://729119a4.ngrok.io/Genre/show/' + id;
+    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Genre/show/' + id;
 
     fetch(url, {
       method: 'POST',

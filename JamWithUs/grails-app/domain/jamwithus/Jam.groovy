@@ -4,11 +4,12 @@ class Jam {
     String name
     Date date
     
+
     String locationName
     String locationAdress
     String latitude
     String longitude
-    
+
     String description
 
     int numberParticipants
@@ -16,9 +17,6 @@ class Jam {
 
     static hasMany = [
         gens: JamRole,
-        // participants: User, 
-        // askers: User, 
-        // watchers: User, 
         instruments: Instrument, 
         genres: Genre
     ]

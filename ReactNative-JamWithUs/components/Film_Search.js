@@ -25,8 +25,8 @@ class Film_Search extends React.Component {
 				  data={films}
 				  keyExtractor={(item) => item.id.toString()}
 				  renderItem={({item}) => <FilmItem film={item} 
-          displayDetailForFilm={this._displayDetailForFilm} />}
-				/>
+				displayDetailForFilm={this._displayDetailForFilm} />}
+		/>
 			</View>
 
 		)
