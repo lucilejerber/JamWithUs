@@ -16,8 +16,11 @@ import {
 } from 'react-native';
 
 import Logo from '../components/Logo';
+
 import {TOMCATUSERSEARCH} from '../constants/index'
+
 import {screens, buttons, forms} from '../constants/StylesAll'
+
 
 
 export default class SigninScreen extends React.Component {
@@ -58,7 +61,7 @@ export default class SigninScreen extends React.Component {
     this.setState({
       error: 'Registration Failed',
     });
-    Alert.alert("Erreur.");
+    Alert.alert("Erreur");
   }
 
 //fonction creation compte
