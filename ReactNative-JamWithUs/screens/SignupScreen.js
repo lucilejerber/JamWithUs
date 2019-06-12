@@ -14,6 +14,10 @@ import {
   View,
   StatusBar } from 'react-native';
 
+import Logo from '../components/Logo';
+
+import {screens, buttons, forms} from '../constants/StylesAll'
+
 import {TOMCATSAVE} from '../constants/index';
 
 
@@ -53,11 +57,19 @@ userSignup() {
     //console.log(TOMCATSAVE)
     if (response.ok) { 
     this._signInAsync;
+    Alert.alert(
+        'Bienvenue dans Jam With Us !',
+        "Complète ton profil pour participer aux jams.",
+        [
+          {text: 'Cancel', onPress: () => this.props.navigation.navigate("HomeScreen") },
+          {text: 'OK', onPress: () => this.props.navigation.navigate("ProfilForm") },
+        ],
+        {cancelable: false},
+    );
     this.props.navigation.navigate('App');
-    console.log('connexion ok');
     } else {
       console.log('connexion nok');
-    Alert.alert("Veuillez vérifier que les champs soient conformes.");
+    Alert.alert("Veuillez vérifier que les champs soient conformes");
     }
   })
  
@@ -81,25 +93,26 @@ _signInAsync = async () => {
     render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox}
+      <Logo/>
+        <TextInput style={forms.input}
         placeholder="nom d'utilisateur"
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({username: text})}
-        placeholderTextColor='#fff'/>
-        <TextInput style={styles.inputBox}
+        placeholderTextColor='#000'/>
+        <TextInput style={forms.input}
         placeholder='email'
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({mail: text})}
-        placeholderTextColor='#fff'/>
-        <TextInput style={styles.inputBox}
+        placeholderTextColor='#000'/>
+        <TextInput style={forms.input}
         placeholder='Mot de passe'
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({password: text})}
         secureTextEntry={true}
-        placeholderTextColor='#fff'/>
+        placeholderTextColor='#000'/>
         <Button
           title='Créer un compte' onPress={this.userSignup}
         />
