@@ -229,8 +229,6 @@ export default class JamForm extends React.Component {
               <Text style={styles.title}>Création Jam</Text>  
             </View>
 
-            <View style={forms.inputContainer}>
-              <Text style={forms.inputLabel}>Nom de la jam</Text>
             <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>Nom de la jam</Text>
               <TextInput 
@@ -261,11 +259,8 @@ export default class JamForm extends React.Component {
                 /> 
               </View>
 
-
               <Text style={forms.inputLabel}>Lieu</Text>
-
               <FormLocation handler={this.onLocationChange} styles={forms.input} />
-
 
               <Text style={forms.inputLabel}>Instruments</Text>
               <Text style={styles.inputLabel}>Lieu</Text>
@@ -314,7 +309,7 @@ export default class JamForm extends React.Component {
         				onPress={this.handleSubmit}
         				style={buttons.opacity}>
         				<Text style={buttons.name}>Enregistrer</Text>
-        			</TouchableOpacity>
+        		</TouchableOpacity>
               
               <Button color='#EC5314' title="Créer Jam" onPress={this.handleSubmit} />
             </View>
