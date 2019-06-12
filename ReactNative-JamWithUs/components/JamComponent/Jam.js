@@ -5,6 +5,8 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
+  Alert, 
 } from 'react-native';
 
 import Instruments from '../Common/Instruments'
@@ -56,12 +58,14 @@ export default class Jam extends React.Component {
       instruments: [],
       genres: [],
     } 
-
+    this.handleTouch = this.handleTouch.bind(this)
+    this._displayDetailForProfil = this._displayDetailForProfil.bind(this)
   }
 
+    
   componentDidMount() {
-    console.log("Alllleeeeeeerrrrtttttt")
-    console.log(this.props.data)
+    // console.log("Alllleeeeeeerrrrtttttt")
+    // console.log(this.props.data)
 
     this.setState({ name: this.props.data.name}); 
     this.setState({ date: new Date(this.props.data.date)}); 
@@ -76,10 +80,52 @@ export default class Jam extends React.Component {
     this.setState({ instruments: this.props.data.instruments}); 
     this.setState({ numberParticipants: this.props.data.numberParticipants}); 
   }
+ 
+  handleTouch() {
+    if (this.props.completedProfile) {
+      console.log("OK")
+      Alert.alert(
+        'La demande a été prise en compte.',
+        "Veuillez attendre la réponse de l'organisateur.",
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('Ok')},
+        ],
+        {cancelable: false},
+      );
+
+    } else {
+      console.log("Not  ok")
+
+      Alert.alert(
+        'Complète ton profil pour accéder à la Jam!',
+        '',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => this._displayDetailForProfil()},
+        ],
+        {cancelable: false},
+      );
+    }
+  }
+
+  _displayDetailForProfil() {
+    console.log("Modifier Profil")
+    this.props.navigation.navigate("ProfilForm")
+  }
 
   render() { 
     return (
       <View style={styles.jamContainer}>
+      <TouchableOpacity onPress={this.handleTouch}>
         <View style={{flex: 1}}>
           <Text style={styles.bold}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
           <Text>{this.state.date.toLocaleTimeString()}</Text> 
@@ -99,6 +145,8 @@ export default class Jam extends React.Component {
           <Text style={styles.inputLabel}>Genres</Text>
           <Genres data={this.state.genres}/>
         </View>    
+       </TouchableOpacity>
+
       </View>
     );
   }

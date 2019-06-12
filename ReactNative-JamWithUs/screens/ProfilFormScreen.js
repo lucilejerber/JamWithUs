@@ -25,7 +25,8 @@ import {
 } from '../constants/index';
 
 import {screens, buttons, forms} from '../constants/StylesAll.js'
-
+import DatePicker from 'react-native-datepicker';
+import MultiSelect from 'react-native-multiple-select';
 //import * as Constants from '../constants'
 
 class ProfilForm extends React.Component {
@@ -37,6 +38,9 @@ class ProfilForm extends React.Component {
 		super (props);
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.onDateChange = this.onDateChange.bind(this)
+	    this.onSelectedInstrumentsChange = this.onSelectedInstrumentsChange.bind(this)
+	    this.onSelectedGenresChange = this.onSelectedGenresChange.bind(this)
+
 		this.state = {
 			pickerSelection: 'Default',
 			username: '',
@@ -49,7 +53,8 @@ class ProfilForm extends React.Component {
 			description:'',
 			genres:[],
 			instruments:[],
-
+		    selectedGenres: [],
+		    selectedInstruments: [],
 		};
 	}
 
@@ -74,7 +79,62 @@ class ProfilForm extends React.Component {
     .catch(error => console.error(error))
 	
 	console.log(LOCALSHOW)
-	}
+    this.getGenres();
+    this.getInstruments();
+}
+
+  // Request to the data base to get instruments
+  getInstruments() {  
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      }, 
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log("instruments")
+      console.log(responseJson)
+        this.setState({
+          instruments: responseJson
+        }) 
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  // Request to the data base to get genre 
+  getGenres() {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Genre', {
+      method: 'POST',   
+      headers: {
+        Accept: 'application/json', 
+      },  
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log(responseJson)
+        console.log("igenre")
+        this.setState({
+          genres: responseJson
+        })
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }  
+ 
+  onSelectedInstrumentsChange(selectedInstruments) {
+    this.setState({ selectedInstruments: selectedInstruments });
+    console.log(selectedInstruments )
+  };
+
+  onSelectedGenresChange(selectedGenres) {
+    this.setState({ selectedGenres: selectedGenres });
+    console.log(selectedGenres )
+  };  
+
 
   // A REVOIR - recup les données formulaires soumises par l'utilisateur
   handleSubmit() {
@@ -92,8 +152,10 @@ class ProfilForm extends React.Component {
 
 	console.log("instruments = " + this.state.instruments)
 	
+	var url = TOMCATUPDATE + "/1";
+	console.log(url)
 
-    fetch(LOCALUPDATE, {
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -120,31 +182,36 @@ class ProfilForm extends React.Component {
 	
 	if (this.state.birthday) {
 		Alert.alert(
-		'Le profil est complet',
-		
+        'Le profil est complet',
+        '',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
 		{text: 'OK', onPress: () => this.props.navigation.navigate("HomeScreen") },
-		{cancelable: false},
-		);
+
+        ],
+        {cancelable: false},
+      );
 
 	//Alert.alert(this.state.username + ' votre profil à bien été complété!',);
 	//this.props.navigation.navigate("HomeScreen")	
 	}else{
-		Alert.alert('Pour participer au Jam compléter le profil');
-	}
-	
-	
-	
+		Alert.alert('Pour participer au Jam compléter le profil entièrement');
+	}	
   }
 
-  
     onDateChange(data) {
-    var splitDate = data.split(' ');
-    var date = splitDate[0] + "T" + splitDate[1] + ":00";
-    date = new Date(date);
-    this.setState({date: data.toJSON()}) 
-
+	    date = new Date(data);
+	    console.log(date)
+	    this.setState({birthday: date}) 
 	}
+
 	render (){
+    const { selectedInstruments } = this.state;
+    const { selectedGenres } = this.state;
 		return (
 			<View style = {styles.main_container}>
 				<View style={screens.header}>
@@ -174,16 +241,31 @@ class ProfilForm extends React.Component {
 							<TextInput style={forms.input} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='*****'
-							value={this.state.password}
+							value="*********"
 							onChangeText={(text) => this.setState({password: text})}
+							secureTextEntry={true}
 							/>
 							
 							<Text style={forms.inputLabel}>Date de Naissance</Text>
-							<TextInput style={forms.input} 
-							placeholderTextColor = "#AFAFAF" 
-							placeholder='JJ/MM/AAAA'
-							onChangeText={(text) => this.setState({birthday: text})}
-							/>
+				              <View style={forms.input}>
+				                <DatePicker
+				                  date={this.state.birthday}
+				                  onDateChange={this.onDateChange}
+				                  mode="date"
+				                  customStyles={{
+				                    dateIcon: {
+				                      position: 'absolute',
+				                      left: 0,
+				                      top: 4,
+				                      marginLeft: 0
+				                    },
+				                    dateInput: {
+				                      marginLeft: 36,
+				                      borderWidth: 0,
+				                      width: 300
+				                  }}} 
+				                /> 
+				              </View>
 							
 							<Text style={forms.inputLabel}>Numéro de Téléphone</Text>
 							<TextInput style={forms.input} 
@@ -191,8 +273,6 @@ class ProfilForm extends React.Component {
 							placeholder='+33---------'
 							onChangeText={(text) => this.setState({phoneNumber: text})}
 							/>
-							
-
 							
 							<View style = {styles.picker_area}>
 								<Text style={forms.inputLabel}>Pays</Text>
@@ -214,20 +294,28 @@ class ProfilForm extends React.Component {
 							onChangeText={(text) => this.setState({city: text})}
 							/>
 							
-							<Text style={forms.inputLabel}>Genres appréciés</Text>
-							<TextInput style={forms.input} 
-							placeholderTextColor = "#AFAFAF" 
-							placeholder='Jazz'
-							onChangeText={(text) => this.setState({genres: text})}
-							/>
-
+					
 							<Text style={forms.inputLabel}>Instruments pratiqués</Text>
-							<TextInput style={forms.input} 
-							placeholderTextColor = "#AFAFAF" 
-							placeholder='Banjo'
-							onChangeText={(text) => this.setState({instruments: text})}
-							/>							
-								
+				              <MultiSelect
+				                items={this.state.instruments}
+				                uniqueKey="id"
+				                displayKey="name"
+				                onSelectedItemsChange={this.onSelectedInstrumentsChange}
+				                styleMainWrapper={forms.multiSelect}
+				                styleDropdownMenuSubsection={styles.round}
+				                selectedItems={selectedInstruments}
+				              />
+				                 
+				              <Text style={forms.inputLabel}>Genres appréciés</Text>
+				              <MultiSelect
+				                styleMainWrapper={forms.multiSelect}
+				                items={this.state.genres}
+				                uniqueKey="id"
+				                displayKey="name"
+				                onSelectedItemsChange={this.onSelectedGenresChange}
+				                styleDropdownMenuSubsection={styles.round}
+				                selectedItems={selectedGenres}                
+				              />  
 							<TouchableOpacity 
 								style={buttons.opacity}
 								onPress={this.handleSubmit}>
@@ -308,6 +396,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },  
+
+  round: {
+    borderRadius: 20,
+    paddingLeft: 20,
+    backgroundColor: '#f3f3f3', 
+    paddingRight: 20, 
+  },
 
 
 })
