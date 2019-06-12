@@ -34,13 +34,13 @@ export default class SigninScreen extends React.Component {
         })
       }  
 
-    _response_recognizer(data: string ){
+    _signInCheck(data: string ){
     console.log(data)
     console.log(data[0].mail)
     console.log(data[0].password)
       if(data[0].mail == this.state.mail && data[0].password == this.state.password){
         this._signInAsync;
-        this.props.navigation.navigate('HomeScreen');
+        this.props.navigation.navigate('App');
         console.log('connexion ok');
       }
       else {
@@ -52,7 +52,6 @@ export default class SigninScreen extends React.Component {
 
  _signInAsync = async () => {
     await AsyncStorage.setItem('userToken',1);
-    this.props.navigation.navigate('App');
   };
 
   onLoginFail() {
@@ -82,7 +81,7 @@ userSignin() {
    
     .then((response) => response.json())
     .then((data) => { //convert json in string
-    this._response_recognizer(data) //handle the response 
+    this._signInCheck(data) //handle the response 
     })
 .catch((error) => {
       //console.log(error);

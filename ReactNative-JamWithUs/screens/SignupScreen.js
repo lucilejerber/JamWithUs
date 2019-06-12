@@ -53,7 +53,7 @@ userSignup() {
     //console.log(TOMCATSAVE)
     if (response.ok) { 
     this._signInAsync;
-    this.props.navigation.navigate('HomeScreen');
+    this.props.navigation.navigate('App');
     console.log('connexion ok');
     } else {
       console.log('connexion nok');
