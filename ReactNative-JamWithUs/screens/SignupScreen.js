@@ -12,10 +12,11 @@ import {
   Button,
   TextInput,
   View,
+  TouchableOpacity,
   StatusBar } from 'react-native';
 
 import {TOMCATSAVE} from '../constants/index';
-
+import {screens, buttons, forms} from '../constants/StylesAll'
 
 export default class SignupScreen extends Component <{}> {
 
@@ -57,7 +58,7 @@ userSignup() {
     console.log('connexion ok');
     } else {
       console.log('connexion nok');
-    Alert.alert("Veuillez vérifier que les champs soient conformes.");
+    Alert.alert("Veuillez vérifier que les champs soient conformes");
     }
   })
  
@@ -81,28 +82,34 @@ _signInAsync = async () => {
     render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox}
+        <TextInput style={forms.input}
         placeholder="nom d'utilisateur"
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({username: text})}
-        placeholderTextColor='#fff'/>
-        <TextInput style={styles.inputBox}
+        placeholderTextColor='#AFAFAF'/>
+        
+		<TextInput style={forms.input}
         placeholder='email'
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({mail: text})}
-        placeholderTextColor='#fff'/>
-        <TextInput style={styles.inputBox}
+        placeholderTextColor='#AFAFAF'/>
+        
+		<TextInput style={forms.input}
         placeholder='Mot de passe'
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={(text) => this.setState({password: text})}
         secureTextEntry={true}
-        placeholderTextColor='#fff'/>
-        <Button
-          title='Créer un compte' onPress={this.userSignup}
-        />
+        placeholderTextColor='#AFAFAF'/>
+        
+		<TouchableOpacity 
+        onPress={this.userSignup}
+        style={buttons.opacity}>
+            <Text style={buttons.name}>Créer un compte</Text>
+        </TouchableOpacity>
+		
       </View>
     )
   }

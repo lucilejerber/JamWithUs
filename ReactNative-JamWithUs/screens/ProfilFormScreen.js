@@ -121,7 +121,7 @@ class ProfilForm extends React.Component {
 	if (this.state.birthday) {
 		Alert.alert(
 		'Le profil est complet',
-		
+		'',
 		{text: 'OK', onPress: () => this.props.navigation.navigate("HomeScreen") },
 		{cancelable: false},
 		);
