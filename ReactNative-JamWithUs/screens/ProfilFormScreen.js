@@ -20,7 +20,7 @@ import {
 
 import MenuButton from '../components/MenuButton';
 import {
-	TOMCATUPDATE,
+	TOMCATUPDATE, TOMCATSHOW,
 	LOCALUPDATE,LOCALSHOW,LOCALSAVE
 } from '../constants/index';
 
@@ -56,8 +56,8 @@ class ProfilForm extends React.Component {
   // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
   componentWillMount(){ 
     console.log("ComponentWillMount")//avant que le render se fasse
-	
-	fetch(LOCALSHOW, {
+	console.log(TOMCATSHOW)
+	fetch(TOMCATSHOW, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

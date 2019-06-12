@@ -30,8 +30,8 @@ class Genres extends React.Component {
   }
 
   getGenre(id) {
-    console.log("Call getGenre")
-    var url = 'http://729119a4.ngrok.io/Genre/show/' + id;
+    // console.log("Call getGenre")
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Genre/show/' + id;
 
     fetch(url, {
       method: 'POST',
@@ -52,7 +52,7 @@ class Genres extends React.Component {
   }
 
   getAllGenres() {
-    console.log("Call getAllGenres")
+    // console.log("Call getAllGenres")
 
     this.setState({ getGenres: 1});  
     if((this.props.data.length > 0) && (this.state.genres.length != this.props.data.length)) {

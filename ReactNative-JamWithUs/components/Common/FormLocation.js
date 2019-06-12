@@ -1,6 +1,3 @@
-/*
-Lucile
-*/
 import React, { Component } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -87,7 +84,7 @@ class FormLocation extends Component {
     console.log("body.postal_code")
     console.log(body.postal_code)
  
-    fetch('http://55ed49af.ngrok.io/Location/save', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Location/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
