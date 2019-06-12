@@ -5,8 +5,11 @@ import {
   Text,
   View,
   Button,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
+
+import {buttons} from '../constants/StylesAll'
 
 //Page de déconnexion
 export default class SignoutScreen extends React.Component {
@@ -17,7 +20,17 @@ export default class SignoutScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Deconnexion" onPress={this._signOutAsync} />
+      <Text>Voulez-vous vraiment vous déconnecter ?</Text>
+       <TouchableOpacity 
+            onPress={this._signOutAsync}
+                    style={buttons.oui}>
+            <Text style={buttons.nameoui}>Oui</Text>
+          </TouchableOpacity> 
+           <TouchableOpacity 
+            onPress={()=> this.props.navigation.navigate("HomeScreen")}
+                    style={buttons.non}>
+            <Text style={buttons.namenon}>Non</Text>
+          </TouchableOpacity> 
       </View>
     );
   }

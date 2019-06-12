@@ -17,7 +17,7 @@ import MenuButton from '../components/MenuButton'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Accueil',
   };
 
   constructor(props) {

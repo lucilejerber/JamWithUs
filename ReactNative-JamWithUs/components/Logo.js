@@ -10,8 +10,8 @@ import {
   render() {
      return (
      	<View style ={styles.container}>
-     		<Image style = {{width:250, height:150}}
-     			source={require('../images/jamwithus.jpeg')}/>
+     		<Image
+     			source={require('../images/jamwithusfinal.png')}/>
      	</View> 
     	)
   	}
@@ -19,8 +19,8 @@ import {
 
 const styles = StyleSheet.create({
   container : {
-    flexGrow : 1,
-    justifyContent:'flex-end',
+    marginTop: 30,
+    marginBottom: 30,
     alignItems: 'center'
   }
 });

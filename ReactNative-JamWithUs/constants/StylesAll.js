@@ -51,10 +51,33 @@ import { StyleSheet } from 'react-native'
      marginLeft: 20,
      marginRight: 20
    },
+   
    opacity: {
     alignItems: 'center',
-	backgroundColor: '#FFFFFF',
+  backgroundColor: '#FFFFFF',
     borderColor: '#FA9605',
+    padding: 10,
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  non: {
+    alignItems: 'center',
+  backgroundColor: '#FFFFFF',
+    borderColor: '#FA0605',
+    padding: 10,
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  oui: {
+    alignItems: 'center',
+  backgroundColor: '#FFFFFF',
+    borderColor: '#06FA05',
     padding: 10,
     borderWidth: 1,
     marginTop: 10,
@@ -66,6 +89,16 @@ import { StyleSheet } from 'react-native'
 	  marginLeft: 5,
 	  marginRight: 5,
 	  color : '#FA9605',
+  },
+    nameoui: {
+    marginLeft: 5,
+    marginRight: 5,
+    color : '#06FA05',
+  },
+    namenon: {
+    marginLeft: 5,
+    marginRight: 5,
+    color : '#FA0605',
   }
  })
   

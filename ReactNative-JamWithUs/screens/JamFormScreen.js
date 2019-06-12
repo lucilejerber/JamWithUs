@@ -83,7 +83,9 @@ const styles = StyleSheet.create({
 export default class JamForm extends React.Component {
   static navigationOptions = {
     header: null,
-  }; 
+    title: 'Créer une Jam',
+  };
+  
   constructor(props) {
     super(props)
 

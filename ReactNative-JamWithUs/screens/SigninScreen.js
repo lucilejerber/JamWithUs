@@ -10,11 +10,13 @@ import {
   TextInput,
   View,
   Button,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import Logo from '../components/Logo';
 import DeviceStorage from '../components/DeviceStorage'; // Import deviceStorage :)
+import {screens, buttons, forms} from '../constants/StylesAll.js'
 
 
 export default class SigninScreen extends React.Component {
@@ -91,18 +93,26 @@ userSignin() {
     return (
       <View style={styles.container}>
       <Logo/>
-        <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
-        <TextInput style={styles.inputBox} 
+        <TextInput style={forms.input} 
         placeholder='Adresse mail'
         onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#000'/>
-        <TextInput style={styles.inputBox} 
+        <TextInput style={forms.input} 
         placeholder='Mot de passe'
         secureTextEntry={true}
         onChangeText={(text) => this.setState({password: text})}
         placeholderTextColor='#000'/>
-        <Button title="Connexion" onPress={this.userSignin} />
-        <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
+        {/*<Button title="Connexion" onPress={this.userSignin} />*/}
+        <TouchableOpacity 
+            onPress={()=> this.props.navigation.navigate("HomeScreen")}
+                    style={buttons.opacity}>
+            <Text style={buttons.name}>Connexion</Text>
+          </TouchableOpacity> 
+        <TouchableOpacity 
+            onPress={()=> this.props.navigation.navigate("Signup")}
+                    style={buttons.opacity}>
+            <Text style={buttons.name}>S'inscrire</Text>
+          </TouchableOpacity> 
       </View>
     );
   }
