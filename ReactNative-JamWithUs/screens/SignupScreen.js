@@ -52,7 +52,7 @@ userSignup() {
     if (response.ok) { 
     this._signInAsync;
     this.props.navigation.navigate('HomeScreen');
-    console.log('connexion ok :');
+    console.log('connexion ok');
     } else {
       console.log('connexion nok');
     Alert.alert("Veuillez vérifier que les champs soient conformes.");
@@ -67,8 +67,7 @@ userSignup() {
   }
 
 _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
+    await AsyncStorage.setItem('userToken',1);
   };
 
   onRegistrationFail() {

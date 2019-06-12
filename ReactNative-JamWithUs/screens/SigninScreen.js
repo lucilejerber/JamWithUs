@@ -31,6 +31,21 @@ export default class SigninScreen extends React.Component {
         })
       }  
 
+    _response_recognizer(data: string ){
+    console.log(data[0].password)//print string
+    }
+
+ _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken',1);
+    this.props.navigation.navigate('App');
+  };
+
+  onRegistrationFail() {
+    this.setState({
+      error: 'Registration Failed',
+    });
+    Alert.alert("Erreur");
+  }
 
 //fonction creation compte
 userSignin() {
@@ -38,7 +53,7 @@ userSignin() {
   console.log("password = " + this.state.password)
 
 
-  fetch('http://effundo.serveo.net/user/save', {
+  fetch('http://effundo.serveo.net/user/search?q='+this.state.mail, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -49,10 +64,28 @@ userSignin() {
         "password": this.state.password,
       }),
     })
-    .then(json => console.log(json)) //handle the response 
-    .catch((error) => console.error(error)) // handle error
-  }   
+   
+    .then((response) => response.json())
+    .then((data) => { //convert json in string
+    this._response_recognizer(data) //handle the response 
+    })
+.catch((error) => {
+      //console.log(error);
+      this.onRegistrationFail();
+    });
+  }
 
+ _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken',);
+    this.props.navigation.navigate('App');
+  };
+
+  onRegistrationFail() {
+    this.setState({
+      error: 'Registration Failed',
+    });
+    Alert.alert("Erreur");
+  }
 
   render() {
     return (
@@ -61,22 +94,20 @@ userSignin() {
         <Text style={styles.logoText}>Bienvenue dans Jam With Us.</Text>
         <TextInput style={styles.inputBox} 
         placeholder='Adresse mail'
+        onChangeText={(text) => this.setState({mail: text})}
         placeholderTextColor='#000'/>
         <TextInput style={styles.inputBox} 
         placeholder='Mot de passe'
         secureTextEntry={true}
+        onChangeText={(text) => this.setState({password: text})}
         placeholderTextColor='#000'/>
-        <Button title="Connexion" onPress={this._signInAsync} />
+        <Button title="Connexion" onPress={this.userSignin} />
         <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
         <Button title="Mot de passe oublié" onPress={() => this.props.navigation.navigate('ForgotPassword')}/>
       </View>
     );
   }
 
-  _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
-  };
 }
 
 const styles = StyleSheet.create({
