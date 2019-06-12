@@ -81,12 +81,11 @@ export default class HomeScreen extends React.Component {
         console.log("Profile not complete")
       }
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) 
   }
 
 
   render() {
-    console.log("this.state.completedProfile = " + this.state.completedProfile)
      return (
       <View style={styles.container}>
         <View style={styles.header}>

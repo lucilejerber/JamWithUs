@@ -30,7 +30,7 @@ class Instruments extends React.Component {
   }
 
   getInstrument(id) {
-    console.log("Call getInstrument") 
+    // console.log("Call getInstrument") 
     var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument/show/' + id;
     fetch(url, {
       method: 'POST',
@@ -51,7 +51,7 @@ class Instruments extends React.Component {
   }
 
   getAllInstruments() {
-    console.log("Call getAllInstruments")
+    // console.log("Call getAllInstruments")
 
     this.setState({ getInstruments: 1});  
     if((this.props.data.length > 0) && (this.state.instruments.length != this.props.data.length)) {

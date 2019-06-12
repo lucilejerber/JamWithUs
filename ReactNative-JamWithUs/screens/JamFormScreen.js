@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
   },
-
-  header: {
-    marginBottom: 10, 
-    paddingBottom: 10, 
-    backgroundColor:'#EC5314',
-    paddingTop: 40, 
-  },
   title: {
     fontSize: 25, 
     fontWeight: 'bold',
@@ -50,26 +43,11 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
   },
-  input: {
-    height: 50,
-    paddingLeft: 20,
-    paddingRight: 20, 
-    marginLeft: 40,
-    marginRight: 40,
-    marginBottom: 10,
-    marginTop: 5,
-    backgroundColor: '#f3f3f3', 
-    borderRadius: 20,
-  },
   round: {
     borderRadius: 20,
     paddingLeft: 20,
     backgroundColor: '#f3f3f3', 
     paddingRight: 20, 
-  },
-  inputLabel: {
-    marginLeft: 40,
-    fontWeight: 'bold',
   },
   inputsContainer: {
     marginLeft: 5,
@@ -180,8 +158,6 @@ export default class JamForm extends React.Component {
     .catch(error => console.error(error))
 	 
   	//Pop-up alert here plus condition que le name soit pas vide
-
-
   }   
 
   // Request to the data base to get instruments
@@ -241,7 +217,6 @@ export default class JamForm extends React.Component {
     date = new Date(date);
 
     this.setState({date: date.toJSON()}) 
-
   }
   
   onLocationChange(data) {
@@ -266,11 +241,10 @@ export default class JamForm extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.jamContainer}>
 
-            <View style={styles.header}>
+            <View style={screens.header}>
               <MenuButton navigation={this.props.navigation} />
               <Text style={styles.title}>Création Jam</Text>  
             </View>
-
 
             <View style={forms.inputContainer}>
               <Text style={forms.inputLabel}>Nom de la jam</Text>
