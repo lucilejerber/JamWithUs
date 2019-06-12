@@ -12,6 +12,7 @@ import {
   Button,
   TextInput,
   View,
+  TouchableOpacity,
   StatusBar } from 'react-native';
 
 import Logo from '../components/Logo';
@@ -61,7 +62,7 @@ userSignup() {
         'Bienvenue dans Jam With Us !',
         "Complète ton profil pour participer aux jams.",
         [
-          {text: 'Cancel', onPress: () => this.props.navigation.navigate("HomeScreen") },
+          {text: 'Ignorer', onPress: () => this.props.navigation.navigate("HomeScreen") },
           {text: 'OK', onPress: () => this.props.navigation.navigate("ProfilForm") },
         ],
         {cancelable: false},
@@ -113,9 +114,11 @@ _signInAsync = async () => {
         onChangeText={(text) => this.setState({password: text})}
         secureTextEntry={true}
         placeholderTextColor='#000'/>
-        <Button
-          title='Créer un compte' onPress={this.userSignup}
-        />
+        <TouchableOpacity 
+        onPress={this.userSignup}
+        style={buttons.opacity}>
+            <Text style={buttons.name}>Créer un compte</Text>
+        </TouchableOpacity> 
       </View>
     )
   }
