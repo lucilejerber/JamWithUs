@@ -24,6 +24,7 @@ import {
 
 import SigninScreen from '../screens/SigninScreen';
 import SignupScreen from '../screens/SignupScreen';
+import SignupNOKScreen from '../screens/SignupScreen';
 import SignoutScreen from '../screens/SignoutScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
@@ -35,12 +36,13 @@ import ProfilScreen from '../screens/ProfilScreen';
 import JamForm from '../screens/JamFormScreen';
 
 const AppStack = createDrawerNavigator({HomeScreen: HomeScreen, JamForm: JamForm,ProfilDisplay: Profil_Display,ProfilForm: ProfilForm, Signout: SignoutScreen}, DrawerConfig,);
-const AuthStack = createStackNavigator({ Signin: SigninScreen, Signup:SignupScreen, ForgotPassword:ForgotPasswordScreen, PostForgotPassword:PostForgotPasswordScreen });
+const AuthStack = createStackNavigator({ Signin: SigninScreen, Signup:SignupScreen, SignupNOK:SignupNOKScreen, ForgotPassword:ForgotPasswordScreen, PostForgotPassword:PostForgotPasswordScreen });
 	
 const WIDTH = Dimensions.get('window').width;
-	const DrawerConfig = {
+const DrawerConfig = {
   drawerwidth: WIDTH*0.43,
 }
+
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,

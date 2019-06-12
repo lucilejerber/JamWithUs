@@ -14,11 +14,46 @@ import {
 } from 'react-native';
 
 import Logo from '../components/Logo';
+import DeviceStorage from '../components/DeviceStorage'; // Import deviceStorage :)
+
 
 export default class SigninScreen extends React.Component {
   static navigationOptions = {
     title: 'Connexion',
   };
+
+  constructor(props){
+      super(props);
+      this.userSignin = this.userSignin.bind(this)
+      this.state =({
+      mail: '',
+      password:''
+        })
+      }  
+
+
+//fonction creation compte
+userSignin() {
+  console.log("mail = " + this.state.mail)
+  console.log("password = " + this.state.password)
+
+
+  fetch('http://effundo.serveo.net/user/save', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({
+        "mail": this.state.mail, 
+        "password": this.state.password,
+      }),
+    })
+    .then(json => console.log(json)) //handle the response 
+    .catch((error) => console.error(error)) // handle error
+  }   
+
+
   render() {
     return (
       <View style={styles.container}>

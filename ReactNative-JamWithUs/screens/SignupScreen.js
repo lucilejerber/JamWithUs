@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import { 
+  Alert,
   AsyncStorage,
   StyleSheet, 
   Text,
@@ -10,6 +11,9 @@ import {
   TextInput,
   View,
   StatusBar } from 'react-native';
+
+import deviceStorage from '../components/DeviceStorage';
+
 
 export default class SignupScreen extends Component <{}> {
 
@@ -30,7 +34,7 @@ userSignup() {
   console.log("password = " + this.state.password)
 
 
-  fetch('http://fama.serveo.net/user/save', {
+  fetch('http://effundo.serveo.net/user/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -42,10 +46,37 @@ userSignup() {
         "password": this.state.password,
       }),
     })
-    .then(json => console.log(json))
-    .catch(error => console.error(error))
-  }   
+  //print the response in console
+    .then((response) => {
+    //handle the response 
+    if (response.ok) { 
+    this._signInAsync;
+    this.props.navigation.navigate('HomeScreen');
+    console.log('connexion ok :');
+    } else {
+      console.log('connexion nok');
+    Alert.alert("Veuillez vérifier que les champs soient conformes.");
+    }
+  })
+    //.then((response) => {
+      //deviceStorage.saveKey("id_token", response.data.jwt);
+.catch((error) => {
+      //console.log(error);
+      this.onRegistrationFail();
+    });
+  }
 
+_signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+  };
+
+  onRegistrationFail() {
+    this.setState({
+      error: 'Registration Failed',
+    });
+    Alert.alert("Erreur");
+  }
 
     render() {
     return (
