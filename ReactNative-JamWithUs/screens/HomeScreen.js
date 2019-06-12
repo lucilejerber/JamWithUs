@@ -10,15 +10,16 @@ import {
 
 import Login from './LoginScreen';
 import AllJamList from '../components/JamComponent/AllJamList'
-import {TOMCATSAVE} from '../constants/index'
+import {TOMCAT, JAM, SHOW, USERID, USER} from '../constants/index'
 
 import MenuButton from '../components/MenuButton'
+import {screens, buttons, forms} from '../constants/StylesAll.js'
 
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Accueil',
-  };
+  };  
 
   constructor(props) {
     super(props)
@@ -38,17 +39,19 @@ export default class HomeScreen extends React.Component {
 
   componentWillMount() {
     this.fetchData()
+    this.fetchUser()
   }
 
   _onRefresh() {
     this.setState({refreshing: true});
-    this.fetchData()
+    this.fetchData();
+    this.fetchUser();
 
     this.setState({refreshing: false});
   }
 
   fetchData() {
-    var url = TOMCATSAVE; 
+    var url = TOMCAT + JAM; 
 
     fetch(url, {
       method: 'POST',
@@ -66,8 +69,8 @@ export default class HomeScreen extends React.Component {
 
 
   fetchUser() {
-    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/user/show/1'; 
-
+    var url = TOMCAT + USER + SHOW + "1"; 
+    console.log(url)
     fetch(url, {
       method: 'POST',
       headers: {
@@ -77,7 +80,9 @@ export default class HomeScreen extends React.Component {
     })
     .then((response) => response.json())
     .then(json => {
-      if(json.birthday) {
+      console.log(json)
+      if(json.birthday != null) {
+
         this.setState({ completedProfile: true});  
       } else {
         console.log("Profile not complete")
@@ -90,7 +95,7 @@ export default class HomeScreen extends React.Component {
   render() {
      return (
       <View style={styles.container}>
-        <View style={styles.header}>
+        <View style={screens.header}>
           <MenuButton navigation={this.props.navigation} />
           <Text style={styles.title}>Jam</Text>  
         </View>

@@ -59,9 +59,10 @@ export default class Jam extends React.Component {
       genres: [],
     } 
     this.handleTouch = this.handleTouch.bind(this)
-    this._displayDetailForProfil = this._displayDetailForProfil.bind(this) 
+    this._displayDetailForProfil = this._displayDetailForProfil.bind(this)
   }
 
+    
   componentDidMount() {
     // console.log("Alllleeeeeeerrrrtttttt")
     // console.log(this.props.data)
@@ -99,6 +100,7 @@ export default class Jam extends React.Component {
 
     } else {
       console.log("Not  ok")
+
       Alert.alert(
         'Complète ton profil pour accéder à la Jam!',
         '',
@@ -116,14 +118,11 @@ export default class Jam extends React.Component {
   }
 
   _displayDetailForProfil() {
-      console.log("Modifier Profil")
-      this.props.navigation.navigate("ProfilForm")
+    console.log("Modifier Profil")
+    this.props.navigation.navigate("ProfilForm")
   }
 
   render() { 
-
-    console.log("this.props.completedProfile = " + this.props.completedProfile)
-
     return (
       <View style={styles.jamContainer}>
       <TouchableOpacity onPress={this.handleTouch}>
