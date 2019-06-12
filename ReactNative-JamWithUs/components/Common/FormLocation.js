@@ -1,6 +1,3 @@
-/*
-Lucile
-*/
 import React, { Component } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 

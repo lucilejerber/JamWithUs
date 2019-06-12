@@ -9,15 +9,8 @@ import UserItem from './UserItem'
 import MenuButton from '../components/MenuButton'
 
 class Profil_Display extends React.Component {
-	/*_displayDetailForFilm = (idFilm) => {
-		console.log("Display film with id " + idFilm)
-	}*/
-  
-  render (){
-		const user = this.props.user
-		const displayDetailForProfil = this.props.displayDetailForProfil
-		// egal à ça => const { user, displayDetailForProfil } = this.props
-		
+	render (){
+		const { user, displayDetailForProfil } = this.props
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   header_text: {
-	color: '#fff',
+	color: '#ffffff',
     marginTop: 14,
     marginLeft: 5,
     marginRight: 5,

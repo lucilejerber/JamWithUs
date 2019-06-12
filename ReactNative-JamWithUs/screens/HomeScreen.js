@@ -10,12 +10,14 @@ import {
 
 import Login from './LoginScreen';
 import AllJamList from '../components/JamComponent/AllJamList'
+import {TOMCATSAVE} from '../constants/index'
 
 import MenuButton from '../components/MenuButton'
 
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Accueil',
   };
 
   constructor(props) {
@@ -46,7 +48,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchData() {
-    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam'; 
+    var url = TOMCATSAVE; 
 
     fetch(url, {
       method: 'POST',
@@ -127,3 +129,4 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 }); 
+
