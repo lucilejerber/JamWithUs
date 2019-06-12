@@ -30,8 +30,8 @@ class Instruments extends React.Component {
   }
 
   getInstrument(id) {
-    console.log("Call getInstrument")
-    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Instrument/show/' + id;
+    console.log("Call getInstrument") 
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument/show/' + id;
     fetch(url, {
       method: 'POST',
       headers: {

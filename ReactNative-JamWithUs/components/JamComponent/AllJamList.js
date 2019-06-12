@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {
   Image,
   ScrollView,
@@ -51,16 +51,24 @@ export default class AllJamList extends React.Component {
  
   render() {
     var jamList;
+    console.log("-----------------------------")
+    console.log(this.props.completedProfile)
+    console.log("-----------------------------")
 
     if (this.props.data.length >= 1) {
       jamList = Object.keys(this.props.data).map((i) => {
         return (
-          <Jam data={this.props.data[i]}/>
+          <Jam 
+            data={this.props.data[i]} 
+            key={i} 
+            completedProfile={this.props.completedProfile}
+            navigation={this.props.navigation}
+          />
         )
       });
     } else { 
       return(
-        <View>
+        <View> 
           <Text>Pas de jam</Text>
         </View>
       );

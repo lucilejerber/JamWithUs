@@ -87,7 +87,7 @@ class FormLocation extends Component {
     console.log("body.postal_code")
     console.log(body.postal_code)
  
-    fetch('http://02c25d34.ngrok.io/Location/save', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Location/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

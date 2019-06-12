@@ -22,12 +22,12 @@ class ProfilDisplay extends React.Component {
 	
 	_displayJams(){
       console.log("Mes Jams")
-      //this.props.navigation.navigate("JamDescription")
+      this.props.navigation.navigate("JamDescription")
 	}
 	
 	render (){
 		//console.log(this.props)
-		const { user, displayDetailForProfil } = this.props
+		const { user, displayDetailForProfil } = this.props 
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>

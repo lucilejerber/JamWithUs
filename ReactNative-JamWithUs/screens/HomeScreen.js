@@ -5,7 +5,7 @@ import {
   Text,
   StatusBar,
   ScrollView, 
-  RefreshControl
+  RefreshControl,
 } from 'react-native';
 
 import Login from './LoginScreen';
@@ -26,9 +26,11 @@ export default class HomeScreen extends React.Component {
       userId: 1,
       jams: [],
       refreshing: false,
+      completedProfile: false
     } 
     this._onRefresh = this._onRefresh.bind(this)
     this.fetchData = this.fetchData.bind(this)
+    this.fetchUser = this.fetchUser.bind(this)
 
   }  
 
@@ -44,7 +46,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchData() {
-    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam'; 
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam'; 
 
     fetch(url, {
       method: 'POST',
@@ -55,13 +57,36 @@ export default class HomeScreen extends React.Component {
     })
     .then((response) => response.json())
     .then(json => {
-      // console.log(json.jams)
       this.setState({ jams: json});  
     })
     .catch(error => console.error(error))
   }
 
+
+  fetchUser() {
+    var url = 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/user/show/1'; 
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then(json => {
+      if(json.birthday) {
+        this.setState({ completedProfile: true});  
+      } else {
+        console.log("Profile not complete")
+      }
+    })
+    .catch(error => console.error(error))
+  }
+
+
   render() {
+    console.log("this.state.completedProfile = " + this.state.completedProfile)
      return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -74,7 +99,11 @@ export default class HomeScreen extends React.Component {
             onRefresh={this._onRefresh}
           />
         }> 
-          <AllJamList data={this.state.jams}/>
+          <AllJamList 
+            data={this.state.jams} 
+            completedProfile={this.state.completedProfile}
+            navigation={this.props.navigation}
+          />
         </ScrollView>
       </View>
     );

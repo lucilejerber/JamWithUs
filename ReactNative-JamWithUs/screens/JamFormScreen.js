@@ -129,7 +129,6 @@ export default class JamForm extends React.Component {
     this.getInstruments();
   }
 
-  
   handleSubmit() {
     // var date;
     console.log("Name = " + this.state.name)
@@ -146,15 +145,14 @@ export default class JamForm extends React.Component {
     console.log(this.state.selectedGenres)
     console.log("Description = " + this.state.description)
     console.log("MaxParticipants = " + this.state.maxParticipants)
-    
-    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Jam/save', {
+
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
 
       },  
-
       body: JSON.stringify({
         "name": this.state.name,
         "date": this.state.date,
@@ -171,21 +169,24 @@ export default class JamForm extends React.Component {
         "gens":[{"user": this.state.userId, "role": "admin"}]
       }),
     })
-    .then(json => console.log(json))
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if (responseJson.errors) {
+        Alert.alert('Veuillez vérifier que vous avez rempli tous les champs.');
+      } else{
+        Alert.alert('La Jam ' + this.state.name + ' à bien été créée!');
+      }
+    })
     .catch(error => console.error(error))
 	 
-	//Pop-up alert here plus condition que le name soit pas vide
-	if (this.state.name) {
-		Alert.alert('La Jam ' + this.state.name + ' à bien été créée!');
-	}else{
-		Alert.alert('Le nom de la Jam ne peut pas être nul!');
-	}
+  	//Pop-up alert here plus condition que le name soit pas vide
 
-}   
+
+  }   
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Instrument', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -205,7 +206,7 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://02c25d34.ngrok.io/JamWithUs-0.6/Genre', {
+    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Genre', {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 
@@ -271,17 +272,17 @@ export default class JamForm extends React.Component {
             </View>
 
 
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Nom de la jam</Text>
+            <View style={forms.inputContainer}>
+              <Text style={forms.inputLabel}>Nom de la jam</Text>
               <TextInput 
-                style={styles.input}   
+                style={forms.input}   
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({name: text})}
               />        
  
-              <Text style={styles.inputLabel}>Date</Text> 
-              <View style={styles.input}>
+              <Text style={forms.inputLabel}>Date</Text> 
+              <View style={forms.input}>
                 <DatePicker
                   date={this.state.date}
 
@@ -306,12 +307,12 @@ export default class JamForm extends React.Component {
               </View>
 
 
-              <Text style={styles.inputLabel}>Lieu</Text>
+              <Text style={forms.inputLabel}>Lieu</Text>
 
-              <FormLocation handler={this.onLocationChange} styles={styles.input} />
+              <FormLocation handler={this.onLocationChange} styles={forms.input} />
 
 
-              <Text style={styles.inputLabel}>Instruments</Text>
+              <Text style={forms.inputLabel}>Instruments</Text>
               <MultiSelect
                 items={this.state.instruments}
                 uniqueKey="id"
@@ -322,7 +323,7 @@ export default class JamForm extends React.Component {
                 selectedItems={selectedInstruments}
               />
                  
-              <Text style={styles.inputLabel}>Genres</Text>
+              <Text style={forms.inputLabel}>Genres</Text>
               <MultiSelect
                 styleMainWrapper={styles.multiSelect}
                 items={this.state.genres}
@@ -333,28 +334,28 @@ export default class JamForm extends React.Component {
                 selectedItems={selectedGenres}                
               />              
            
-              <Text style={styles.inputLabel}>Description</Text>
+              <Text style={forms.inputLabel}>Description</Text>
               <TextInput 
                 styleInputGroup={styles.multiSelect}
-                style={styles.input} 
+                style={forms.input} 
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({description: text})}
               />
 
-              <Text style={styles.inputLabel}>NombreMaxParticipants</Text>
+              <Text style={forms.inputLabel}>NombreMaxParticipants</Text>
               <TextInput 
-                style={styles.input} 
+                style={forms.input} 
                 editable = {true} 
                 maxLength = {40} 
                 onChangeText={(text) => this.setState({maxParticipants: text})}
               />
-			// Bouton button remplacement par TouchableOpacity here + le style pour les boutons "Enregistrer"
-			<TouchableOpacity 
-				onPress={this.handleSubmit}
-				style={buttons.opacity}>
-				<Text style={buttons.name}>Enregistrer</Text>
-			</TouchableOpacity>
+			
+      			<TouchableOpacity 
+        				onPress={this.handleSubmit}
+        				style={buttons.opacity}>
+        				<Text style={buttons.name}>Enregistrer</Text>
+        			</TouchableOpacity>
             </View>
           </View>
 
