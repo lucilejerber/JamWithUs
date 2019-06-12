@@ -10,6 +10,7 @@ import {
 
 import Login from './LoginScreen';
 import AllJamList from '../components/JamComponent/AllJamList'
+import {TOMCATSAVE} from '../constants/index'
 
 import MenuButton from '../components/MenuButton'
 
@@ -45,7 +46,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchData() {
-    var url = 'http://02c25d34.ngrok.io/JamWithUs-0.6/Jam'; 
+    var url = TOMCATSAVE; 
 
     fetch(url, {
       method: 'POST',

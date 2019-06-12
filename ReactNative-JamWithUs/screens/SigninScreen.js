@@ -103,7 +103,6 @@ userSignin() {
         placeholderTextColor='#000'/>
         <Button title="Connexion" onPress={this.userSignin} />
         <Button title="S'inscrire" onPress={() => this.props.navigation.navigate('Signup')}/>
-        <Button title="Mot de passe oublié" onPress={() => this.props.navigation.navigate('ForgotPassword')}/>
       </View>
     );
   }

@@ -14,7 +14,7 @@ import {
   View,
   StatusBar } from 'react-native';
 
-import deviceStorage from '../components/DeviceStorage';
+import {TOMCATSAVE} from '../constants/index';
 
 
 export default class SignupScreen extends Component <{}> {
@@ -36,7 +36,7 @@ userSignup() {
   console.log("password = " + this.state.password)
 
 
-  fetch('http://effundo.serveo.net/user/save', {
+  fetch(TOMCATSAVE, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -50,7 +50,7 @@ userSignup() {
     })
   //print the response in console
     .then((response) => {
-    //handle the response 
+    console.log(TOMCATSAVE)
     if (response.ok) { 
     this._signInAsync;
     this.props.navigation.navigate('HomeScreen');
@@ -60,8 +60,7 @@ userSignup() {
     Alert.alert("Veuillez vérifier que les champs soient conformes.");
     }
   })
-    //.then((response) => {
-      //deviceStorage.saveKey("id_token", response.data.jwt);
+ 
 .catch((error) => {
       //console.log(error);
       this.onRegistrationFail();
