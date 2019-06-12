@@ -1,1 +1,9 @@
-{}
+{
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://6a-yxv.anonymous.reactnative-jamwithus.exp.direct",
+  "packagerNgrokUrl": "https://packager.6a-yxv.anonymous.reactnative-jamwithus.exp.direct",
+  "ngrokPid": 23080,
+  "devToolsPort": 19002,
+  "packagerPort": 19001,
+  "packagerPid": 23060
+}
