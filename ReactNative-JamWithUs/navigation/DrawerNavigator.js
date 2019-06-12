@@ -11,8 +11,7 @@ import ProfilForm from '../screens/ProfilFormScreen';
 import JamDescription from '../screens/JamDescriptionScreen';
 import JamForm from '../screens/JamFormScreen';
 import SignupScreen from '../screens/SignupScreen';
-
-//import Accueil from '../screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -23,7 +22,7 @@ const DrawerConfig = {
 const DrawerNavigator = createDrawerNavigator(
 
 {
-		//Accueil: Accueil,
+		HomeScreen: HomeScreen,
 		ProfilForm: ProfilForm,
 		
 		ProfilDisplay: ProfilDisplay,
