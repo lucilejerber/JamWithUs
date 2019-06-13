@@ -68,10 +68,6 @@ class Instruments extends React.Component {
       list = Object.keys(this.state.instruments).map((i) => {
         return (
           <View key={i}>
-            <Image
-              style={styles.image} 
-              source={{uri: this.state.instruments[i].url}}
-            />
             <Text>{this.state.instruments[i].name}</Text>
           </View>
         )

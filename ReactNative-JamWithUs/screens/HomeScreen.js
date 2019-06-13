@@ -42,6 +42,11 @@ export default class HomeScreen extends React.Component {
     this.fetchUser()
   }
 
+  componentDidUpadte() {
+    this.fetchData()
+    this.fetchUser()
+  }
+
   _onRefresh() {
     this.setState({refreshing: true});
     this.fetchData();
