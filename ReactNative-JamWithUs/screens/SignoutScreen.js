@@ -22,7 +22,7 @@ export default class SignoutScreen extends React.Component {
       <View style={styles.container}>
       <Text>Voulez-vous vraiment vous déconnecter ?</Text>
        <TouchableOpacity 
-            onPress={this._signOutAsync}
+            onPress={()=> this.props.navigation.navigate('Auth')}
                     style={buttons.oui}>
             <Text style={buttons.nameoui}>Oui</Text>
           </TouchableOpacity> 
@@ -35,11 +35,12 @@ export default class SignoutScreen extends React.Component {
     );
   }
 
-
+/*
   _signOutAsync = async () => {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };
+*/
 }
 
  const styles = StyleSheet.create({

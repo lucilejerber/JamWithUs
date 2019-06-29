@@ -15,6 +15,7 @@ import {
 
 import Instruments from '../Common/Instruments'
 import Genres from '../Common/Genres'
+import {screens, buttons, forms} from '../../constants/StylesAll.js'
 
 const styles = StyleSheet.create({
   container: {
@@ -37,9 +38,19 @@ const styles = StyleSheet.create({
   bold: { 
     fontWeight: 'bold',
   },
+  title: { 
+    fontWeight: 'bold',
+    fontSize: 18
+  },
   italic: {
     fontStyle: 'italic'
   },
+  description: {
+    color: "grey"
+  },
+  location: {
+    color: "#535353"
+  }
 }); 
 
 export default class Jam extends React.Component {
@@ -108,7 +119,7 @@ export default class Jam extends React.Component {
 
       Alert.alert(
         'Complète ton profil pour accéder à la Jam!',
-        '',
+        "Si tu l'as bien complété, pense à recharger la page",
         [
           {
             text: 'Cancel',
@@ -130,25 +141,29 @@ export default class Jam extends React.Component {
   render() { 
     return (
       <View style={styles.jamContainer}>
-      <TouchableOpacity onPress={this.handleTouch}>
+      <TouchableOpacity onPress={this.handleTouch} style={{flex: 1, flexDirection: 'row'}}>
         <View style={{flex: 1}}>
           <Text style={styles.bold}>{this.state.date.toLocaleDateString("fr-FR")}</Text> 
           <Text>{this.state.date.toLocaleTimeString()}</Text> 
         </View>
         <View style={{flex: 3}}>
-          <Text style={styles.bold}>{this.state.name}</Text>  
+          <Text style={styles.title}>{this.state.name}</Text>  
               
-          <Text>{this.state.locationName} {this.state.locationAdress}</Text>
+          <Text style={styles.location}>{this.state.locationName} {this.state.locationAdress}</Text>
               
-          <Text style={styles.italic}>{this.state.description}</Text>
-
-          <Text style={styles.italic}>{this.state.numberParticipants} participants sur {this.state.maxParticipants}</Text>
+          <Text style={styles.description}>{this.state.description}</Text>
             
-          <Text style={styles.inputLabel}>Instruments</Text>
+          <Text style={styles.italic}></Text>
+            
+          <Text style={styles.bold}>Instruments:</Text>
           <Instruments data={this.state.instruments}/>
                    
-          <Text style={styles.inputLabel}>Genres</Text>
+          <Text style={styles.bold}>Genres : </Text>
           <Genres data={this.state.genres}/>
+
+          <Text style={styles.italic}></Text>
+          <Text style={styles.italic}>{this.state.numberParticipants} participants sur {this.state.maxParticipants}</Text>
+
         </View>    
        </TouchableOpacity>
 
