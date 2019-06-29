@@ -1,3 +1,7 @@
+/*
+  This page displays the form to create a jam
+*/
+
 import React from 'react';
 import {
   Image,
@@ -14,14 +18,14 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText'; 
 import FormLocation from '../components/Common/FormLocation'; 
+import MenuButton from '../components/MenuButton'
 
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
 
-import MenuButton from '../components/MenuButton'
 import {screens, buttons, forms} from '../constants/StylesAll.js'
+import {TOMCAT, JAM, SAVE, USERID, USER, INSTRUMENT, GENRE} from '../constants/index'
 
 const styles = StyleSheet.create({
   container: {
@@ -99,22 +103,8 @@ export default class JamForm extends React.Component {
   }
 
   handleSubmit() {
-    // var date;
-    console.log("Name = " + this.state.name)
-    console.log("Date = " + this.state.date)
-    console.log("Location Name = " + this.state.locationName)
-    console.log("Location Adress = " + this.state.locationAdress)
-    console.log("Latitude = " + this.state.latitude)
-    console.log("Longitude = " + this.state.longitude)
-    console.log("Administrateur = " + "admin")
-    console.log("Instruments = ")
-    console.log(this.state.selectedInstruments)
-    console.log("Genres = ")
-    console.log(this.state.selectedGenres)
-    console.log("Description = " + this.state.description)
-    console.log("MaxParticipants = " + this.state.maxParticipants)
-
-    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Jam/save', {
+    var url = TOMCAT + JAM + SAVE;
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -147,7 +137,8 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get instruments
   getInstruments() {  
-    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Instrument', {
+    var url = TOMCAT + INSTRUMENT;
+    fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -167,7 +158,8 @@ export default class JamForm extends React.Component {
 
   // Request to the data base to get genre 
   getGenres() {
-    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Genre', {
+    var url = TOMCAT + GENRE;
+    fetch(url, {
       method: 'POST',   
       headers: {
         Accept: 'application/json', 

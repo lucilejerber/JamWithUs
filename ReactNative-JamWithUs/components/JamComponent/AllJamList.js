@@ -1,4 +1,8 @@
- import React from 'react';
+/*
+  Diplays a list of available jam
+*/
+
+import React from 'react';
 import {
   Image,
   ScrollView,
@@ -41,13 +45,6 @@ export default class AllJamList extends React.Component {
   static navigationOptions = {
     header: null,
   }; 
-  constructor(props) {
-    super(props)
-    
-    this.state = { 
-    } 
-  }
-
  
   render() {
     var jamList;

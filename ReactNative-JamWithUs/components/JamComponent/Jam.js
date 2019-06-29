@@ -1,3 +1,7 @@
+/*
+  Displays one jam
+*/
+
 import React from 'react';
 import {
   Image,
@@ -81,6 +85,7 @@ export default class Jam extends React.Component {
     this.setState({ numberParticipants: this.props.data.numberParticipants}); 
   }
  
+  // function that hanble user touch
   handleTouch() {
     if (this.props.completedProfile) {
       console.log("OK")

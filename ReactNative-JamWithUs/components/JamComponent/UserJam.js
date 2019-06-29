@@ -1,3 +1,7 @@
+/*
+  Diplays a jam for a specific user
+*/
+
 import React from 'react';
 import {
   Image,
