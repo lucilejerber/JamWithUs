@@ -1,5 +1,5 @@
-//Auteur : Gaël
-  //Navigation
+// Auteur : Gaël
+// Navigation
   
 import React, {Component} from 'react';
   

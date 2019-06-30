@@ -1,3 +1,7 @@
+/*
+  Diplays a list of available jam for a specific user
+*/
+
 import React from 'react';
 import {
   Image,

@@ -1,3 +1,7 @@
+/*
+Necessaire au dimensionnement du Menu Tiroir
+*/
+
 import { Dimensions } from 'react-native';
 
 const width = Dimensions.get('window').width;

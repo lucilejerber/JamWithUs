@@ -1,4 +1,6 @@
-/*Laura*/
+/*
+URL de l'appli
+*/
 
 // Serveur Link
 export const TOMCAT 			= 'http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/'

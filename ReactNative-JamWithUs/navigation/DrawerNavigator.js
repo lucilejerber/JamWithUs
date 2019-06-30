@@ -23,10 +23,13 @@ const DrawerNavigator = createDrawerNavigator(
 
 {
 		HomeScreen: HomeScreen,
+		
 		ProfilForm: ProfilForm,
 		
 		ProfilDisplay: ProfilDisplay,
+		
 		SignupScreen: SignupScreen,
+		
 		JamForm: JamForm,
 
 

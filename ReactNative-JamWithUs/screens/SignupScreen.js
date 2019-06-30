@@ -55,7 +55,7 @@ userSignup() {
     .then((response) => {
     //console.log(TOMCATSAVE)
     if (response.ok) { 
-    this._signInAsync;
+    this.props.navigation.navigate('App');
     Alert.alert(
         'Bienvenue dans Jam With Us !',
         "Complète ton profil pour participer aux jams.",
@@ -77,10 +77,11 @@ userSignup() {
       this.onRegistrationFail();
     });
   }
-
-_signInAsync = async () => {
+/*
+_signUpAsync = async () => {
     await AsyncStorage.setItem('userToken',1);
-  };
+};
+*/
 
   onRegistrationFail() {
     this.setState({

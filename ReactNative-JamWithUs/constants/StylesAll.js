@@ -39,6 +39,11 @@ import { StyleSheet } from 'react-native'
     marginLeft: 40,
     fontWeight: 'bold',
   },
+  multiSelect: {
+    padding: 5,   
+    marginLeft: 40,
+    marginRight: 40,
+  },  
   
  })
  const buttons = StyleSheet.create({  

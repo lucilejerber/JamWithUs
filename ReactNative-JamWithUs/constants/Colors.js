@@ -1,3 +1,7 @@
+/*
+Constantes de couleurs de l'appli
+*/
+
 const tintColor = '#2f95dc';
 
 export default {

@@ -1,3 +1,7 @@
+/*
+  Diplays a search list of a  locations
+*/
+
 import React, { Component } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -22,79 +26,6 @@ class FormLocation extends Component {
       resultsDisplayed: true
     } 
   }
-
-  // TO-DO : Rajouter bouton "ajouter lieu"
-  handleSubmit(details) {  
-    this.setState({ name: details.name });
-    this.setState({ capacity: 4 });
-    this.setState({ availability: true });
-
-    for (var i = details.address_components.length - 1; i >= 0; i--) {
-      switch (details.address_components[i].types[0]) {
-        case 'locality':
-          this.setState({ locality: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + "  = " + details.address_components[i].long_name)
-          break;
-        case 'postal_code':
-          this.setState({ postal_code: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + "  = " +  details.address_components[i].long_name)
-          break;
-        case 'country':
-          this.setState({ country: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + "     = " + details.address_components[i].long_name)
-          break;
-        case 'administrative_area_level_2':
-          this.setState({ administrative_area_level_2: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + " = " + details.address_components[i].long_name)
-          break;
-        case 'administrative_area_level_1':
-          this.setState({ administrative_area_level_1: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + " = " + details.address_components[i].long_name)
-          break;
-        case 'route':
-          this.setState({ route: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + " = " + details.address_components[i].long_name)
-          break;
-        case 'street_number':
-          this.setState({ street_number: details.address_components[i].long_name });
-          console.log(details.address_components[i].types[0] + " = " + details.address_components[i].long_name)
-          break;
-        default:
-          console.log(details.address_components[i].types[0] + " = " + details.address_components[i].long_name)
-      }
-    }
-
-    var body = { 
-      "name": this.state.name,
-      "street_number": this.state.street_number, 
-      "route": this.state.route, 
-      "locality": this.state.locality,
-      "administrative_area_level_2": this.state.administrative_area_level_2,
-      "administrative_area_level_1": this.state.administrative_area_level_1,
-      "country": this.state.country,
-      "postal_code": this.state.postal_code,
-      "capacity": this.state.capacity,
-      "availability": this.state.availability
-    }
-
-    console.log("body.street_number")
-    console.log(body.street_number)
-    console.log("body.route")
-    console.log(body.route)
-    console.log("body.postal_code")
-    console.log(body.postal_code)
- 
-    fetch('http://projets-tomcat.isep.fr:8080/JamWithUs-0.1/Location/save', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body)
-    })
-    .then(json => console.log(json))
-    .catch(error => console.error(error))
-  }   
 
   render() { 
     return (
@@ -127,7 +58,7 @@ class FormLocation extends Component {
         currentLocation={false}
         query={{
           // available options: https://developers.google.com/places/web-service/autocomplete
-          key: 'AIzaSyACQlodCoybhH4bhs6WoVscVcyIuYnAoDQ',
+          key: '',
           language: 'fr', // language of the results
         }}
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true

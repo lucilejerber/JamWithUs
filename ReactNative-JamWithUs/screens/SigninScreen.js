@@ -42,7 +42,6 @@ export default class SigninScreen extends React.Component {
     console.log(data[0].mail)
     console.log(data[0].password)
       if(data[0].mail == this.state.mail && data[0].password == this.state.password){
-        this._signInAsync;
         this.props.navigation.navigate('App');
         console.log('connexion ok');
       }
@@ -51,11 +50,6 @@ export default class SigninScreen extends React.Component {
       Alert.alert("Adresse mail / mot de passe incorrects.");
       }
 }
-    
-
- _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken',1);
-  };
 
   onLoginFail() {
     this.setState({
@@ -91,11 +85,11 @@ userSignin() {
       this.onLoginFail();
     });
   }
-
+/*
  _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken',);
-    this.props.navigation.navigate('App');
-  };
+    await AsyncStorage.setItem('userToken',1);
+};
+*/
 
   onRegistrationFail() {
     this.setState({

@@ -69,10 +69,6 @@ class Genres extends React.Component {
       list = Object.keys(this.state.genres).map((i) => {
         return (
           <View key={i}>
-            <Image
-              style={styles.image} 
-              source={{uri: this.state.genres[i].url}}
-            />
             <Text>{this.state.genres[i].name}</Text>
           </View>
         )

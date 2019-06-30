@@ -1,4 +1,4 @@
-// Helpers/filmsData.js
+/*// Helpers/filmsData.js
 
 export default data = [
    {
@@ -20,4 +20,4 @@ export default data = [
       release_date:"1977-05-25"
    }
 ]
-
+*/
