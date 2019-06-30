@@ -25,14 +25,10 @@ import MenuButton from '../components/MenuButton'
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
 
-<<<<<<< HEAD
-import MenuButton from '../components/MenuButton'
-import {screens, buttons, forms} from '../constants/StylesAll.js'
 
-=======
+
 import {screens, buttons, forms} from '../constants/StylesAll.js'
 import {TOMCAT, JAM, SAVE, USERID, USER, INSTRUMENT, GENRE} from '../constants/index'
->>>>>>> 54a057a733948ea4565bdabaa54072753d142423
 
 const styles = StyleSheet.create({
   container: {

@@ -1,27 +1,10 @@
 {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 54a057a733948ea4565bdabaa54072753d142423
   "devToolsPort": 19002,
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
-<<<<<<< HEAD
-  "ngrokPid": null
-=======
   "ngrokPid": null,
   "webpackServerPort": null
-=======
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
->>>>>>> 97899616b97ed3866a1d9bc765c575714e7bd118
->>>>>>> 54a057a733948ea4565bdabaa54072753d142423
 }
