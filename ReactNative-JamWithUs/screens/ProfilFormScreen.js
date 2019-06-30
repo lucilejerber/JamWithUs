@@ -38,6 +38,7 @@ class ProfilForm extends React.Component {
 		super (props);
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.onDateChange = this.onDateChange.bind(this)
+		this.onCountryChange = this.onCountryChange.bind(this)
 	    this.onSelectedInstrumentsChange = this.onSelectedInstrumentsChange.bind(this)
 	    this.onSelectedGenresChange = this.onSelectedGenresChange.bind(this)
 
@@ -75,6 +76,9 @@ class ProfilForm extends React.Component {
 		this.setState({ username: json.username});
 		this.setState({ mail: json.mail});
 		this.setState({ password: json.password});
+		this.setState({ birthday: json.birthday});
+		this.setState({ phoneNumber: json.phoneNumber});
+		this.setState({ city: json.city});
 	})
     .catch(error => console.error(error))
 	
@@ -211,6 +215,12 @@ class ProfilForm extends React.Component {
 	    this.setState({birthday: date}) 
 	}
 
+	onCountryChange(itemValue) {
+		this.setState({pickerSelection: itemValue});
+		console.log(itemValue)
+		this.setState({country: itemValue});
+	}
+
 	render (){
     const { selectedInstruments } = this.state;
     const { selectedGenres } = this.state;
@@ -273,6 +283,7 @@ class ProfilForm extends React.Component {
 							<TextInput style={forms.input} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='+33---------'
+							value={this.state.phoneNumber}
 							onChangeText={(text) => this.setState({phoneNumber: text})}
 							/>
 							
@@ -282,10 +293,10 @@ class ProfilForm extends React.Component {
 										itemStyle = {styles.picker_item}
 										style = {styles.pickerinput}
 										selectedValue={this.state.pickerSelection}
-										onValueChange={(itemValue, itemIndex) =>this.setState({pickerSelection: itemValue})}>
-										<Picker.Item label="France" value="fr" />
-										<Picker.Item label="Belgique" value="bg" />
-										<Picker.Item label="Japon" value="jp" />
+										onValueChange={this.onCountryChange}>
+										<Picker.Item label="France" value="France" />
+										<Picker.Item label="Belgique" value="Belgique" />
+										<Picker.Item label="Japon" value="Japon" />
 									</Picker>
 							</View>
 							
@@ -293,6 +304,7 @@ class ProfilForm extends React.Component {
 							<TextInput style={forms.input} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Marseille'
+							value={this.state.city}
 							onChangeText={(text) => this.setState({city: text})}
 							/>
 							

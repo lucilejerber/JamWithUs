@@ -2,11 +2,12 @@
 Laura 
 */
 import React, {Component} from 'react'
-import users from '../Helpers/usersData'
-import UserItem from '../components/UserItem'
-import {screens, buttons} from '../constants/StylesAll.js'
+import {screens, buttons, forms, profildisplay} from '../constants/StylesAll.js'
 import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
-
+import {
+	TOMCATUPDATE, TOMCATSHOW,
+	LOCALUPDATE,LOCALSHOW,LOCALSAVE
+} from '../constants/index';
 
 import MenuButton from '../components/MenuButton'
 
@@ -15,6 +16,44 @@ class ProfilDisplay extends React.Component {
 		title: 'Profil',
 	};
 	
+	constructor(props){
+		super (props);
+
+		this.state = {
+
+			username: '',
+			mail: '',
+			birthday: '',
+			phoneNumber:'',
+			country:'',
+			city:'',
+			
+		};
+	}
+
+	 componentWillMount(){ 
+    console.log("ComponentWillMount")//avant que le render se fasse
+	console.log(TOMCATSHOW)
+	fetch(TOMCATSHOW, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+		'Content-Type': 'application/json'
+      }       
+    })	
+
+    .then((response) => response.json())// converti en json 
+	.then(json => {
+		this.setState({ username: json.username});
+		this.setState({ mail: json.mail});
+		this.setState({ birthday: json.birthday});
+		this.setState({ phoneNumber: json.phoneNumber});
+		this.setState({ country: json.country});
+		this.setState({ city: json.city});
+	})
+    .catch(error => console.error(error))
+	}
+
 	_displayDetailForProfil(){
       console.log("Modifier Profil")
       this.props.navigation.navigate("ProfilForm")
@@ -26,10 +65,9 @@ class ProfilDisplay extends React.Component {
 	}
 	
 	render (){
-		//console.log(this.props)
 		const { user, displayDetailForProfil } = this.props 
 		return (
-	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
+	           
 			<View style = {styles.main_container}>
 				<MenuButton navigation={this.props.navigation} />		
 				<View style = {styles.image_container}>
@@ -41,14 +79,24 @@ class ProfilDisplay extends React.Component {
 
 				<View style={styles.middle_container}>
 					<ScrollView>
-	            		<Image/>
-						<FlatList
-				  		data={users}
-				  		keyExtractor={(item) => item.id.toString()}
-				  		renderItem={({item}) => <UserItem user={item}
-				  		displayDetailForProfil={this._displayDetailForProfil} 
-				  		/>}
-						/>						
+	            		<Text style={profildisplay.Texttitle}>Nom d'utilisateur</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.username}</Text>
+	            		
+	            		<Text style={profildisplay.Texttitle}>Adresse Mail</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.mail}</Text>
+	            		
+	            		<Text style={profildisplay.Texttitle}>Date de Naissance</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.birthday}</Text>
+	            		
+	            		<Text style={profildisplay.Texttitle}>Numéro de Téléphone</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.phoneNumber}</Text>
+	            		
+	            		<Text style={profildisplay.Texttitle}>Pays</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.country}</Text>
+	            		
+	            		<Text style={profildisplay.Texttitle}>Ville</Text>
+	            		<Text style={profildisplay.Textoutput}>{this.state.city}</Text>
+					
 					</ScrollView>
 					<TouchableOpacity 
 						onPress={()=> this._displayDetailForProfil()}

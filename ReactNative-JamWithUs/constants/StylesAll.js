@@ -1,6 +1,7 @@
 /*Laura*/
 import { StyleSheet } from 'react-native'
-  
+import {darkorange,orange,chocolate} from './Colors'
+
  const screens = StyleSheet.create({   
    container: {                       
      marginTop: 150,
@@ -46,6 +47,22 @@ import { StyleSheet } from 'react-native'
   },  
   
  })
+
+  const profildisplay = StyleSheet.create({
+
+  
+  Texttitle: {
+    marginLeft: 40,
+    fontWeight: 'bold',
+    color: 'darkorange',
+  },
+  Textoutput: {
+    marginLeft: 50,
+    color: 'black',
+  },  
+  
+ })
+
  const buttons = StyleSheet.create({  
    primary: {                         
      flex: 1,
@@ -107,4 +124,4 @@ import { StyleSheet } from 'react-native'
   }
  })
   
- export { screens, buttons, forms }           
+ export { screens, buttons, forms,profildisplay }           
