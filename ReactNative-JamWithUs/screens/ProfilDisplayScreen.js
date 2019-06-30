@@ -1,12 +1,12 @@
-/* 
-Laura 
+/*
+PAge pour afficher le profil utilisateur
 */
 import React, {Component} from 'react'
 import {screens, buttons, forms, profildisplay} from '../constants/StylesAll.js'
 import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
 import {
 	TOMCATUPDATE, TOMCATSHOW,
-	LOCALUPDATE,LOCALSHOW,LOCALSAVE
+	LOCALUPDATE
 } from '../constants/index';
 
 import MenuButton from '../components/MenuButton'
@@ -31,8 +31,9 @@ class ProfilDisplay extends React.Component {
 		};
 	}
 
-	 componentWillMount(){ 
-    console.log("ComponentWillMount")//avant que le render se fasse
+	//executed before the render method
+	componentWillMount(){ 
+    console.log("ComponentWillMount")
 	console.log(TOMCATSHOW)
 	fetch(TOMCATSHOW, {
       method: 'POST',
@@ -54,11 +55,13 @@ class ProfilDisplay extends React.Component {
     .catch(error => console.error(error))
 	}
 
+	//executed when the user click on the "Modifier Profil" button 
 	_displayDetailForProfil(){
       console.log("Modifier Profil")
       this.props.navigation.navigate("ProfilForm")
 	}
 	
+	//executed when the user click on the "Mes Jams" button
 	_displayJams(){
       console.log("Mes Jams")
       this.props.navigation.navigate("JamDescription")

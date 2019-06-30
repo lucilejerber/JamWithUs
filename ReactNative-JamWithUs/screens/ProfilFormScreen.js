@@ -27,7 +27,7 @@ import {
 import {screens, buttons, forms} from '../constants/StylesAll.js'
 import DatePicker from 'react-native-datepicker';
 import MultiSelect from 'react-native-multiple-select';
-//import * as Constants from '../constants'
+
 
 class ProfilForm extends React.Component {
 	static navigationOptions = {
@@ -59,9 +59,9 @@ class ProfilForm extends React.Component {
 		};
 	}
 
-  // fait des trucs sur la page en arriere plan a l'ouverture par exemple appel BDD
+  // Call this method only one time before the initial render
   componentWillMount(){ 
-    console.log("ComponentWillMount")//avant que le render se fasse
+    console.log("ComponentWillMount")
 	console.log(TOMCATSHOW)
 	fetch(TOMCATSHOW, {
       method: 'POST',
@@ -70,8 +70,8 @@ class ProfilForm extends React.Component {
 		'Content-Type': 'application/json'
       }       
     })	
-	//.then((response) => console.log(response))//affiche la reposne dans la console
-    .then((response) => response.json())// converti en json 
+	//.then((response) => console.log(response))//affiche la reponse dans la console
+    .then((response) => response.json())// convertion en json 
 	.then(json => {
 		this.setState({ username: json.username});
 		this.setState({ mail: json.mail});
@@ -140,7 +140,7 @@ class ProfilForm extends React.Component {
   };  
 
 
-  // A REVOIR - recup les données formulaires soumises par l'utilisateur
+  // Fetch the data provide by user in the data base 
   handleSubmit() {
     console.log("username = " + this.state.username)
     console.log("mail = " + this.state.mail)
@@ -201,9 +201,7 @@ class ProfilForm extends React.Component {
         ],
         {cancelable: false},
       );
-
-	//Alert.alert(this.state.username + ' votre profil à bien été complété!',);
-	//this.props.navigation.navigate("HomeScreen")	
+	
 	}else{
 		Alert.alert('Pour participer au Jam compléter le profil entièrement');
 	}	
@@ -357,9 +355,6 @@ const styles = StyleSheet.create({
 
   picker_area: {
   	backgroundColor: '#fafafa',
-	//height: 100,
-  	//width: 200,
-  	//flex: 1
   },
   picker_item: {
     fontSize: 15,
@@ -375,19 +370,6 @@ const styles = StyleSheet.create({
   	alignItems: 'center',
   	backgroundColor: '#ff0000',
   	color: '#f00000'
-  },
-
-  textinput: {
-  	color: '#00000f',
-  	marginTop: 4,
-    marginLeft: 10,
-    marginRight: 10,
-    height: 50,
-    borderColor: '#FFFFFF',
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingLeft: 5
   },
 
    inputtitle: {

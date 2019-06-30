@@ -1,5 +1,4 @@
 /* 
-Laura 
 Bouton pour le menu tiroir
 */
 import React from 'react';
