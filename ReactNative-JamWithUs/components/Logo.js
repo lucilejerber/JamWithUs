@@ -1,3 +1,6 @@
+//Auteur: Gaël
+//Logo
+
 import React, { Component } from 'react';
 import { 
   StyleSheet, 

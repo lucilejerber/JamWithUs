@@ -85,11 +85,7 @@ userSignin() {
       this.onLoginFail();
     });
   }
-/*
- _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken',1);
-};
-*/
+
 
   onRegistrationFail() {
     this.setState({
@@ -115,9 +111,7 @@ userSignin() {
         secureTextEntry={true}
         onChangeText={(text) => this.setState({password: text})}
         placeholderTextColor='#000'/>
-        {/*<Button title="Connexion" onPress={this.userSignin} />*/}
         <TouchableOpacity 
-            /*onPress={()=> this.props.navigation.navigate("HomeScreen")}*/
         onPress={this.userSignin}
         style={buttons.opacity}>
           <Text style={buttons.name}>Connexion</Text>

@@ -1,3 +1,7 @@
+//auteur : Gaël
+// page de loading (non fonctionnel)
+
+
 import React, { Component } from 'react';
 import { 
   AsyncStorage,

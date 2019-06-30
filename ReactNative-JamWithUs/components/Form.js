@@ -1,3 +1,6 @@
+//Auteur: Gaël
+// Formulaire de connexion
+
 import React, { Component } from 'react';
 import { 
   StyleSheet, 

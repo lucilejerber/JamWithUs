@@ -1,3 +1,6 @@
+//Auteur: Gaël
+//page mdp oublié (non fonctionnel)
+
 import React, { Component } from 'react';
 import { 
   StyleSheet, 

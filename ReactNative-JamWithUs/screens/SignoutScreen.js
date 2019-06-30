@@ -1,3 +1,7 @@
+//Auteur : Gaël
+//Déconnexion
+
+
 import React , { Component } from 'react';
 import { 
   AsyncStorage,
@@ -11,7 +15,7 @@ import {
 
 import {buttons} from '../constants/StylesAll'
 
-//Page de déconnexion
+
 export default class SignoutScreen extends React.Component {
   static navigationOptions = {
     title: 'Deconnexion',
@@ -35,12 +39,7 @@ export default class SignoutScreen extends React.Component {
     );
   }
 
-/*
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-*/
+
 }
 
  const styles = StyleSheet.create({
