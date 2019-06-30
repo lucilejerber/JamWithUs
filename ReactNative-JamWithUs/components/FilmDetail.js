@@ -1,5 +1,5 @@
 // Components/FilmDetail.js
-import React from 'react'
+/*import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
 class FilmDetail extends React.Component {
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FilmDetail
+export default FilmDetail*/

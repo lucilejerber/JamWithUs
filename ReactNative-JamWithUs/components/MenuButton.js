@@ -1,10 +1,10 @@
 /* 
-Laura Bouton pour le menu sur le côté
+Laura 
+Bouton pour le menu tiroir
 */
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-//import { Ionicons } from 'react-native-vector-icons';
 
 class MenuButton extends React.Component {
   render() {
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 20,
-    //backgroundColor:'#FA9605'
   }
 })
 

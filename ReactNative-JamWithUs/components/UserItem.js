@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { StyleSheet, View, Text, Image,TouchableOpacity } from 'react-native'
 
 class UserItem extends React.Component {
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserItem
+export default UserItem*/

@@ -17,7 +17,9 @@ export const SAVE				= 'save/'
 export const SHOW 				= 'show/'
 export const UPDATE 			= 'update/'
 export const SEARCH				= 'search/'
+
 export const IDUSER				= '1'
+
 export const SEARCHQ 			= 'search?q='
 
 export const LOCALSAVE 		= LOCAL + USER + SAVE

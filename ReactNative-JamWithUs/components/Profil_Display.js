@@ -1,7 +1,7 @@
 /* 
 Laura 
 */
-import React, {Component} from 'react'
+/*import React, {Component} from 'react'
 import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image, TouchableOpacity} from 'react-native'
 import users from '../Helpers/usersData'
 import UserItem from './UserItem'
@@ -20,7 +20,7 @@ class Profil_Display extends React.Component {
 
 				</View>*/}
 				
-				<View style = {styles.image_container}>
+				/*<View style = {styles.image_container}>
 					<Image
 						style={{width: 50, height: 50}}
 						source={require('../assets/images/profil_png_default.jpg')}
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Profil_Display;
+export default Profil_Display;*/

@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 
 class FilmItem extends React.Component {
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default FilmItem
+export default FilmItem*/

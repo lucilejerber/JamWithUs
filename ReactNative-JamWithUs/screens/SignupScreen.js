@@ -17,8 +17,6 @@ import {
 
 import Logo from '../components/Logo';
 
-import {screens, buttons, forms} from '../constants/StylesAll'
-
 import {TOMCATSAVE} from '../constants/index';
 import {screens, buttons, forms} from '../constants/StylesAll'
 

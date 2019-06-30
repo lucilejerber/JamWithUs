@@ -1,5 +1,5 @@
 // Components/Film_Search.js
-import React from 'react'
+/*import React from 'react'
 import {StyleSheet, View, TextInput, Button, FlatList, Text, ScrollView, Image} from 'react-native'
 import films from '../Helpers/filmsData'
 import FilmItem from './FilmItem'
@@ -18,7 +18,7 @@ class Film_Search extends React.Component {
 				{/*<Text numberOfLines={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</Text>*/}
-				<Button style={styles.button} title='Sauvegarder' onPress={()=>{}}/>
+				/*<Button style={styles.button} title='Sauvegarder' onPress={()=>{}}/>
 
 
         <FlatList
@@ -60,5 +60,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Film_Search
-//exporte les éléments pour pouvoir les utiliser ailleurs
+export default Film_Search*/

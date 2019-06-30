@@ -1,7 +1,7 @@
 /* 
 Laura Components Compléter Profil
 */
-import React from 'react'
+/*import React from 'react'
 import { 
   StyleSheet, 
   View, 
@@ -46,11 +46,11 @@ class ProfilForm extends React.Component {
     //.then(json => this.setState({
       //  name: json.name
       //}))
-    .catch(error => console.error(error))*/
-	}
+    .catch(error => console.error(error))
+	}*/
 
   // A REVOIR - recup les données formulaires soumises par l'utilisateur
-  handleSubmit() {
+  /*handleSubmit() {
     console.log("name = " + this.state.name)
     console.log("lastname = " + this.state.lastname)
     console.log("mail = " + this.state.mail)
@@ -71,9 +71,9 @@ class ProfilForm extends React.Component {
     })
     .then(json => console.log(json))
     .catch(error => console.error(error))
-  }
+  }*/
 
-	render (){
+	/*render (){
 		return (
 	           // Ici on rend à l'écran les éléments graphiques de notre component custom Search
 			<View style = {styles.main_container}>
@@ -110,8 +110,8 @@ class ProfilForm extends React.Component {
 						<TextInput style={styles.textinput} 
 							placeholderTextColor = "#AFAFAF" 
 							placeholder='Dupont'
-              onChangeText={(text) => this.setState({lastname: text})}
-						/>
+              onChangeText={(text) => this.setState({lastname: text})}*/
+						/*/>*/
 				{/*		<TextInput style={styles.textinput} placeholder='JJ/MM/AAAA'/>
 						<TextInput style={styles.textinput} placeholder='charles.dupont@exemple.com'/>
 						<TextInput style={styles.textinput} placeholder=''/>
@@ -120,7 +120,7 @@ class ProfilForm extends React.Component {
 						<TextInput style={styles.textinput} placeholder='Paris'/> 
 						<TextInput style={styles.textinput} placeholder='Saxophone'/>
 				*/}	    
-						<View style = {styles.picker_area}>
+						/*<View style = {styles.picker_area}>
 							<Text style={styles.inputtitle}>Pays</Text>
 							<Picker
 								itemStyle = {styles.picker_item}
@@ -139,7 +139,7 @@ class ProfilForm extends React.Component {
 						/>									
 						{/*<Button Style={styles.button} title='Sauvegarder' onPress={()=>{}}/>*/}
 
-						<TouchableOpacity 
+						/*<TouchableOpacity 
               style={styles.button_opacity}
               onPress={this.handleSubmit}>
   						  <Text 
@@ -159,9 +159,9 @@ class ProfilForm extends React.Component {
 		)
 	}
   
-}
+}*/
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
   main_container: {
   	backgroundColor: '#d1d3d5',
   	marginTop: 20,
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   }
 
-})
+})*/
 
 export default ProfilForm;
 //exporte les éléments pour pouvoir les utiliser ailleurs
